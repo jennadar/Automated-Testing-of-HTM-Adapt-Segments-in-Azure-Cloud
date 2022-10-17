@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "ConfigSample": {
+      "commandName": "Project",
+      "commandLineArgs": "--AAAA 0000 --color blue --fontSize 10 --state sleeping --AAAA 1234 --MySetting:SomeFloat 0.777",
+      "environmentVariables": {
+        "AAAA": "1234"
+      }
+    }
+  }
+}

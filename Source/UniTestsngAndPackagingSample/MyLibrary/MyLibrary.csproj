@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageId>MyLibrary</PackageId>
+    <Version>1.0.3</Version>
+    <Authors>Angela Merkel</Authors>
+    <Company>UNI</Company>
+    <Product>MyLibrary.com</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>sion has noe method divide.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp", "MyApp\MyApp.csproj", "{E8136BB2-4DB4-4ACA-9C78-6421EF861796}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySumAlgorithm", "MySumAlgorithm\MySumAlgorithm.csproj", "{B085CBFF-DB96-473B-9EBB-294098EE8351}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAverageAlgorithm", "MyAverageAlgorithm\MyAverageAlgorithm.csproj", "{DB8C4778-8452-4D53-91E1-AD9F1744E3CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "My.Common", "My.Common\My.Common.csproj", "{FE4E5496-38F0-48A3-8D27-29467959DC4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{5CB2F855-E09A-442E-854A-16CCC824774C}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\MyAverageAlgorithm.1.0.0.nupkg = nuget\MyAverageAlgorithm.1.0.0.nupkg
+		nuget\MySumAlgorithm.1.0.0.nupkg = nuget\MySumAlgorithm.1.0.0.nupkg
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeAppWithoutAlgorithmSourceCode", "SomeAppWithoutAlgorithmSourceCode\SomeAppWithoutAlgorithmSourceCode.csproj", "{22769F32-B42F-4225-B8E2-9646D827A46C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B31A39F-566D-4FFF-9A1B-BE62BB5FECE6}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8136BB2-4DB4-4ACA-9C78-6421EF861796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8136BB2-4DB4-4ACA-9C78-6421EF861796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8136BB2-4DB4-4ACA-9C78-6421EF861796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8136BB2-4DB4-4ACA-9C78-6421EF861796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B085CBFF-DB96-473B-9EBB-294098EE8351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B085CBFF-DB96-473B-9EBB-294098EE8351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B085CBFF-DB96-473B-9EBB-294098EE8351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B085CBFF-DB96-473B-9EBB-294098EE8351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8C4778-8452-4D53-91E1-AD9F1744E3CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8C4778-8452-4D53-91E1-AD9F1744E3CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8C4778-8452-4D53-91E1-AD9F1744E3CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8C4778-8452-4D53-91E1-AD9F1744E3CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE4E5496-38F0-48A3-8D27-29467959DC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4E5496-38F0-48A3-8D27-29467959DC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4E5496-38F0-48A3-8D27-29467959DC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4E5496-38F0-48A3-8D27-29467959DC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22769F32-B42F-4225-B8E2-9646D827A46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22769F32-B42F-4225-B8E2-9646D827A46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22769F32-B42F-4225-B8E2-9646D827A46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22769F32-B42F-4225-B8E2-9646D827A46C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAF935B1-D96D-424A-AB96-08A05B3634D2}
+	EndGlobalSection
+EndGlobal

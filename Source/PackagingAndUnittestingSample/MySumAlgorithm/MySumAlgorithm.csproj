@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>aaaaaaa</Authors>
+		<Company>ssssss</Company>
+		<Description>sddafsdfdsf</Description>
+		<AssemblyVersion>1.2.3.4</AssemblyVersion>
+		<FileVersion>1.2.3.4</FileVersion>
+		<PackageVersion>1.2.0</PackageVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\My.Common\My.Common.csproj" />
+	</ItemGroup>
+
+</Project>

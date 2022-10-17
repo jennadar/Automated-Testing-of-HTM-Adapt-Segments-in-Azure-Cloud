@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MyApplication": {
+      "commandName": "Project",
+      "commandLineArgs": "--aaa VALA --bbb VALB --ccc 123"
+    }
+  }
+}
