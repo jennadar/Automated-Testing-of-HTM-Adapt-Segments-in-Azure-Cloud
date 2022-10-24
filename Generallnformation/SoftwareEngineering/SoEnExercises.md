@@ -1,3 +1,14 @@
+### Exercises
+Following exercises must be completed before you start wiht the project. Please note, if exercises are not completed in the required iteration (sprint) you cannot start with the project. You MUST complete all of them and you MUST complete them in the scheduled iteration (sprint).
+
+* E0 Before all
+* E1 Install .NET Core
+* E2 Create your first program with command line
+* E3 Create your first program with Visual Studio
+* E4 Learn about Structure of Application.
+* E5 Framework Independent Build
+* E6 Working with Debugger
+
 #### E0 - Before All
 - Create Account on LinkedIn
 - Create Account on GitHub
@@ -15,17 +26,6 @@
 - You are on-boarded in LinkedIn and on GitHub, with access to LinkedIn group and git repository.
 - You have installed .NET Core SDK and Visual Studio.
 - You have your branch in repository. The branch contains a folder *MyWork*.
-
-### Exercises
-Following exercises must be completed before you start wiht the project. Please note, if exercises are not completed in the required iteration (sprint) you cannot start with the project. You MUST complete all of them and you MUST complete them in the scheduled iteration (sprint).
-
-* E0 Before all
-* E1 Install .NET Core
-* E2 Create your first program with command line
-* E3 Create your first program with Visual Studio
-* E4 Learn about Structure of Application.
-* E5 Framework Independent Build
-* E6 Working with Debugger
 
 #### E1 Install .NET Core
 The best way to develop with .NET Core on Windows is using Visual Studio. We will work in course with this version.
