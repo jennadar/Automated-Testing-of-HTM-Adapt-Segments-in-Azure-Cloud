@@ -1,6 +1,16 @@
 ### Exercises
 Following exercises must be completed before you start wiht the project. Please note, if exercises are not completed in the required iteration (sprint) you cannot start with the project. You MUST complete all of them and you MUST complete them in the scheduled iteration (sprint).
 
+#### Exercises Folder Structure
+We expect you to follow the following folder structure, so we can find your exercises easily. 
+
+1.  You MUST create MyWork folder on the very begining.
+2.  Create each exercise folder under MyWork folder as E1, E2, ... or Ex1, Ex2, ... or Exercise-1, Exercise-2, ... 
+
+The structure of the folder should be as following image.
+
+![ex_folder_structure](https://user-images.githubusercontent.com/74201124/201675494-f872c28f-b93d-49e1-b203-2fb7ed81997a.PNG)
+
 * E0 Before all
 * E1 Install .NET Core
 * E2 Create your first program with command line
@@ -50,6 +60,7 @@ This will list all installed runtimes and SDKs.
 
 ##### Expected Output
 Installed .NET Core SDK on your machine.
+<br/>Screenshot as a proof when you run dotnet --info.
 
 #### E2 Create your first program with command line
 Open Command Prompt or Powershell (bash on Linux or MAC) and execute following code line by line.
@@ -76,6 +87,7 @@ dotnet run
 ##### Expected Output
 Folder in your branch inside of *MyWork* with project name like *HelloWorldWithCli*.
 I.E.: *\MyWork\HelloWorldWithCli*
+<br/>Screenshot as a proof to show you created a project with command line.
 
 **Do not commit to master**
 
@@ -97,22 +109,14 @@ Folder in your branch with project name like *HelloWorldWithClass*.
 I.E.: *\MyWork\HelloWorldWithClass*
 **Do not commit to master**
 
-
 #### E5 Independent Framework  Build (stand alone build/deployment)
+- publish a standalone application.  
 
 ##### Expected Output
-
 Folder in your branch with project name *publish-independent*.
 I.E.: *\MyWork\publish-independent*
-**Do not commit to master**
+<br/> Since published files are part of the ignore files for git, we ask you to take a Screenshot of your standalone app, when it is running, without using VS studio.
 
-
-#### E5 Independent Framework  Build (stand alone build/deployment)
-
-##### Expected Output
-
-Folder in your branch with project name *publish-independent*.
-I.E.: *\MyWork\publish-independent*
 **Do not commit to master**
 
 #### E6 - Working with Debugger 
@@ -120,6 +124,9 @@ I.E.: *\MyWork\publish-independent*
 1. Start you application
 2. Attach the debugger to the process.
 3. Try to step through the code and read some variable values.
+
+##### Expected Output
+Screenshot when you step though each line as a proof. ( any line is okay, but you should be in debug mode )
 
 #### E7 - Reading Configuration, Reading Files, Reading file 
 
@@ -134,7 +141,11 @@ I.E.: *\MyWork\publish-independent*
 2. Add new file ‘appsettings.json’ to the project
 	
 3. Add Code for reading settings 
-	
+
+##### Expected Output
+A project with appsettings.json file. 
+
+
 #### E8 - Exercise with Interfaces and classes
 1. Define some interface or use IMyInterface from this presentation. (See slide 6)
 1. Create two classes, which implement interface by using two different approaches.
