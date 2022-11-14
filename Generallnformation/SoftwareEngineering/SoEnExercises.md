@@ -60,7 +60,7 @@ This will list all installed runtimes and SDKs.
 
 ##### Expected Output
 Installed .NET Core SDK on your machine.
-Screenshot as a proof when you run dotnet --info.
+<br/>Screenshot as a proof when you run dotnet --info.
 
 #### E2 Create your first program with command line
 Open Command Prompt or Powershell (bash on Linux or MAC) and execute following code line by line.
@@ -87,7 +87,7 @@ dotnet run
 ##### Expected Output
 Folder in your branch inside of *MyWork* with project name like *HelloWorldWithCli*.
 I.E.: *\MyWork\HelloWorldWithCli*
-Screenshot as a proof to show you created a project with command line.
+<br/>Screenshot as a proof to show you created a project with command line.
 
 **Do not commit to master**
 
