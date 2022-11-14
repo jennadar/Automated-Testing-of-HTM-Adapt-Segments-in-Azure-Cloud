@@ -14,16 +14,14 @@ namespace ConfigSample
         {
             Console.WriteLine("Reading configuration sample!");
 
+            //
+            // Fluent API
             var builder = new ConfigurationBuilder()
-
-           //
-           // Fluent API
-
            .SetBasePath(Directory.GetCurrentDirectory())
-           .AddEnvironmentVariables()
+         
            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
            .AddJsonFile("TestMe.json", optional: false, reloadOnChange: true)
-           .AddCommandLine(args);
+           .AddCommandLine(args).AddEnvironmentVariables();
        
 
             IConfigurationRoot configuration = builder.Build();
