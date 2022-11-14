@@ -115,7 +115,7 @@ I.E.: *\MyWork\HelloWorldWithClass*
 ##### Expected Output
 Folder in your branch with project name *publish-independent*.
 I.E.: *\MyWork\publish-independent*
-We should be able to run your application without Visual Studio
+<br/> Since published files are part of the ignore files for git, we ask you to take a Screenshot of your standalone app, when it is running, without using VS studio.
 
 **Do not commit to master**
 
@@ -126,7 +126,7 @@ We should be able to run your application without Visual Studio
 3. Try to step through the code and read some variable values.
 
 ##### Expected Output
-Screenshot when you step though each line as a proof. ( any line is okay, but it should be in debug mode)
+Screenshot when you step though each line as a proof. ( any line is okay, but you should be in debug mode )
 
 #### E7 - Reading Configuration, Reading Files, Reading file 
 
