@@ -26,7 +26,6 @@ namespace ConfigSample
            .AddCommandLine(args);
        
 
-
             IConfigurationRoot configuration = builder.Build();
 
             //
@@ -42,13 +41,15 @@ namespace ConfigSample
             var setting1 = configuration["Setting1"];
             var setting2 = configuration["Setting2"];
             var setting3 = configuration["Setting3"];
+            var aaa = configuration["AAAA"];
+            var speed = configuration["Speed"];
 
             float i = float.Parse(setting3, CultureInfo.InvariantCulture);
             //
             // Demonstrates how to read settings from sub section.
             var section = configuration.GetSection("MySubSettings");
             var subSetting1 = section["Setting1"];
-            var aaa = configuration["AAAA"];
+           
             var subSetting2 = section["Setting2"];
             var subSetting3 = section["Setting3"];
 
@@ -58,6 +59,7 @@ namespace ConfigSample
             var machineName = configuration["COMPUTERNAME"];
             var processor = configuration["PROCESSOR_IDENTIFIER"];
             var aaaa = configuration["AAAA"];
+
             //
             // Demonstrates how to read typed settings
             MySettings mySettings = new MySettings();
