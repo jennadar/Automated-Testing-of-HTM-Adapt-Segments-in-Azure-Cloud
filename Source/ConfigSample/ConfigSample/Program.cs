@@ -46,8 +46,7 @@ namespace ConfigSample
             //
             // Demonstrates how to read settings from sub section.
             var section = configuration.GetSection("MySubSettings");
-            var subSetting1 = section["Setting1"];
-           
+            var subSetting1 = section["Setting1"];           
             var subSetting2 = section["Setting2"];
             var subSetting3 = section["Setting3"];
 
@@ -57,6 +56,7 @@ namespace ConfigSample
             var machineName = configuration["COMPUTERNAME"];
             var processor = configuration["PROCESSOR_IDENTIFIER"];
             var aaaa = configuration["AAAA"];
+            var aaaa2 = configuration["AAAA2"];
 
             //
             // Demonstrates how to read typed settings
