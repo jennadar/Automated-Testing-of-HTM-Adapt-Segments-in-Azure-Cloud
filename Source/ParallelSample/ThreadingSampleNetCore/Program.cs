@@ -15,12 +15,6 @@ namespace ThreadingSample
 
         static void Main(string[] args)
         {
-            //int r = AddAsync(1, 2).Result;
-
-            //var result = await AddAsync(1, 2);
-               
-            //await DoSomething();
-
             Console.WriteLine("Press any Key to start.");
             Console.ReadKey();
 
@@ -30,26 +24,39 @@ namespace ThreadingSample
             ParallelSamples sample = new ParallelSamples();
 
             // 1. Executes all tasks sequentianally
-            sample.StartSequenced(numThreads, workerFunction);
+            //sample.StartSequenced(numThreads, WorkerFunction);
 
             // 2.  Executes with spaning of every worker on a single thread.
-            // sample.StartMultithreadedNative(numThreads, workerFunction);
+            //sample.StartMultithreadedNative(numThreads, WorkerFunction);
 
             // 3
-            //sample.StartMultithreadedNativeV2(numThreads, workerFunction);
+            //sample.StartMultithreadedNativeV2(numThreads, WorkerFunction);
 
             // 4.
-            //sample.StartWithTpl(numThreads, workerFunction);
+            sample.StartWithTpl(numThreads, WorkerFunction);
 
+            // 5.
+            //sample.StartWithTaskAwaitAsync(numThreads, WorkerFunctionAsync);
+           
+            // 6.
+            //sample.StartWithTaskAwaitAsync2(numThreads, WorkerFunctionAsync).Wait();
+            
+            
             sw.Stop();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("{0} ms", sw.ElapsedMilliseconds);
 
             Console.ReadLine();
+
+            //int r = AddAsync(1, 2).Result;
+
+            //var result = await AddAsync(1, 2);
+
+            //await DoSomething();
         }
 
-        private static void workerFunction(object onFinishDelegate)
+        private static void WorkerFunction(object onFinishDelegate)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
 
@@ -71,6 +78,13 @@ namespace ThreadingSample
             Console.WriteLine("Stopped thread: {0}", Thread.CurrentThread.Name);
         }
 
+
+        private static Task WorkerFunctionAsync(object onFinishDelegate)
+        {
+            return Task.Run(() => {
+                WorkerFunction(onFinishDelegate);
+            });            
+        }
 
         public static Task<int> AddAsync(int i, int j)
         {

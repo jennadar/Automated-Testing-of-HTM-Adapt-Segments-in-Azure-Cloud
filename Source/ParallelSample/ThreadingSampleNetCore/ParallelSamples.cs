@@ -39,7 +39,7 @@ namespace ThreadingSample
                 t.Name = i.ToString();
                 t.Start(new Action<string>(OnThreadFinished));
             }
-
+                     
             while (true)
             {
                 if (Interlocked.Read(ref m_FinishCounter) == threads)
@@ -111,5 +111,45 @@ namespace ThreadingSample
             Task.WaitAll(tList.ToArray());
         }
 
+
+        /// <summary>
+        /// Creates and executes tasks
+        /// TPL: Task Parallel Library
+        /// </summary>
+        /// <param name="threads"></param>
+        /// <param name="func"></param>
+        public void StartWithTaskAwaitAsync(int threads, Func<object, Task> func)
+        {
+            List<Task> tList = new List<Task>();
+
+            for (int i = 0; i < threads; i++)
+            {
+                var t = func(String.Empty);
+                tList.Add(t);
+            }
+
+            foreach (var t in tList)
+            {
+                t.Start();
+            }
+
+            Task.WaitAll(tList.ToArray());
+        }
+
+
+        /// <summary>
+        /// Demonstrate invocation in sequnce.
+        /// </summary>
+        /// <param name="threads"></param>
+        /// <param name="func"></param>
+        public async Task StartWithTaskAwaitAsync2(int threads, Func<object, Task> func)
+        {
+            List<Task> tList = new List<Task>();
+
+            for (int i = 0; i < threads; i++)
+            {
+               await func(String.Empty);
+            }
+        }
     }
 }
