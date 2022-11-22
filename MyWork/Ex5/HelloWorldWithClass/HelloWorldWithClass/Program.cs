@@ -24,6 +24,8 @@ output = myObj.sum(inputs);
 
 Console.WriteLine("\n The summation between " + num_1 + " and " + num_2 + " is " + output);
 Console.WriteLine("-------------------------------------------------------------------");
+Console.ReadLine();
+
 
 
 
