@@ -6,7 +6,5 @@
         public int getFuel();
         public void setFuel(int f);
         public void useFuel(int f);
-        public void createWheels(int w);
-
     }
 }
