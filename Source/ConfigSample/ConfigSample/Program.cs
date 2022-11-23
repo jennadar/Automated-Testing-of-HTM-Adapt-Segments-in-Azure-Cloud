@@ -14,18 +14,15 @@ namespace ConfigSample
         {
             Console.WriteLine("Reading configuration sample!");
 
+            //
+            // Fluent API
             var builder = new ConfigurationBuilder()
-
-           //
-           // Fluent API
-
            .SetBasePath(Directory.GetCurrentDirectory())
-           .AddEnvironmentVariables()
+         
            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
            .AddJsonFile("TestMe.json", optional: false, reloadOnChange: true)
-           .AddCommandLine(args);
+           .AddCommandLine(args).AddEnvironmentVariables();
        
-
 
             IConfigurationRoot configuration = builder.Build();
 
@@ -42,13 +39,14 @@ namespace ConfigSample
             var setting1 = configuration["Setting1"];
             var setting2 = configuration["Setting2"];
             var setting3 = configuration["Setting3"];
+            var aaa = configuration["AAAA"];
+            var speed = configuration["Speed"];
 
             float i = float.Parse(setting3, CultureInfo.InvariantCulture);
             //
             // Demonstrates how to read settings from sub section.
             var section = configuration.GetSection("MySubSettings");
-            var subSetting1 = section["Setting1"];
-            var aaa = configuration["AAAA"];
+            var subSetting1 = section["Setting1"];           
             var subSetting2 = section["Setting2"];
             var subSetting3 = section["Setting3"];
 
@@ -58,6 +56,8 @@ namespace ConfigSample
             var machineName = configuration["COMPUTERNAME"];
             var processor = configuration["PROCESSOR_IDENTIFIER"];
             var aaaa = configuration["AAAA"];
+            var aaaa2 = configuration["AAAA2"];
+
             //
             // Demonstrates how to read typed settings
             MySettings mySettings = new MySettings();
