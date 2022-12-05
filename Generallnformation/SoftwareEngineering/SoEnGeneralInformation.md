@@ -110,6 +110,7 @@ To record videos you can use any software you want. One very easy option is to u
 You will also provide us a signed form, which allows us to publish the video. In the case of publishing, we are not doing any marketing. We will simply put the link to the video and your documentation in Github.
 
 ## All lesson recordings
+Please note, that not all sesion recordings are available! 
 
 ### Lesson - 1 ALM
 TBA
@@ -154,22 +155,21 @@ Part 3: Serialization
 TBA
 
 ### Lesson 6 - Machine Learning
-TBA
-
+https://youtu.be/oEBvT_KMuew
 
 ### Lesson 7 - Hierarchical Temporal memory
 
 Part 1: HTM Intro
-TBA
+https://youtu.be/orgwTSjsH_c
 
-Part 2: Encoders
-TBA
+Part 2: HTM Encoders
+https://youtu.be/3-tpse5AalM
 
 Part 3: Spatial Pooler
-TBA
+https://youtu.be/lSjcuMqtwRk
 
-Part 4: Spatial; Learning, Temporal memory, Multisequence Learning
-TBA
+Part 4: Spatiall Learning, Temporal Memory, Multisequence Learning
+https://youtu.be/OMmMNpvxEE0
 
 
 
