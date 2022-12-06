@@ -12,7 +12,7 @@ Every Monday from 14:15 - 17:45 <br>
 Every Wednesday from 08:15 - 11:30 <br>
 
 ## Attendee List
-[Link to Attendee List](https://dobricfamily-my.sharepoint.com/:x:/g/personal/damir_dobric_de/EVvbueG8lzxBr2BbaKNMVJEBCjamzAq91rQz3MZL8xDXdw?rtime=Ho4HOESw2kg)
+[Link to Attendee List](https://dobricfamily-my.sharepoint.com/:x:/g/personal/damir_dobric_de/EVvbueG8lzxBr2BbaKNMVJEBLPgBqNdyGHv5s26YNOc0GQ?rtime=nprdx0nH2kg)
 
 ## Important Dates
 
