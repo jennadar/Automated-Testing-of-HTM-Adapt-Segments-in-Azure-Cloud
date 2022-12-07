@@ -167,7 +167,7 @@ For example:
 3.2 Internal scheduler fires optimal num. of threads  
 3.3 Internal scheduler reuses threads.  
 4. Implement your own worker.  
-5. Provide test results for all 3 approaches for .NET 3.1 and .NET 5  
+5. Provide test results for all 3 approaches for .NET 5, .NET 6 and .NET 7  
 6. Outputs  
 6.1 Execution time  
 6.2 Max number of threads during execution  
@@ -175,7 +175,7 @@ For example:
 7. Inputs:  
 7.1 Test Name (Approach)   
 7.2 Test with numThreads = {50, 100, 150} 
-7.3 Number of processors (Affinity in TaskMgr) {1, 2, 4}  for 100 threads  
+7.3 Number of processors (Affinity in TaskMgr -- only for windows) {1, 2, 4}  for 100 threads  
 
 Use the following diagram (Box and Whisker)
 ![image](https://user-images.githubusercontent.com/1756871/101355906-90790700-3897-11eb-9451-a6edd3da4349.png)
