@@ -1,7 +1,10 @@
-﻿using MyLibrary;
+﻿
+using Common;
+using MyLibrary;
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using YourLibrary;
 
 [assembly: InternalsVisibleTo("UnitTestProject")]
 
@@ -13,10 +16,13 @@ namespace HelloStudents
         {
             Console.WriteLine("Hello World!");
 
-            MyLibrary.MyLib referencedLib = new MyLibrary.MyLib();
+            ICalLibrary refLib = new MyLib();
+            //refLib = new Lib();
 
-            var res = referencedLib.Sum(11, 23132);
-            Console.WriteLine(referencedLib.Divide(10, 2));
+            var subRes = refLib.Substract(100, 6);
+            var res = refLib.Sum(11, 23132);
+
+            Console.WriteLine(refLib.Divide(10, 2));
             Console.WriteLine(res);
 
             #region Serialization

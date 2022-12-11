@@ -14,6 +14,7 @@ namespace HelloStudents
         public DateTime LastTime{ get; set; }
 
         private int callCounter = 0;
+
         public double Calculate(int i)
         {
             this.callCounter++;

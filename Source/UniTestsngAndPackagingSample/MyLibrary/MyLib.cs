@@ -1,9 +1,16 @@
-﻿using System;
+﻿using Common;
+using System;
 
 namespace MyLibrary
 {
-    public class MyLib
+    public class MyLib : ICalLibrary
     {
+        /// <summary>
+        /// Sum between operand1 and operand2.
+        /// </summary>
+        /// <param name="a">Operand 1</param>
+        /// <param name="b">Operand 2</param>
+        /// <returns></returns>
         public int Sum(int a, int b)
         {
             return a + b;
@@ -16,7 +23,12 @@ namespace MyLibrary
 
         public double Multiple(int a, int b)
         {
-            return a * b ;
+            return a * b;
+        }
+
+        public double Substract(int a, int b)
+        {
+            return a - b;
         }
     }
 }

@@ -16,6 +16,10 @@ namespace MyLibrary
             {
                 sw.Write(str);
             }
+
+            //StreamWriter sw2 = new StreamWriter(file);
+            //sw2.Write(str);
+            //sw2.Dispose();
         }
 
         public T Deserialize<T>(string file)
