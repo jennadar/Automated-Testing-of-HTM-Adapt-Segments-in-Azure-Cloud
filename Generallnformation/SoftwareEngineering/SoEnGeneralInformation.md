@@ -135,10 +135,14 @@ TBA
 ### Lesson 4 - Configuration, Settings, Interfaces and the class inheritance
 
 Part 1: Configuration and Settings
-TBA
+
+[Configuration and Settings](https://youtu.be/FkL5Ax0dAD8)
 
 Part 2: Interfaces and the class inheritance
-TBA
+
+[Object Oriented Programming](https://youtu.be/emTGMlerIKA)
+
+[Dependency Injection](https://youtu.be/os0D2qhMQyE)
 
 Part 3: Parallel Execution
 TBA
