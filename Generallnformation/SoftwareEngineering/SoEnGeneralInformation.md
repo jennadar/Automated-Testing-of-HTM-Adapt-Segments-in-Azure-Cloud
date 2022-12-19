@@ -164,7 +164,9 @@ https://youtu.be/oEBvT_KMuew
 ### Lesson 7 - Hierarchical Temporal memory
 
 Part 1: HTM Intro
-https://youtu.be/orgwTSjsH_c
+https://youtu.be/orgwTSjsH_c (2021)
+
+https://youtu.be/N5BA3Vxw0Wo (2022)
 
 Part 2: HTM Encoders
 https://youtu.be/3-tpse5AalM
