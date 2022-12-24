@@ -135,10 +135,14 @@ TBA
 ### Lesson 4 - Configuration, Settings, Interfaces and the class inheritance
 
 Part 1: Configuration and Settings
-TBA
+
+[Configuration and Settings](https://youtu.be/FkL5Ax0dAD8)
 
 Part 2: Interfaces and the class inheritance
-TBA
+
+[Object Oriented Programming](https://youtu.be/emTGMlerIKA)
+
+[Dependency Injection](https://youtu.be/os0D2qhMQyE)
 
 Part 3: Parallel Execution
 TBA
@@ -160,7 +164,10 @@ https://youtu.be/oEBvT_KMuew
 ### Lesson 7 - Hierarchical Temporal memory
 
 Part 1: HTM Intro
-https://youtu.be/orgwTSjsH_c
+
+https://youtu.be/orgwTSjsH_c (2021)
+
+https://youtu.be/N5BA3Vxw0Wo (2022)
 
 Part 2: HTM Encoders
 https://youtu.be/3-tpse5AalM
