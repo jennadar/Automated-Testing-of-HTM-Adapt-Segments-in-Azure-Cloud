@@ -166,20 +166,21 @@ we would like you to review our software engineering project. Brief summary on y
 You will create this issue when you have the first parts of the project done and need to start a discussion.
 Project Name
 
-ML XY..
-Group Name
-BestStudentGroup
+### Project Title
+**ML22/23 BLA**
 
-Link to project:
+#### Group Name
+***Best Group Ever**
 
+### Link to project: 
+*sample*
+
+### Forked from:
 Please also include explaination in case the project link is complicated
-Forked Repo: link
-Document: link
-Markdown file: link
-...
-
+Forked Repo (optional): link
 https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/groupbranch/MyCloudProjectSample
-Contribution links:
+
+### Contribution links:
 
 Student1 ..
 Student 2..
