@@ -19,8 +19,14 @@ namespace MauiApp1
             canvas.FillRoundedRectangle(solidRectangle, 12);
 
        
-            canvas.StrokeColor= Colors.Black;
+            canvas.StrokeColor= Colors.Blue;
 
+            for (int i = 0; i < 100; i+=2)
+            {
+                canvas.DrawLine(10, 20+i, 100, 200+i);
+            }
+
+            canvas.StrokeColor = Colors.Black;
             canvas.DrawLine(10, 20, 100, 200);
         }
     }
