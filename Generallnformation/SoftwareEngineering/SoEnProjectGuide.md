@@ -155,7 +155,7 @@ alt="Project Structure for teams who work on project which referenced neocortexa
 
 ## Creating an issue on your final project review
 
-Issue Name: Your Project Name GroupName
+Issue Name: Your Project Name GroupName (set the label to 'project-review-request')
 Example: ML20/21-5.11-Implement a correlation diagram TeamTest
 Add the Project Review Request tag.
 Assign the people in the group and the people included.
