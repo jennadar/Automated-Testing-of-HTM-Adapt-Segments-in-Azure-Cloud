@@ -159,7 +159,9 @@ https://docs.microsoft.com/en-us/learn/modules/intro-to-azure-fundamentals/
 https://docs.microsoft.com/en-us/learn/modules/configure-azure-resources-tools/
 
 ### Managing resources and Azure Resource Manager 
+
 https://docs.microsoft.com/en-us/learn/paths/manage-resources-in-azure/
+
 https://docs.microsoft.com/en-us/learn/modules/control-and-organize-with-azure-resource-manager/
 
 ### Azure Command Line interface (azcli)
