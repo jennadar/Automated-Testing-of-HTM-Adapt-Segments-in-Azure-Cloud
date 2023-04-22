@@ -164,6 +164,8 @@ https://docs.microsoft.com/en-us/learn/paths/manage-resources-in-azure/
 
 https://docs.microsoft.com/en-us/learn/modules/control-and-organize-with-azure-resource-manager/
 
+https://learn.microsoft.com/en-us/training/modules/introduction-to-infrastructure-as-code-using-bicep/4-what-bicep
+
 ### Azure Command Line interface (azcli)
 https://docs.microsoft.com/en-us/learn/modules/control-azure-services-with-cli/
 
