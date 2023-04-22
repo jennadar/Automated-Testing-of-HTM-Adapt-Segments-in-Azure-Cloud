@@ -158,7 +158,7 @@ https://docs.microsoft.com/en-us/learn/modules/intro-to-azure-fundamentals/
 ### Provisioning Resources
 https://docs.microsoft.com/en-us/learn/modules/configure-azure-resources-tools/
 
-### Managing resoiurces and Azure Resource Manager 
+### Managing resources and Azure Resource Manager 
 https://docs.microsoft.com/en-us/learn/paths/manage-resources-in-azure/
 https://docs.microsoft.com/en-us/learn/modules/control-and-organize-with-azure-resource-manager/
 
