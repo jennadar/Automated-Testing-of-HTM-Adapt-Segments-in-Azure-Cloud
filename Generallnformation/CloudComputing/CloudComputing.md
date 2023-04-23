@@ -166,6 +166,7 @@ https://docs.microsoft.com/en-us/learn/modules/control-and-organize-with-azure-r
 
 https://learn.microsoft.com/en-us/training/modules/introduction-to-infrastructure-as-code-using-bicep/4-what-bicep
 
+
 ### Azure Command Line interface (azcli)
 https://docs.microsoft.com/en-us/learn/modules/control-azure-services-with-cli/
 
@@ -210,10 +211,12 @@ More about this in the "containers" PPTX. You can find there slides with these c
 #####
 Exercise I (Due Date: 02nd May): 
 - Unlock Azure Subscription
-- Create the GitHub account
-- Install Docker Desktop
-- Step through all Lesson URLs
-- Practice with [azcli](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/az)
+- Practice [azcli](https://docs.microsoft.com/en-us/learn/modules/control-azure-services-with-cli/)
+- Practice also [azcli](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/az)
+- Take a look at the Azure Portal Videos: https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-video-series
+- Step through all Lesson 1 URLs (do NOT miss any!)
+- Install Docker Desktop: https://docs.docker.com/desktop/install/windows-install/, https://docs.docker.com/desktop/install/mac-install/
+
 
 ## Lesson 2: Docker in Azure
  
