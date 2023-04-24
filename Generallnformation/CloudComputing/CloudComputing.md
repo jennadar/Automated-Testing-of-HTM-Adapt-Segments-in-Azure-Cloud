@@ -14,12 +14,15 @@ Some of the learning materials we will use from this exam.
 
 https://docs.microsoft.com/en-us/learn/certifications/azure-solutions-architect/
 
-### MS Teams Conference
-The course is streamed by MS Teams.
+### Location
+
+Room 103
+
+The course is also streamed by MS Teams.
 
 Every Monday: 14:15h
 
-Exercises every Tu. 14:15h
+Exercises every ?? ?? (TBD)
 
 Project Deadline:  **19.August.2022!!!**
 
