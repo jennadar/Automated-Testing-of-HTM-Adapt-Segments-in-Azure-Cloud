@@ -211,6 +211,8 @@ This will list all subscriptions under your account. To select the right one, us
 
 More about this in the "containers" PPTX. You can find there slides with these commands.
 
+Recording [Lesson 1](https://www.youtube.com/watch?v=u6mNyyC42ok&list=PLxYkc-bkMwhb15ADjzeSLOqTjWmrulW8H&index=1)
+
 #####
 Exercise I (Due Date: 02nd May): 
 - Unlock Azure Subscription
