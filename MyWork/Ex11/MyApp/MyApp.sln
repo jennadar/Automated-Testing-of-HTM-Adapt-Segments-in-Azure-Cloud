@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp", "MyApp\MyApp.csproj", "{26507F69-E81E-4F16-807A-DAE35F76E978}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLib", "..\MyLib\MyLib.csproj", "{52E43AF2-3EFD-4CDA-A739-CC00BF70454C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUnitTest", "..\MyUnitTest\MyUnitTest.csproj", "{5552C958-528B-4A57-A6A1-1188F9F4C97F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26507F69-E81E-4F16-807A-DAE35F76E978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26507F69-E81E-4F16-807A-DAE35F76E978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26507F69-E81E-4F16-807A-DAE35F76E978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26507F69-E81E-4F16-807A-DAE35F76E978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E43AF2-3EFD-4CDA-A739-CC00BF70454C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E43AF2-3EFD-4CDA-A739-CC00BF70454C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E43AF2-3EFD-4CDA-A739-CC00BF70454C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E43AF2-3EFD-4CDA-A739-CC00BF70454C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5552C958-528B-4A57-A6A1-1188F9F4C97F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5552C958-528B-4A57-A6A1-1188F9F4C97F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5552C958-528B-4A57-A6A1-1188F9F4C97F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5552C958-528B-4A57-A6A1-1188F9F4C97F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCD7ACF0-1A16-4726-A576-3F8CCA8574F4}
+	EndGlobalSection
+EndGlobal
