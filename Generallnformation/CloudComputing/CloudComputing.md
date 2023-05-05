@@ -214,7 +214,7 @@ More about this in the "containers" PPTX. You can find there slides with these c
 Recording [Lesson 1](https://www.youtube.com/watch?v=u6mNyyC42ok&list=PLxYkc-bkMwhb15ADjzeSLOqTjWmrulW8H&index=1)
 
 #####
-Exercise I (Due Date: 02nd May): 
+Exercise I (Due Date: 09nd May): 
 - Unlock Azure Subscription
 - Practice [azcli](https://docs.microsoft.com/en-us/learn/modules/control-azure-services-with-cli/)
 - Practice also [azcli](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/az)
