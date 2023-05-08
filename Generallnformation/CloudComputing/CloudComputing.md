@@ -344,7 +344,7 @@ https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/
 **Samples in git repo**
 https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/storage/Azure.Storage.Blobs/samples
 
-Exercise V (Due Date: 30th May):
+**Exercise V (Due Date: 4th July):**
 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet
 
 ## Lesson 5 - Table Storage
@@ -362,7 +362,7 @@ https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/tables/Azure.Data.Table
 
 https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/tables/Azure.Data.Tables/tests/samples
 
-**Exercise VI (Due Date: 4th July):**
+**Exercise VI (Due Date: 18th July):**
 
 Use this example to learn how to work with tables. Note, create first the storage account as we learned. This sample shows how to create the storage inside of CosmosDB. We do not cover this topic in our course. Everything else in this example is 100% compatible with the classic storage accounts.
 
@@ -374,7 +374,7 @@ Use this example to learn how to work with tables. Note, create first the storag
 **Samples in university repository**
 https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/QueueStorageSamples
 
-**Exercise VII (Due Date: 13th July):**
+**Exercise VII (Due Date: 18th July):**
 
 **Step by step tutorial** 
 https://docs.microsoft.com/en-us/azure/storage/queues/storage-dotnet-how-to-use-queues?tabs=dotnet
