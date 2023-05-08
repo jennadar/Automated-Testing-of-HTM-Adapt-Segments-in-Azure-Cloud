@@ -22,7 +22,7 @@ The course is also streamed by MS Teams.
 
 Every Monday: 14:15h
 
-Exercises every ?? ?? (TBD)
+Exercises must be done within 2 weeks after the lesson.
 
 Project Deadline:  **19.August.2023!!!**
 
@@ -34,7 +34,7 @@ Youtube lesson url : [CloudComputing](https://www.youtube.com/playlist?list=PLxY
 Azure for Students subscription: https://azure.microsoft.com/en-us/free/students/
 
 ### Exercises
-Following document describes deliverables of your [exercises](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/blob/master/Source/MyCloudProjectSample/Documentation/Exercises%20-%20Firstname%20Lastname.md).
+Following document describes deliverables of your [exercises](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/master/Source/MyCloudProjectSample/Documentation/Exercises%20-%20Firstname%20Lastname.md).
 
 
 ### Cloud Project
