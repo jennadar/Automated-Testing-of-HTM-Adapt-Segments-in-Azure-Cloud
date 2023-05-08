@@ -214,7 +214,7 @@ More about this in the "containers" PPTX. You can find there slides with these c
 Recording [Lesson 1](https://www.youtube.com/watch?v=u6mNyyC42ok&list=PLxYkc-bkMwhb15ADjzeSLOqTjWmrulW8H&index=1)
 
 #####
-Exercise I (Due Date: 09nd May): 
+Exercise I (Due Date: 09th May): 
 - Unlock Azure Subscription
 - Practice [azcli](https://docs.microsoft.com/en-us/learn/modules/control-azure-services-with-cli/)
 - Practice also [azcli](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/az)
@@ -240,7 +240,7 @@ https://docs.microsoft.com/en-us/learn/modules/intro-to-containers/
 ### K8 Core Concept for AKS  
 https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
 
-##### Exercise II (Due Date: 09th May):
+##### Exercise II (Due Date: 23rd May):
 - Read PPTX (1) and follow practices (2). See obove.
 - Create a Console Application (Follow PPTX)
 - Build the docker image for the console application.
@@ -287,7 +287,7 @@ To understand how files are organized in the *AppService* take a look at this ar
 
 ### Create the  WebApp in Portal
 
-##### Exercise III (Due Date: 16th May):
+##### Exercise III (Due Date: 6th June):
 ![create app](https://user-images.githubusercontent.com/1756871/82140851-179a5b00-9832-11ea-8816-46c32e13d258.png)
 
 Create a demo web application based on MVC technology:
@@ -314,7 +314,7 @@ Open the browser and navigate to the application running in the cloud: https://b
 
 ### Deploy and run the containerized app in AppService
 
-##### Exercise IV (Due Date: 23th May):
+##### Exercise IV (Due Date: 20th June):
 
 Create a Docker image and store it in a repository in Azure Container Registry. Use Azure App Service to deploy a web application based on the Docker image. 
 Following exercise shows how to do this:
@@ -362,7 +362,7 @@ https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/tables/Azure.Data.Table
 
 https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/tables/Azure.Data.Tables/tests/samples
 
-**Exercise VI (Due Date: 6th June):**
+**Exercise VI (Due Date: 4th July):**
 
 Use this example to learn how to work with tables. Note, create first the storage account as we learned. This sample shows how to create the storage inside of CosmosDB. We do not cover this topic in our course. Everything else in this example is 100% compatible with the classic storage accounts.
 
