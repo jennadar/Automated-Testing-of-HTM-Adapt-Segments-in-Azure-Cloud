@@ -24,7 +24,7 @@ Every Monday: 14:15h
 
 Exercises every ?? ?? (TBD)
 
-Project Deadline:  **19.August.2022!!!**
+Project Deadline:  **19.August.2023!!!**
 
 You can join to the session by using this URL: ([Teams Meeting](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MGNmOTJmMzItMTRkMy00MGU2LThmOTktZjIxMTRkMTg3ODgx%40thread.v2/0?context=%7b%22Tid%22%3a%22b1f2074d-dc55-43dc-be8e-9311da2845b5%22%2c%22Oid%22%3a%224cbab5a5-4e6e-42a3-9fbe-d7142af265b5%22%7d))
 
