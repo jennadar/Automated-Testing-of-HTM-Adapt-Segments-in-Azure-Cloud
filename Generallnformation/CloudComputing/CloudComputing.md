@@ -287,7 +287,7 @@ To understand how files are organized in the *AppService* take a look at this ar
 
 ### Create the  WebApp in Portal
 
-##### Exercise III (Due Date: 6th June):
+##### Exercise III-a (Due Date: 6th June):
 ![create app](https://user-images.githubusercontent.com/1756871/82140851-179a5b00-9832-11ea-8816-46c32e13d258.png)
 
 Create a demo web application based on MVC technology:
@@ -311,6 +311,23 @@ Deploy the application:
 
 Open the browser and navigate to the application running in the cloud: https://bikeapp.azurewebsites.net/
 ![Your App running in Azure ](https://user-images.githubusercontent.com/1756871/82141297-1b7bac80-9835-11ea-80b6-a1375932ac7b.png)
+
+##### Exersize III-b Create WebApp and Plan with AZ-CLI
+
+Read following: https://learn.microsoft.com/en-us/cli/azure/appservice/plan?view=azure-cli-latest
+
+Execute following command to create the plan (cluster) with two machines. Do not forget to delete the plant after exersize!!!
+
+~~~
+az appservice plan create -g MyResourceGroup -n MyPlan --is-linux --number-of-workers 2 --sku S1
+~~~
+
+Read following article: https://learn.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az-webapp-create.
+As next, create the AppService inside the plan (claster). 
+
+~~~
+az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName
+~~~
 
 ### Deploy and run the containerized app in AppService
 
