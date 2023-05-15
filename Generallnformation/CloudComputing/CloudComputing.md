@@ -287,7 +287,7 @@ To understand how files are organized in the *AppService* take a look at this ar
 
 ### Create the  WebApp in Portal
 
-##### Exercise III-a (Due Date: 6th June):
+#### Exercise III-a (Due Date: 6th June):
 ![create app](https://user-images.githubusercontent.com/1756871/82140851-179a5b00-9832-11ea-8816-46c32e13d258.png)
 
 Create a demo web application based on MVC technology:
@@ -312,7 +312,7 @@ Deploy the application:
 Open the browser and navigate to the application running in the cloud: https://bikeapp.azurewebsites.net/
 ![Your App running in Azure ](https://user-images.githubusercontent.com/1756871/82141297-1b7bac80-9835-11ea-80b6-a1375932ac7b.png)
 
-##### Exersize III-b Create WebApp and Plan with AZ-CLI
+#### Exersize III-b Create WebApp and Plan with AZ-CLI
 
 Read following: https://learn.microsoft.com/en-us/cli/azure/appservice/plan?view=azure-cli-latest
 
@@ -331,7 +331,7 @@ az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName
 
 ### Deploy and run the containerized app in AppService
 
-##### Exercise IV (Due Date: 20th June):
+#### Exercise IV (Due Date: 20th June):
 
 Create a Docker image and store it in a repository in Azure Container Registry. Use Azure App Service to deploy a web application based on the Docker image. 
 Following exercise shows how to do this:
