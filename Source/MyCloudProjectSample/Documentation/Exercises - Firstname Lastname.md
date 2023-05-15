@@ -4,8 +4,8 @@ FILES WITH OTHER NAMES WILL BE REJECTED!
 
 #### Exercise I 
 
-Provide script samples used in this exercise. What did you do , why, how, what was the result.
-If you have your scrips somwhere on the git, provide us als the URL here to them.
+Please provide script samples that were used in this exercise, along with details on what was done, why it was done, how it was done, and the resulting outcomes. 
+If the scripts are available on a public repository such as GitHub, kindly provide the URL for easy access.
 
 #### Exercise 2 - Docker in Azure
 
