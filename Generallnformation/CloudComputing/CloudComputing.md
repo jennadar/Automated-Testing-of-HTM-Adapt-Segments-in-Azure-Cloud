@@ -220,7 +220,7 @@ Exercise I (Due Date: 09th May):
 - Practice also [azcli](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/az)
 - Take a look at the Azure Portal Videos: https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-video-series
 - Step through all Lesson 1 URLs (do NOT miss any!)
-- Install Docker Desktop: https://docs.docker.com/desktop/install/windows-install/, https://docs.docker.com/desktop/install/mac-install/
+- Install Docker Desktop: [on Windows](https://docs.docker.com/desktop/install/windows-install/), [on Mac](https://docs.docker.com/desktop/install/mac-install/)
 
 
 ## Lesson 2: Docker in Azure
