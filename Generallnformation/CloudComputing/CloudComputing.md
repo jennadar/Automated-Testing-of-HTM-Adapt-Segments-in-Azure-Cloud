@@ -228,7 +228,7 @@ Exercise I (Due Date: 09th May):
 In this lesson, you will learn about containers. You will learn how to put the .NET Core application to the docker container and how to deploy it to Azure. 
 You should start learning here:
 ### Presentation 
-(1) https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/blob/master/Lessons/CloudComputing/Docker%20.NET%20Core%20and%20Azure.pptx  
+(1) https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/master/Lessons/CloudComputing/Docker%20.NET%20Core%20and%20Azure.pptx  
 ### Microsoft Learning Path: Architect modern applications in Azure  
 (2) https://docs.microsoft.com/en-us/learn/paths/architect-modern-apps/  
 
