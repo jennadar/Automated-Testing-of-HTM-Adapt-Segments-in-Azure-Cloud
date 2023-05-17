@@ -37,6 +37,7 @@ Azure for Students subscription: https://azure.microsoft.com/en-us/free/students
 Following document describes deliverables of your [exercises](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/master/Source/MyCloudProjectSample/Documentation/Exercises%20-%20Firstname%20Lastname.md).
 
 
+
 ### Cloud Project
 The goal of your project is running your Software Engineering project in Microsoft Azure Cloud. You will make a simple console application, which will contain a code of some of your UnitTests. That code will represent some ML experiment in context of your project. To run the project in the cloud you will first have to package the code in a **Docker Container**. 
 Next you will upload this code to **Azure Container Registry**. The code will start when you upload the training files to the Azure Blob Storage. Your code in container will download the file from storage and start the experiment (e.g. training and prediction). The result will be written into a **Table Storage**.
