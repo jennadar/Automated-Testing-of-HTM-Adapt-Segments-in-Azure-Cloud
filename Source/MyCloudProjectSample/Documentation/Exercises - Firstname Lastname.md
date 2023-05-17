@@ -1,5 +1,5 @@
 # My Exercises
-RENAME THIS FILE TO "Exercises - Firsname Lastname.md" and put the content of this file into it.
+RENAME THIS FILE TO "Exercises - Firstname Lastname.md" and put the content of this file into it.
 FILES WITH OTHER NAMES WILL BE REJECTED!
 
 #### Exercise I 
