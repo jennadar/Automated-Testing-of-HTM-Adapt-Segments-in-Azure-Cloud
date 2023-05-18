@@ -11,7 +11,7 @@ namespace MyCloudProject.Common
     public interface IStorageProvider
     {
         /// <summary>
-        /// Downloads the input file for training.
+        /// Downloads the input file for training. This file contains all required input for the experiment.
         /// </summary>
         /// <param name="fileName">The name of the local file where the input is downloaded.</param>
         /// <returns>The fullpath name of the file as downloaded locally.</returns>
