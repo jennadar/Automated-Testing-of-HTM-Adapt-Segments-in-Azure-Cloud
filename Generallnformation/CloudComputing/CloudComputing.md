@@ -313,7 +313,7 @@ Deploy the application:
 Open the browser and navigate to the application running in the cloud: https://bikeapp.azurewebsites.net/
 ![Your App running in Azure ](https://user-images.githubusercontent.com/1756871/82141297-1b7bac80-9835-11ea-80b6-a1375932ac7b.png)
 
-#### Exersize III-b Create WebApp and Plan with AZ-CLI
+#### Exersize III Create WebApp and Plan with AZ-CLI (Due Date - 4th June)
 
 Read following: https://learn.microsoft.com/en-us/cli/azure/appservice/plan?view=azure-cli-latest
 
