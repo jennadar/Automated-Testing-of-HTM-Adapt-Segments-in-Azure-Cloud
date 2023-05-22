@@ -17,7 +17,7 @@ If the scripts are available on a public repository such as GitHub, kindly provi
 
 1. Provide the public URL of the webapplication.
 2. Provide the URL to the source code of the hosted application. (Source code somwhere or the the docker image, or ??)
-3. Provide AZ scripts used to bublish the application.
+3. Provide AZ scripts used to publish the application.
 
 #### Exercise 4 - Deploy and run the containerized app in AppService
 
