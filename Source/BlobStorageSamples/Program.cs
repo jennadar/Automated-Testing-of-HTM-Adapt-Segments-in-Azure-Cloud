@@ -1,26 +1,32 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs.Specialized;
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BlobStorageSamples
 {
     class Program 
     {
-        private const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=testmelkojsedli;AccountKey=rLrD8WFrQi+xHFyn+7DH7uCtKgtCH1NRGolk67ec7sVl0nk+W8DEiqlw1MWv4xyZEC28BMfXSsSdZjlZXBPhkQ==;EndpointSuffix=core.windows.net";
-
-        static void Main(string[] args)
+        private const string _connectionString = "DefaultEndpointsProtocol=https;AccountName=beststudentsever;AccountKey=eWK1RGlbTpEth/zvCI3aXZAAwyDkBkngZ5zRhY7k4h3yzWRo2r3oG1KqWZ8GPzN+Fax4fEx7rAvV+AStD3Dglw==;EndpointSuffix=core.windows.net";
+        //private const string _connectionString = "UseDevelopmentStorage=true";
+        
+    
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Hello Blob Storage!");
 
-            UploadAsync().Wait();
+            //await UploadAsync();
 
-            DownloadAsync().Wait();
+            //await DownloadAsync();
+
+            await AppendToBlobAsync();
         }
 
         /// <summary>
-        /// Upload a file to a blob.
+        /// Upload a file to a blobClient].
         /// </summary>
         public static async Task UploadAsync()
         {
@@ -34,7 +40,7 @@ namespace BlobStorageSamples
             //
             // And you can provide the connection string to your application
             // using an environment variable.
-            string connectionString = ConnectionString;
+            string connectionString = _connectionString;
 
             // Get a reference to a container named "sample-container" and then create it
             BlobContainerClient container = new BlobContainerClient(connectionString, "sample-container");
@@ -43,15 +49,15 @@ namespace BlobStorageSamples
             
             try
             {
-                // Get a reference to a blob
-                BlobClient blob = container.GetBlobClient("Azure Storage.pptx");
-
+                // Get a reference to a blobClient]
+                BlobClient blobClient = container.GetBlobClient("Azure Storage.pptx");
+               
                 // Upload file data
-                await blob.UploadAsync("Azure Storage.pptx");
+                await blobClient.UploadAsync("Azure Storage.pptx");
 
 
                 // Verify we uploaded some content
-                BlobProperties properties = await blob.GetPropertiesAsync();
+                BlobProperties properties = await blobClient.GetPropertiesAsync();
             }
             finally
             {
@@ -63,25 +69,25 @@ namespace BlobStorageSamples
 
 
         /// <summary>
-        /// Download a blob to a file.
+        /// Download a blobClient] to a file.
         /// </summary>
 
         public static async Task DownloadAsync()
         {
 
             // Get a connection string to our Azure Storage account.
-            string connectionString = ConnectionString;
+            string connectionString = _connectionString;
 
             // Get a reference to a container named "sample-container" and then create it
             BlobContainerClient container = new BlobContainerClient(connectionString, "sample-container");
             await container.CreateIfNotExistsAsync();
             try
             {
-                // Get a reference to a blob named "sample-file"
+                // Get a reference to a blobClient] named "sample-file"
                 BlobClient blob = container.GetBlobClient("Azure Storage.pptx");
 
 
-                // Download the blob's contents and save it to a file
+                // Download the blobClient]'s contents and save it to a file
                 BlobDownloadInfo download = await blob.DownloadAsync();
                 using (FileStream file = File.OpenWrite("Azure Storage Downloaded.pptx"))
                 {
@@ -98,6 +104,44 @@ namespace BlobStorageSamples
                 container.Delete();
             }
 
+        }
+
+        static async Task AppendToBlobAsync ()
+        {
+         
+            BlobContainerClient containerClient = new BlobContainerClient(_connectionString, "sample-container");
+            containerClient.CreateIfNotExists();
+
+            AppendBlobClient appendBlobClient = containerClient.GetAppendBlobClient("largeblob.csv");
+
+            appendBlobClient.CreateIfNotExists();           
+
+            for (int i = 0; i < 1000; i++)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    // Create a StreamWriter to write to the MemoryStream using UTF-8 encoding
+                    using (StreamWriter writer = new StreamWriter(memoryStream, Encoding.UTF8))
+                    {
+                        for (int y = 0; y < 100; y++)
+                        {
+                            writer.Write($"{DateTime.Now.ToString()};\r\n");
+                        }
+
+                        if (memoryStream.Length < appendBlobClient.AppendBlobMaxAppendBlockBytes)
+                        {
+                            writer.Flush();
+                            memoryStream.Flush();
+                            memoryStream.Position = 0;
+                            await appendBlobClient.AppendBlockAsync(memoryStream);
+                        }
+                        else
+                            throw new NotImplementedException();
+                    }
+
+                   
+                }
+            }
         }
     }
 }

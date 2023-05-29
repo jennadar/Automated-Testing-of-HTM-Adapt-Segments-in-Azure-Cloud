@@ -28,7 +28,7 @@ namespace ConfigSample
 
             //
             // Following are comming from command line.
-            var color = configuration["color"];
+            var color = configuration   ["color"];
             Console.WriteLine("{0}", color);
 
             var fontSize = configuration["fontSize"];
