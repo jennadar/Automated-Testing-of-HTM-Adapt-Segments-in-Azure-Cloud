@@ -1,11 +1,11 @@
 # My Exercises
-RENAME THIS FILE TO "Exercises - Firsname Lastname.md" and put the content of this file into it.
+RENAME THIS FILE TO "Exercises - Firstname Lastname.md" and put the content of this file into it.
 FILES WITH OTHER NAMES WILL BE REJECTED!
 
 #### Exercise I 
 
-Provide script samples used in this exercise. What did you do , why, how, what was the result.
-If you have your scrips somwhere on the git, provide us als the URL here to them.
+Please provide script samples that were used in this exercise, along with details on what was done, why it was done, how it was done, and the resulting outcomes. 
+If the scripts are available on a public repository such as GitHub, kindly provide the URL for easy access.
 
 #### Exercise 2 - Docker in Azure
 
@@ -17,7 +17,7 @@ If you have your scrips somwhere on the git, provide us als the URL here to them
 
 1. Provide the public URL of the webapplication.
 2. Provide the URL to the source code of the hosted application. (Source code somwhere or the the docker image, or ??)
-3. Provide AZ scripts used to bublish the application.
+3. Provide AZ scripts used to publish the application.
 
 #### Exercise 4 - Deploy and run the containerized app in AppService
 
