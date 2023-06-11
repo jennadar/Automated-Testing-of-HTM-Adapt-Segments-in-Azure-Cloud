@@ -10,15 +10,15 @@ namespace TbleStorageSamples
         {
             Console.WriteLine("Table Storage Samples");
 
-            await CreateDeleteTable();
+            //await CreateDeleteTable();
 
-            await CreateDeleteEntitiesAsync();
+            //await CreateDeleteEntitiesAsync();
 
             //await UpdateUpsertEntitiesAsync();
 
-            //await QueryEntitiesAsync();
+            await QueryEntitiesAsync();
 
-           //await TransactionalBatchSample();
+            await TransactionalBatchSample();
         }
 
         public static async Task CreateDeleteTable()
@@ -85,9 +85,8 @@ namespace TbleStorageSamples
             // Delete the entity given the partition and row key.
             await client.DeleteEntityAsync(partitionKey, rowKey);
 
-            #region Snippet:TablesSample2DeleteTableWithTableClientAsync
+            // Delete Table by using TableClient
             await client.DeleteAsync();
-            #endregion
         }
 
         public static async Task UpdateUpsertEntitiesAsync()
@@ -135,7 +134,7 @@ namespace TbleStorageSamples
 
         public static async Task QueryEntitiesAsync()
         {
-            string tableName = "demotbl" + new Random().Next();
+            string tableName = "querydemotable" + new Random().Next();
             string partitionKey = "partition";
             string rowKey = "1";
             string rowKey2 = "2";
@@ -242,15 +241,15 @@ namespace TbleStorageSamples
 
         public static async Task TransactionalBatchSample()
         {
-         
+
             string tableName = "demotbl" + new Random().Next();
             string partitionKey = "partition";
-        
+
 
             var client = new TableClient(Credentials.ConnStr, tableName);
 
             await client.CreateAsync();
-                        
+
             List<TableEntity> entityList = new List<TableEntity>
             {
                 new TableEntity(partitionKey, "01")
@@ -311,7 +310,7 @@ namespace TbleStorageSamples
             {
                 Console.WriteLine($"The ETag for the entity with RowKey: '{batch[i].Entity.RowKey}' is {batchResult.Value[i].Headers.ETag}");
             }
-          
+
             //
             // Batch with mixed Delete and Upsert operation 
             //
@@ -343,7 +342,7 @@ namespace TbleStorageSamples
             // Submit the batch.
             await client.SubmitTransactionAsync(mixedBatch).ConfigureAwait(false);
 
-    
+
             //
             // DELETE Batch
             //
@@ -360,7 +359,7 @@ namespace TbleStorageSamples
             // Submit the batch.
             await client.SubmitTransactionAsync(deleteEntitiesBatch).ConfigureAwait(false);
 
-     
+
 
             // Delete the table.
             await client.DeleteAsync();
