@@ -40,7 +40,8 @@ Following document describes deliverables of your [exercises](https://github.com
 
 ### Cloud Project
 The goal of your project is running your Software Engineering project in Microsoft Azure Cloud. You will make a simple console application, which will contain a code of some of your UnitTests. That code will represent some ML experiment in context of your project. To run the project in the cloud you will first have to package the code in a **Docker Container**. 
-Next you will upload this code to **Azure Container Registry**. The code will start when you upload the training files to the Azure Blob Storage. Your code in container will download the file from storage and start the experiment (e.g. training and prediction). The result will be written into a **Table Storage**.
+Next you will upload this code to **Azure Container Registry**. The code will start when you upload the training files to the Azure Blob Storage. Your code in container will download the file from storage and start the experiment (e.g. training and prediction). The result will be written into a **
+**.
 
 The following diagram illustrates the architecture of the solution and the technologies you will learn:
 
@@ -351,7 +352,7 @@ Azure Storage [PPTX](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-
 ![Create Storage Account](https://user-images.githubusercontent.com/1756871/82747492-9266f700-9d99-11ea-8407-947a87bcfee3.png)
 
 ### Blob Storage
-![Blob Concept](https://user-images.githubusercontent.com/1756871/82807863-eac8f200-9e88-11ea-991d-e25a9702d1d0.png)
+![Blob Storage Concept](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/1756871/34e1edc2-940f-4fca-8c7a-d0189930a8fd)
 
 **Blob Storage Intro**
 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview
@@ -366,10 +367,15 @@ https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/storage/Azure.Storage.B
 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet
 
 ## Lesson 5 - Table Storage
-![Table Concept](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
 
-**Table Storage Presentation**
-https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview
+**Table Storage Introduction**
+[What is Table Storage](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview)
+
+The following figure illustrates the concept of the Table Storage.
+![Table Concepts](https://user-images.githubusercontent.com/1756871/82807863-eac8f200-9e88-11ea-991d-e25a9702d1d0.png)
+
+The following figure illustrates how entities are stored in Azure Table Storage. The query on top is an example that demonstrates how entities can be retrieved from the storage using the OData protocol.
+![An Example](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
 
 **Samples in university repository**
 https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/TableStorageSamples
