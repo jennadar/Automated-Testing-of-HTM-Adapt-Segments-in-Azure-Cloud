@@ -352,7 +352,7 @@ Azure Storage [PPTX](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-
 ![Create Storage Account](https://user-images.githubusercontent.com/1756871/82747492-9266f700-9d99-11ea-8407-947a87bcfee3.png)
 
 ### Blob Storage
-![Blob Concept](https://user-images.githubusercontent.com/1756871/82807863-eac8f200-9e88-11ea-991d-e25a9702d1d0.png)
+![Blob Storage Concept](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/1756871/34e1edc2-940f-4fca-8c7a-d0189930a8fd)
 
 **Blob Storage Intro**
 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview
