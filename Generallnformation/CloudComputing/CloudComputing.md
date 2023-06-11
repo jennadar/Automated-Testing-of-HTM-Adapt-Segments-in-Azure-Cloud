@@ -368,14 +368,14 @@ https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-do
 
 ## Lesson 5 - Table Storage
 
-![Table Concepts](https://user-images.githubusercontent.com/1756871/82807863-eac8f200-9e88-11ea-991d-e25a9702d1d0.png)
-
-Following figure illustrates 
-![An Example](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
-
-The following figure illustrates how entities are stored in Azure Table Storage. The query on top is an example that demonstrates how entities can be retrieved from the storage using the OData protocol
 **Table Storage Introduction**
 [What is Table Storage](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview)
+
+The following figure illustrates the concept of the Table Storage.
+![Table Concepts](https://user-images.githubusercontent.com/1756871/82807863-eac8f200-9e88-11ea-991d-e25a9702d1d0.png)
+
+The following figure illustrates how entities are stored in Azure Table Storage. The query on top is an example that demonstrates how entities can be retrieved from the storage using the OData protocol.
+![An Example](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
 
 **Samples in university repository**
 https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/TableStorageSamples
