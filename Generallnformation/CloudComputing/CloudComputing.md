@@ -40,7 +40,8 @@ Following document describes deliverables of your [exercises](https://github.com
 
 ### Cloud Project
 The goal of your project is running your Software Engineering project in Microsoft Azure Cloud. You will make a simple console application, which will contain a code of some of your UnitTests. That code will represent some ML experiment in context of your project. To run the project in the cloud you will first have to package the code in a **Docker Container**. 
-Next you will upload this code to **Azure Container Registry**. The code will start when you upload the training files to the Azure Blob Storage. Your code in container will download the file from storage and start the experiment (e.g. training and prediction). The result will be written into a **Table Storage**.
+Next you will upload this code to **Azure Container Registry**. The code will start when you upload the training files to the Azure Blob Storage. Your code in container will download the file from storage and start the experiment (e.g. training and prediction). The result will be written into a **
+**.
 
 The following diagram illustrates the architecture of the solution and the technologies you will learn:
 
@@ -366,8 +367,13 @@ https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/storage/Azure.Storage.B
 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet
 
 ## Lesson 5 - Table Storage
-![Table Concept](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
 
+![Table Concepts](https://user-images.githubusercontent.com/1756871/82807863-eac8f200-9e88-11ea-991d-e25a9702d1d0.png)
+
+Following figure illustrates 
+![An Example](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
+
+The following figure illustrates how entities are stored in Azure Table Storage. The query on top is an example that demonstrates how entities can be retrieved from the storage using the OData protocol
 **Table Storage Introduction**
 [What is Table Storage](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview)
 
