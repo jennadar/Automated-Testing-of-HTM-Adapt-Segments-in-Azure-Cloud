@@ -10,17 +10,20 @@ namespace BlobStorageSamples
 {
     class Program 
     {
-        private const string _connectionString = "DefaultEndpointsProtocol=https;AccountName=beststudentsever;AccountKey=eWK1RGlbTpEth/zvCI3aXZAAwyDkBkngZ5zRhY7k4h3yzWRo2r3oG1KqWZ8GPzN+Fax4fEx7rAvV+AStD3Dglw==;EndpointSuffix=core.windows.net";
-        //private const string _connectionString = "UseDevelopmentStorage=true";
+       // private const string _connectionString = "DefaultEndpointsProtocol=https;AccountName=beststudentsever;AccountKey=eWK1RGlbTpEth/zvCI3aXZAAwyDkBkngZ5zRhY7k4h3yzWRo2r3oG1KqWZ8GPzN+Fax4fEx7rAvV+AStD3Dglw==;EndpointSuffix=core.windows.net";
+
+        private const string _connectionString = "DefaultEndpointsProtocol=https;AccountName=mybeststudents;AccountKey=exGnIGN5+MEv9lFPzYNgs7op+Go8zbdH5jd5t3TKAoaGS9hC8SpBF2svKQDwYxEHkJwdwrF/PqYw+AStNv9yGQ==;EndpointSuffix=core.windows.net";
+            
+            //private const string _connectionString = "UseDevelopmentStorage=true";
         
     
         static async Task Main(string[] args)
         {
             Console.WriteLine("Hello Blob Storage!");
 
-            //await UploadAsync();
+            await UploadAsync();
 
-            //await DownloadAsync();
+            await DownloadAsync();
 
             await AppendToBlobAsync();
         }

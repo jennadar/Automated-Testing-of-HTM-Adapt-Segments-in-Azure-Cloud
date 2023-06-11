@@ -10,7 +10,7 @@ namespace TbleStorageSamples
         {
             Console.WriteLine("Table Storage Samples");
 
-            //await CreateDeleteTable();
+            await CreateDeleteTable();
 
             await CreateDeleteEntitiesAsync();
 
