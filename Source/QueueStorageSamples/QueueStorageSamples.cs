@@ -52,6 +52,8 @@ namespace QueueStorageSamples
 
             var json = JsonConvert.SerializeObject(new MyMessage() { Name = Randomize("SomeName"), EMail = $"{Randomize("mail")}@daenet.com" });
 
+            await queue.SendMessageAsync(json, timeToLive: TimeSpan.FromMinutes(5));
+
             await queue.SendMessageAsync(json, timeToLive: TimeSpan.FromMinutes(2), visibilityTimeout: TimeSpan.FromMinutes(1));
 
             var msg = await queue.ReceiveMessageAsync();
