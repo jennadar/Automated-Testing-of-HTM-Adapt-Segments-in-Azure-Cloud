@@ -368,8 +368,8 @@ https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-do
 ## Lesson 5 - Table Storage
 ![Table Concept](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
 
-**Table Storage Presentation**
-https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview
+**Table Storage Introduction**
+[What is Table Storage](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview)
 
 **Samples in university repository**
 https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/TableStorageSamples
