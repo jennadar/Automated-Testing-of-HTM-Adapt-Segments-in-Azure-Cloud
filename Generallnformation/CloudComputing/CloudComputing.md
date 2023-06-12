@@ -346,7 +346,7 @@ You are done when you reach "E_xercise - Create and deploy a web app from a Dock
 
 To learn about cloud storage for your applications in Azure please follow this [url](https://docs.microsoft.com/en-us/learn/paths/architect-storage-infrastructure/).
 
-Azure Storage [PPTX](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2019-2020/blob/master/Lessons/CloudComputing/Azure%20Storage%20Overview.pptx).
+Azure Storage [PPTX](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/master/Lessons/CloudComputing/Azure%20Storage.pptx).
 
 **Exercise:** Create the Storage Account
 ![Create Storage Account](https://user-images.githubusercontent.com/1756871/82747492-9266f700-9d99-11ea-8407-947a87bcfee3.png)
@@ -358,7 +358,7 @@ Azure Storage [PPTX](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-
 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview
 
 **Samples in university repository**
-https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/BlobStorageSamples
+https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/master/Source/BlobStorageSamples
 
 **Samples in git repo**
 https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/storage/Azure.Storage.Blobs/samples
@@ -378,7 +378,7 @@ The following figure illustrates how entities are stored in Azure Table Storage.
 ![An Example](https://user-images.githubusercontent.com/1756871/82807915-0cc27480-9e89-11ea-8852-a440ccbf5e82.png)
 
 **Samples in university repository**
-https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/TableStorageSamples
+https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/master/Source/TableStorageSamples
 
 **Official samples as Unit Tests**
 
@@ -396,7 +396,7 @@ Use this example to learn how to work with tables. Note, create first the storag
 ![Queue Concept](https://user-images.githubusercontent.com/1756871/82807958-3085ba80-9e89-11ea-8c3d-8f2a0239d3ba.png)
 
 **Samples in university repository**
-https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2021-2022/tree/master/Source/QueueStorageSamples
+(https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/master/Source/QueueStorageSamples)
 
 **Exercise VII (Due Date: 16th July):**
 
