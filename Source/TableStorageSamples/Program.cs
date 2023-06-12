@@ -240,7 +240,7 @@ namespace TbleStorageSamples
         }
 
         /// <summary>
-        /// Demonstrates batch operations insid a single transaction.
+        /// Demonstrates batch operations inside a single transaction.
         /// </summary>
         /// <returns></returns>
         public static async Task TransactionalBatchSample()
