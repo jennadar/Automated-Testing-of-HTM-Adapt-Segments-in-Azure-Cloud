@@ -52,19 +52,20 @@ namespace MyExperiment
         /// <inheritdoc/>
         public async Task RunQueueListener(CancellationToken cancelToken)
         {
-            ExperimentResult res = new ExperimentResult("damir", "123")
-            {
-                //Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+            //ExperimentResult res = new ExperimentResult("damir", "123")
+            //{
+            //    //Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                 
-                Accuracy = (float)0.5,
-            };
+            //    Accuracy = (float)0.5,
+            //};
 
-            await storageProvider.UploadExperimentResult(res);
+            //await storageProvider.UploadExperimentResult(res);
 
 
             QueueClient queueClient = new QueueClient(this.config.StorageConnectionString, this.config.Queue);
 
-            
+            //
+            // Implements the step 3 in the architecture picture.
             while (cancelToken.IsCancellationRequested == false)
             {
                 QueueMessage message = await queueClient.ReceiveMessageAsync();
@@ -78,15 +79,20 @@ namespace MyExperiment
 
                         this.logger?.LogInformation($"Received the message {msgTxt}");
 
+                        // The message in the step 3 on architecture picture.
                         ExerimentRequestMessage request = JsonSerializer.Deserialize<ExerimentRequestMessage>(msgTxt);
 
+                        // Step 4.
                         var inputFile = await this.storageProvider.DownloadInputFile(request.InputFile);
 
+                        // Here is your SE Project code started.(Between steps 4 and 5).
                         IExperimentResult result = await this.Run(inputFile);
 
+                        // Step 4 (oposite direction)
                         //TODO. do serialization of the result.
                         await storageProvider.UploadResultFile("outputfile.txt", null);
 
+                        // Step 5.
                         await storageProvider.UploadExperimentResult(result);
 
                         await queueClient.DeleteMessageAsync(message.MessageId, message.PopReceipt);

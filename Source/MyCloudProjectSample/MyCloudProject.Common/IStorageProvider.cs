@@ -16,6 +16,7 @@ namespace MyCloudProject.Common
         /// </summary>
         /// <param name="fileName">The name of the file at some remote (cloud) location from where the file will be downloaded.</param>
         /// <returns>The fullpath name of the file as downloaded locally.</returns>
+        /// <remarks>See step 4 in the architecture picture.</remarks>
         Task<string> DownloadInputFile(string fileName);
 
         /// <summary>
@@ -23,6 +24,7 @@ namespace MyCloudProject.Common
         /// </summary>
         /// <param name="fileName">The name of the file at some remote (cloud) location  where the file will be uploaded.</param>
         /// <returns>Not used. It can be null.</returns>
+        /// <remarks>See step 4 (oposite way) in the architecture picture.</remarks>
         Task<byte[]> UploadResultFile(string fileName, byte[] data);
 
         /// <summary>
@@ -30,6 +32,7 @@ namespace MyCloudProject.Common
         /// </summary>
         /// <param name="result"></param>
         /// <returns>Not used.</returns>
+       /// <remarks>See step 5 in the architecture picture.</remarks>
         Task UploadExperimentResult(IExperimentResult result);
     }
 }
