@@ -398,7 +398,7 @@ Use this example to learn how to work with tables. Note, create first the storag
 **Samples in university repository**
 (https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/master/Source/QueueStorageSamples)
 
-**Exercise VII (Due Date: 25th June):**
+**Exercise VII (Due Date: 2nd July):**
 
 **Step by step tutorial** 
 https://docs.microsoft.com/en-us/azure/storage/queues/storage-dotnet-how-to-use-queues?tabs=dotnet
