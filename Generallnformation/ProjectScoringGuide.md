@@ -36,7 +36,7 @@ The following URL can help you to see what we see:
 https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/commits/YOURBRANCHORGROUPNAME?author=YOURGITNAME
 
 Example:
-https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2012-2023/commits/master?author=ddobric
+https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/commits/master?author=ddobric
 
 Having 100 commits on one day and nothing at all on other days is not continuity. You should have 3-5 maybe 10 commits on a day. Sure, sure every day. We know this is not the only project you have to do and not only content you have to learn. But you should have committed over a long time from the beginning to the end of this course. Also please note that the content of the commits is on top priority. If you are just committing some minor changes to increase your commits that will not be counted at all. We will be keeping an eye on the quality of commits so please keep a note of that. For the commit content please refer to below.
 
