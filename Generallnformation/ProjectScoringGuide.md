@@ -4,7 +4,7 @@ Many students ask how we are scoring your project. This short document should he
 We use Github, work in our branch, and coordinate the work with the issue list.  
 
 We will start reviewing your project when you open the issue with the label '**Project Review Request**'.   
-Please specify a link to your working branch, your name/group name and the link to your document.  
+Please specify a link to your working branch, your name/group name, and the link to your document.  
 You can open multiple issues with '**Project Review Request**', but please link the last issue to the latest one, for us to keep track of the work.  
 When you think your project is finished/ you want to start the final submission you can add '**Final Review**'.
 
@@ -22,21 +22,21 @@ The scoring will start when your project is confirmed to be done. Your latest is
 ### 2. We learn continuously
 That means you work on the project regularly for the whole batch time. You start with the first exercise and you end when we label your project "issue" with '**Completed**'.
 Continuous work is when you work every specific day(s) in the week for 3-6 months long. Sure, there are a few weeks when you cannot work or can work more.
-If you only work for the last two weeks on the project, you will **Fail**. If you miss one of sprints you will **fail**. Also if you work just 2-3 weeks in the middle of 6 months slot, you will **Fail**.
-This is an important criteria, because we expect you to be creative and to learn to innovate. Both skills are very important for software engineers. The title of your project defines the goal of the project. However, it does not define how exactly to approach it. This part of work is a team work between you and me including my tutors.
+If you only work for the last two weeks on the project, you will **Fail**. If you miss one of the sprints you will **fail**. Also if you work just 2-3 weeks in the middle of 6 months slot, you will **Fail**.
+This is an important criterion because we expect you to be creative and learn to innovate. Both skills are very important for software engineers. The title of your project defines the goal of the project. However, it does not define how exactly to approach it. This part of the work is a teamwork between you and me including my tutors.
 
 Another reason for this approach is to align your skills and learning methodology as is expected in the industry. This is why we do not have a typical exam in these courses. Your score depends on your engagement over the project time. A Master's degree cannot be achieved without knowing the basics about (in this case) .NET Core, Cloud, Machine Learning, and Git.
 Learning software engineering and cloud computing just for the exam in the last few weeks is not the way how it works. This is an important rule in these courses.
 
 *How do we know about your continuous work?*
-We track your commits in the git repository. We do not track only the number of commits. We take a look in your commited work. For example, commiting some short comments in the code, uploading an image file many times, correcting something inside MD many times will be excluded from number of commits. It counts as single commit only.
+We track your commits in the git repository. We do not track only the number of commits. We take a look at your committed work. For example, committing some short comments in the code, uploading an image file many times, or correcting something inside MD many times will be excluded from a number of commits. It counts as a single commit only.
 
 The following URL can help you to see what we see:
 
-https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2019-2020/commits/YOURBRANCHORGROUPNAME?author=YOURGITNAME
+https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/commits/YOURBRANCHORGROUPNAME?author=YOURGITNAME
 
 Example:
-https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2019-2020/commits/master?author=ddobric
+https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2012-2023/commits/master?author=ddobric
 
 Having 100 commits on one day and nothing at all on other days is not continuity. You should have 3-5 maybe 10 commits on a day. Sure, sure every day. We know this is not the only project you have to do and not only content you have to learn. But you should have committed over a long time from the beginning to the end of this course. Also please note that the content of the commits is on top priority. If you are just committing some minor changes to increase your commits that will not be counted at all. We will be keeping an eye on the quality of commits so please keep a note of that. For the commit content please refer to below.
 
@@ -63,7 +63,7 @@ The content you commit must be related to the course.
 - Implementation and deployment of the code related to most of the learned cloud services.
 - You have worked with unit tests that test something related to cloud services.
 - You have worked on documentation
-- Your code is deployed to the resource grosup with your name and the code is running (No errors, instead of knwon errors previously discussed)
+- Your code is deployed to the resource group with your name and the code is running (No errors, instead of known errors previously discussed)
 - You have presented in the video (optional)
 
 Hope this helps you to master these exams.
