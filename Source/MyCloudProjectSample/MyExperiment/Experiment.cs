@@ -2,7 +2,9 @@
 using Azure.Storage.Queues.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyCloudProject.Common;
+using NeoCortexApi.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,6 +45,18 @@ namespace MyExperiment
             res.StartTimeUtc = DateTime.UtcNow;
 
             // Run your experiment code here.
+
+            // Arrange
+            Connections cn = new Connections();
+            int[] cellIndexes = new int[] { 0, 2, 4 };
+            cn.Cells = new Cell[5];
+            Cell[] expectedCells = new Cell[] { cn.Cells[0], cn.Cells[2], cn.Cells[4] };
+
+            // Act
+            Cell[] result = cn.GetCells(cellIndexes);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedCells, result);
 
             return Task.FromResult<IExperimentResult>(res); // TODO...
         }
