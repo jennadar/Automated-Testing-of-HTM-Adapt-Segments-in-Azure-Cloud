@@ -40,7 +40,7 @@ namespace MyExperiment
         {
             // TODO read file
 
-            // YOU START HERE WITH YOUR SE EXPERIMENT!!!!
+            // START HERE WITH OUR SE EXPERIMENT i.e, UnitTest for AdaptSegments Method!!!!
 
             ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
 
