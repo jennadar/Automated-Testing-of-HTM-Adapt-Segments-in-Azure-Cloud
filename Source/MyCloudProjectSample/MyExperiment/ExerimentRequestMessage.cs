@@ -18,9 +18,10 @@ namespace MyExperiment
 /*
  
  {
-    "ExperimentId": "sasa",
-    "InputFile":"sasss",
-
+    "ExperimentId": "2023",
+    "InputFile":"Testcase1",
+    "Name": "sample",
+    "Description": "None"
 }
  
  */ 
