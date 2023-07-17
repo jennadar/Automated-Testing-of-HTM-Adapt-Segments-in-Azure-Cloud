@@ -57,7 +57,10 @@ namespace MyExperiment
                     TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
                     break;
 
-               
+
+                case "Testcase3":
+                    TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
+                    break;
 
 
             }
