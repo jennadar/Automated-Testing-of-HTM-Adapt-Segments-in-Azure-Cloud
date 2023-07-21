@@ -222,7 +222,36 @@ namespace MyExperiment
             Assert.IsTrue(dd.Synapses.Contains(s3));/// assert condition to check does DistalDendrite contains the synapse s1
             Assert.AreEqual(3, dd.Synapses.Count);  /// synapses count check in DistalDendrite
         }
+        /// <summary>
+        /// TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues
+        /// here permanence comes lesser than  HtmConfig.EPSILON
+        /// hence it  destroys synapses
+        ///take count of the synapses inside DistalDendrite which comes to zero
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues()
+        {
+            // Arrange
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn);
+            tm.Init(cn);
 
+
+            DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), -0.199991);
+            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), -0.29999);
+
+
+            TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 24 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
+
+
+            Assert.IsFalse(dd.Synapses.Contains(s2)); /// assert condition to check does DistalDendrite contains the synapse s2
+            Assert.IsFalse(dd.Synapses.Contains(s1)); /// assert condition to check does DistalDendrite contains the synapse s2
+            Assert.AreEqual(0, dd.Synapses.Count);  /// synapses count check in DistalDendrite
+        }
 
         #endregion
     }
