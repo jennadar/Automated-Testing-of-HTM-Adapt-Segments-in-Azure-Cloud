@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace MyExperiment
 {
     /// <summary>
-    /// This class implements the ML experiment that will run in the cloud. This is refactored code from my SE project.
+    /// This class implements the ML experiment that will run in the cloud. This is refactored code from my Unit_Test AdaptSegments SE project.
     /// </summary>
     public class Experiment : IExperiment
     {
@@ -68,8 +68,6 @@ namespace MyExperiment
 
 
             }
-            /*TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
-            GetCells_WithEmptyArray_ReturnsEmptyArray();*/
             return Task.FromResult<IExperimentResult>(res); // TODO...
         }
 
