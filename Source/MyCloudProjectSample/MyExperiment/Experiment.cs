@@ -66,6 +66,10 @@ namespace MyExperiment
                     TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
                     break;
 
+                case "Testcase5":
+                    TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
+                    break;
+
 
             }
             return Task.FromResult<IExperimentResult>(res); // TODO...
@@ -255,6 +259,34 @@ namespace MyExperiment
             Assert.IsFalse(dd.Synapses.Contains(s1)); /// assert condition to check does DistalDendrite contains the synapse s2
             Assert.AreEqual(0, dd.Synapses.Count);  /// synapses count check in DistalDendrite
         }
+
+
+        /// <summary>
+        /// The below test checks for exception throwing in case of connections, DistalDendrites object is null. 
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException()
+        {
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn);
+            tm.Init(cn);
+
+            DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.1);
+
+            try
+            {
+                TemporalMemory.AdaptSegment(cn, null, cn.GetCells(new int[] { 23 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
+            }
+            catch (NullReferenceException ex)
+            {
+                Assert.AreEqual(DISTALDENDRITE_CANNOT_BE_NULL, ex.Message);
+            }
+        }
+
 
         #endregion
     }
