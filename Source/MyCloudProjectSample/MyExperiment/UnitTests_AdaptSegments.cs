@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.ConstrainedExecution;
 using System.Linq;
 using System.Collections.Concurrent;
+using System;
 //Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException;
 
 namespace AdaptSegments_FinalConsolidated
@@ -55,6 +56,7 @@ namespace AdaptSegments_FinalConsolidated
             /// permanence is incremented for presynaptie cell 23 from 
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
             Assert.AreEqual(0.2, s1.Permanence);
+            Console.WriteLine(s1.Permanence);
         }
 
 
@@ -83,6 +85,7 @@ namespace AdaptSegments_FinalConsolidated
             /// 0.9 to 0.8 as presynaptic cell was InActive in the previous cycle
             /// But the synapse is not destroyed as permanence > HtmConfig.Epsilon
             Assert.AreEqual(0.8, s1.Permanence);
+            Console.WriteLine(s1.Permanence);
         }
 
 

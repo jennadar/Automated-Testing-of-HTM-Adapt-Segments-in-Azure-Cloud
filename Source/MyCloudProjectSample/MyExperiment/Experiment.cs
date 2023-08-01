@@ -223,6 +223,7 @@ namespace MyExperiment
             Assert.IsTrue(dd.Synapses.Contains(s1));/// assert condition to check does DistalDendrite contains the synapse s1
             Assert.IsTrue(dd.Synapses.Contains(s3));/// assert condition to check does DistalDendrite contains the synapse s1
             Assert.AreEqual(3, dd.Synapses.Count);  /// synapses count check in DistalDendrite
+
         }
         /// <summary>
         /// TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues
