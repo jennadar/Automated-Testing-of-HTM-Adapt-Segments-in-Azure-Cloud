@@ -49,24 +49,36 @@ namespace MyExperiment
             // Run your experiment code here.
             switch (inputFile)
             {
+               
                 case "Testcase1":
-                    GetCells_WithEmptyArray_ReturnsEmptyArray();
-                    break;
-
-                case "Testcase2":
                     TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
                     break;
 
+                case "Testcase2":
+                    TestAdaptSegment_PermanenceWekened_IfPresynapticCellWasInActive();
+                    break;
 
                 case "Testcase3":
-                    TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
+                    TestAdaptSegment_PermanenceIsLimitedWithinRange();
                     break;
 
                 case "Testcase4":
-                    TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
+                    TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity();
                     break;
 
                 case "Testcase5":
+                    GetCells_WithEmptyArray_ReturnsEmptyArray();
+                    break;
+
+                case "Testcase6":
+                    TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
+                    break;
+
+                case "Testcase7":
+                    TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
+                    break;
+
+                case "Testcase8":
                     TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
                     break;
 
@@ -178,6 +190,28 @@ namespace MyExperiment
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
             Assert.AreEqual(0.2, s1.Permanence);
             Console.WriteLine(s1.Permanence);
+        }
+
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void TestAdaptSegment_PermanenceWekened_IfPresynapticCellWasInActive()
+        {
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn);
+            tm.Init(cn);
+
+            DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(500), 0.9);
+
+
+            TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 57 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
+            //Assert
+            /// /// permanence is decremented for presynaptie cell 500 from 
+            /// 0.9 to 0.8 as presynaptic cell was InActive in the previous cycle
+            /// But the synapse is not destroyed as permanence > HtmConfig.Epsilon
+            Assert.AreEqual(0.8, s1.Permanence);
         }
 
         [TestMethod]
