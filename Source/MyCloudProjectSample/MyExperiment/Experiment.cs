@@ -226,6 +226,9 @@ namespace MyExperiment
             Assert.AreEqual(0.8, s1.Permanence);
         }
 
+        /// <summary>
+        /// Test to check if the permanence of a synapse is limited within the range of 0 to 1.0.
+        /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
         public void TestAdaptSegment_PermanenceIsLimitedWithinRange()
@@ -252,6 +255,12 @@ namespace MyExperiment
             }
         }
 
+        /// <summary>
+        /// Validate the behavior of the AdaptSegment method of the TemporalMemory class.
+        /// The test initializes a TemporalMemory object, creates a Connection object, sets the default parameters, 
+        /// and initializes the TemporalMemory. It then creates a DistalDendrite object with three synapses, each connected 
+        /// to different cells. 
+        /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
         public void TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity()
@@ -277,6 +286,10 @@ namespace MyExperiment
             Assert.AreEqual(0.8, s3.Permanence, 0.01);/// permanence is decremented for cell 477 from 0.5 to 0.6 as presynaptic cell was InActive in the previous cycle.
         }
 
+
+        /// <summary>
+        /// Test used to check that the result array is equal to the expectedCells array, which is an empty array in this case.
+        /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
         public void GetCells_WithEmptyArray_ReturnsEmptyArray()
@@ -294,6 +307,14 @@ namespace MyExperiment
             //CollectionAssert.AreEqual(expectedCells, result);
             Console.WriteLine(result);
         }
+
+        ///******************************************** Unit Test Cases by Kavya Hirebelaguli Chandrashekar*********************************************************///
+
+        /// <summary>
+        /// These test methods will test if the AdaptSegment method correctly destroys synapses
+        /// with permanence less/greater than  HtmConfig.EPSILON
+        /// </summary>
+
         ///TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues
         ///here permanence comes greater than  HtmConfig.EPSILON
         ///hence it won´t destroys synapses
