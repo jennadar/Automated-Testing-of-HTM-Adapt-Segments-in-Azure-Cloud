@@ -157,6 +157,13 @@ namespace MyExperiment
 
         #region Private Methods
 
+        ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
+
+
+        /// <summary>
+        /// Unit Tests for AdaptSegments method of the Temporal Memory Class.
+        /// </summary>
+
         private const string CONNECTIONS_CANNOT_BE_NULL = "Connections cannot be null";
         private const string DISTALDENDRITE_CANNOT_BE_NULL = "Object reference not set to an instance of an object.";
 
@@ -192,6 +199,11 @@ namespace MyExperiment
             Console.WriteLine(s1.Permanence);
         }
 
+        /// <summary>
+        /// Testing the scenario where a synapse's presynaptic cell was not active in the previous cycle, 
+        /// so the AdaptSegment method should decrease the permanence value of that synapse by 
+        /// permanenceDecrement amount.
+        /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
         public void TestAdaptSegment_PermanenceWekened_IfPresynapticCellWasInActive()
