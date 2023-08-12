@@ -216,6 +216,34 @@ namespace MyExperiment
 
         [TestMethod]
         [TestCategory("Prod")]
+        public void TestAdaptSegment_PermanenceIsLimitedWithinRange()
+        {
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn);
+            tm.Init(cn);
+
+            DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 2.5);
+
+            TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
+            try
+            {
+                Assert.AreEqual(1.0, s1.Permanence, 0.1);
+            }
+            catch (AssertFailedException ex)
+            {
+                string PERMANENCE_SHOULD_BE_IN_THE_RANGE = $"Assert.AreEqual failed. Expected a difference no greater than <0.1> " +
+                    $"between expected value <1> and actual value <{s1.Permanence}>. ";
+                Assert.AreEqual(PERMANENCE_SHOULD_BE_IN_THE_RANGE, ex.Message);
+            }
+        }
+
+
+
+        [TestMethod]
+        [TestCategory("Prod")]
         public void GetCells_WithEmptyArray_ReturnsEmptyArray()
         {
             // Arrange
