@@ -240,7 +240,30 @@ namespace MyExperiment
             }
         }
 
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity()
+        {
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();///The connections object holds the infrastructure, and is used by both the SpatialPooler, TemporalMemory.
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn);
+            tm.Init(cn);///use connection for specified object to build and implement algoarithm 
 
+            DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));/// Created a Distal dendrite segment of a cell0
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.5);/// Created a synapse on a distal segment of a cell index 23
+            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(37), 0.6);/// Created a synapse on a distal segment of a cell index 37
+            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(477), 0.9);/// Created a synapse on a distal segment of a cell index 477
+
+            TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 37 }), cn.HtmConfig.PermanenceIncrement,
+                cn.HtmConfig.PermanenceDecrement);/// Invoking AdaptSegments with only the cells with index 23 and 37
+                                                  /// whose presynaptic cell is considered to be Active in the
+                                                  /// previous cycle and presynaptic cell is Inactive for the cell 477
+
+            Assert.AreEqual(0.6, s1.Permanence, 0.01);/// permanence is incremented for cell 23 from 0.5 to 0.6 as presynaptic cell was Active in the previous cycle.
+            Assert.AreEqual(0.7, s2.Permanence, 0.01);/// permanence is incremented for cell 37 from 0.6 to 0.7 as presynaptic cell was Active in the previous cycle.
+            Assert.AreEqual(0.8, s3.Permanence, 0.01);/// permanence is decremented for cell 477 from 0.5 to 0.6 as presynaptic cell was InActive in the previous cycle.
+        }
 
         [TestMethod]
         [TestCategory("Prod")]
