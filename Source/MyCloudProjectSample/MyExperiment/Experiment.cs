@@ -82,6 +82,11 @@ namespace MyExperiment
                     TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
                     break;
 
+                case "Testcase9":
+                    TestAdaptSegment_PermanenceMaxBound();
+                    break;
+
+
 
             }
             return Task.FromResult<IExperimentResult>(res); // TODO...
