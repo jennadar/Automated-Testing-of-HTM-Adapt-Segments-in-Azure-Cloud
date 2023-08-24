@@ -82,6 +82,11 @@ namespace MyExperiment
                     TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
                     break;
 
+                case "Testcase9":
+                    TestAdaptSegment_PermanenceMaxBound();
+                    break;
+
+
 
             }
             return Task.FromResult<IExperimentResult>(res); // TODO...
@@ -405,6 +410,40 @@ namespace MyExperiment
                 Assert.AreEqual(DISTALDENDRITE_CANNOT_BE_NULL, ex.Message);
             }
         }
+
+        /// <summary>
+        /// This unit test is testing the maximum permanence value set by the AdaptSegment method. 
+        /// For the permanece value > 1.0, AdaptSegments will set permanence to maximum bound 1.0. 
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void TestAdaptSegment_PermanenceMaxBound()
+        {
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn);
+            tm.Init(cn);
+
+            DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0)); /// Create a distal segment of a cell index 0 to learn sequence
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(15), 1.1);/// create a synapse on a dital segment of a cell with index 15 
+                                                                   /// It results with permanence 1 of the segment's synapse if the synapse's presynaptic cell index 23 was active. 
+                                                                   /// If it was not active, then it will decrement the permanence by 0.1
+
+            TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 15 }), cn.HtmConfig.PermanenceIncrement,
+                cn.HtmConfig.PermanenceDecrement);/// Invoking AdaptSegments with the cell 15 whose presynaptic cell is 
+                                                  /// considered to be Active in the previous cycle.
+            Assert.AreEqual(1.0, s1.Permanence, 0.1);/// permanence is incremented for cell 15 from 0.9 to 1 as presynaptic cell was Active in the previous cycle.
+
+            /// Now permanence should be at max
+            TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 15 }), cn.HtmConfig.PermanenceIncrement,
+                cn.HtmConfig.PermanenceDecrement);/// Again calling AdaptSegments with the cell 15 whose presynaptic cell is 
+                                                  /// considered to be Active again in the previous cycle.
+            Assert.AreEqual(1.0, s1.Permanence, 0.1);/// Therefore permanence is again incremented for cell 15 from 1 to 1.1 as presynaptic cell was Active 
+                                                     /// in the previous cycle. But due to permanence boundary set, 1.1 is set back to 1.
+
+        }
+
 
 
         #endregion
