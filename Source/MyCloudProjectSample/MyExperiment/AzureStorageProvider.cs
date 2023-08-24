@@ -22,8 +22,8 @@ namespace MyExperiment
 
         public async Task<string> DownloadInputFile(string fileName)
         {
-            var StorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=teamspiralganglions1;AccountKey=DSjdlUiFRt9ckju94NlIF+1CbOr7pJVgJzfDgRABFFks6pF8awUy8YCrKSvfgRJibXQQNgsskzdy+AStxRZFZQ==;EndpointSuffix=core.windows.net ";
-            await Console.Out.WriteLineAsync("i am in DownloadInputFile class");
+            var StorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=unitestascc1;AccountKey=+t9h+axcMrFD5n/7lM9znJziZ9Ou1xtqR0hEYpSXvhX8h9Z+x6dv5vMoqop7jFJu02fMd4IESgCh+AStNYhqVw==;EndpointSuffix=core.windows.net ";
+            await Console.Out.WriteLineAsync("Ensuring I am in DownloadInputFile class");
             BlobContainerClient container = new BlobContainerClient("read from config", "sample-container TODO. Read from config");
             await container.CreateIfNotExistsAsync();
 
