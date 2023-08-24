@@ -39,6 +39,8 @@ namespace MyExperiment
 
         public string InputFileUrl { get; set; }
 
+        public string testFileUrl { get; set; }
+
         public string[] OutputFiles { get; set; }
         // Your properties related to experiment.
 

@@ -12,10 +12,20 @@ namespace MyCloudProject.Common
         string Name { get; set; }
 
         string Description { get; set; }
-        
+
         DateTime? StartTimeUtc { get; set; }
 
         DateTime? EndTimeUtc { get; set; }
+
+
+        // ********************************************************Additional Required Inputs***************************************************************//
+        //public string InputSequenceFileUrl { get; set; }
+
+       // public string testFileUrl { get; set; }
+
+        //public string[] OutputFiles { get; set; }
+
+        //public double Accuracy { get; set; }
     }
 
 }

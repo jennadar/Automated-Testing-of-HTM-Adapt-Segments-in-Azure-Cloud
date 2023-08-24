@@ -40,7 +40,7 @@ namespace MyExperiment
         {
             // TODO read file
 
-            // START HERE WITH OUR SE EXPERIMENT i.e, UnitTest for AdaptSegments Method!!!!
+            // STARTING HERE WITH OUR SE EXPERIMENT i.e, UnitTest for AdaptSegments Method!!!!
 
             ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
 
@@ -176,7 +176,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public void TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
+        public double TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
@@ -197,6 +197,7 @@ namespace MyExperiment
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
             Assert.AreEqual(0.2, s1.Permanence);
             Console.WriteLine(s1.Permanence);
+            return s1.Permanence;
         }
 
         /// <summary>

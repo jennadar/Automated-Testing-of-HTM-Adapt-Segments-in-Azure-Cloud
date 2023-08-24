@@ -18,5 +18,9 @@ namespace MyCloudProject.Common
 
         string Description { get; set; }
 
+        // ********************************************************Additional Required Inputs***************************************************************//
+        public string testFile { get; set; }
+
+
     }
 }

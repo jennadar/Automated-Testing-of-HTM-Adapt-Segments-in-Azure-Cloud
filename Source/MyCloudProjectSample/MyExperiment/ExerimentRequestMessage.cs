@@ -11,6 +11,8 @@ namespace MyExperiment
         public string InputFile { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public string testFile { get; set; }
     }
 }
 
@@ -24,4 +26,19 @@ namespace MyExperiment
     "Description": "None"
 }
  
- */ 
+ */
+
+
+
+/*
+ 
+ {
+    "ExperimentId": "ML22/23-7",
+    "InputFile":"InputData.txt",
+    "Name": "PermanenceStrengthening",
+    "Description": "Predict the Cell State",
+    "testFile": "testingData.txt"
+
+}
+ 
+ */

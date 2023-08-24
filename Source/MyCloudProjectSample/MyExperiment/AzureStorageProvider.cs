@@ -22,6 +22,8 @@ namespace MyExperiment
 
         public async Task<string> DownloadInputFile(string fileName)
         {
+            var StorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=teamspiralganglions1;AccountKey=DSjdlUiFRt9ckju94NlIF+1CbOr7pJVgJzfDgRABFFks6pF8awUy8YCrKSvfgRJibXQQNgsskzdy+AStxRZFZQ==;EndpointSuffix=core.windows.net ";
+            await Console.Out.WriteLineAsync("i am in DownloadInputFile class");
             BlobContainerClient container = new BlobContainerClient("read from config", "sample-container TODO. Read from config");
             await container.CreateIfNotExistsAsync();
 
@@ -40,6 +42,7 @@ namespace MyExperiment
             var client = new TableClient(this.config.StorageConnectionString, this.config.ResultTable);
 
             await client.CreateIfNotExistsAsync();
+            var count = result.Input;
 
             ExperimentResult res = new ExperimentResult("damir", "123")
             {
