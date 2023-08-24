@@ -13,15 +13,15 @@ namespace MyExperiment
         public ExperimentResult(string partitionKey, string rowKey)
         {
             this.PartitionKey = partitionKey;
-            this.RowKey= rowKey;
+            this.RowKey = rowKey;
         }
 
         public string PartitionKey { get; set; }
-        
+
         public string RowKey { get; set; }
-       
-        public DateTimeOffset? Timestamp { get ; set ; }
-        
+
+        public DateTimeOffset? Timestamp { get; set; }
+
         public ETag ETag { get; set; }
 
 
@@ -45,6 +45,8 @@ namespace MyExperiment
         // Your properties related to experiment.
 
         public float Accuracy { get; set; }
+
+        public int Input { get; set; }
 
 
     }

@@ -119,8 +119,6 @@ namespace MyExperiment
                 {
                     try
                     {
-
-                        
                         string msgTxt = Encoding.UTF8.GetString(message.Body.ToArray());
 
                         this.logger?.LogInformation($"Received the message {msgTxt}");

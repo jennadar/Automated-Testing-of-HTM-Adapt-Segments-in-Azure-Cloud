@@ -17,11 +17,13 @@ namespace MyCloudProject.Common
 
         DateTime? EndTimeUtc { get; set; }
 
+        public int Input { get; set; }
+
 
         // ********************************************************Additional Required Inputs***************************************************************//
         //public string InputSequenceFileUrl { get; set; }
 
-       // public string testFileUrl { get; set; }
+        // public string testFileUrl { get; set; }
 
         //public string[] OutputFiles { get; set; }
 
