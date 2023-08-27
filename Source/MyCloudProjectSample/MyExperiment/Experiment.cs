@@ -87,6 +87,11 @@ namespace MyExperiment
                     break;
 
 
+                case "Testcase10":
+                    GetCells_WithValidArray_ReturnsExpectedCells();
+                    break;
+
+
 
             }
             return Task.FromResult<IExperimentResult>(res); // TODO...
