@@ -472,6 +472,26 @@ namespace MyExperiment
             CollectionAssert.AreEqual(expectedCells, result);
         }
 
+        /// <summary>
+        /// Test used to check that the result array is equal to the expectedCells array, which is an empty array in this case.
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void GetCells_WithEmptyArray_ReturnsEmptyArray1()
+        {
+            // Arrange
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            int[] cellIndexes = new int[0];
+            Cell[] expectedCells = new Cell[0];
+
+            // Act
+            Cell[] result = cn.GetCells(cellIndexes);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedCells, result);
+        }
+
 
 
         #endregion
