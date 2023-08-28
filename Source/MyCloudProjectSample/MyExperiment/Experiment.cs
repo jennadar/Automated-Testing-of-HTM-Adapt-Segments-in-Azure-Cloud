@@ -87,6 +87,11 @@ namespace MyExperiment
                     break;
 
 
+                case "Testcase10":
+                    GetCells_WithValidArray_ReturnsExpectedCells();
+                    break;
+
+
 
             }
             return Task.FromResult<IExperimentResult>(res); // TODO...
@@ -440,6 +445,51 @@ namespace MyExperiment
             Assert.AreEqual(1.0, s1.Permanence, 0.1);/// Therefore permanence is again incremented for cell 15 from 1 to 1.1 as presynaptic cell was Active 
                                                      /// in the previous cycle. But due to permanence boundary set, 1.1 is set back to 1.
 
+        }
+
+
+        /// <summary>
+        /// Test case to check if cellIndexes is a valid array:
+        /// This test sets up a Connections object, initializes cellIndexes with the values [0, 2, 4], and initializes 
+        /// expectedCells with an array containing the 1st, 3rd, and 5th elements of the Cells array in the Connections
+        /// object. The GetCells method is then called with cellIndexes, and the result is compared to expectedCells 
+        /// using CollectionAssert.AreEqual.
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void GetCells_WithValidArray_ReturnsExpectedCells()
+        {
+            // Arrange
+            Connections cn = new Connections();
+            int[] cellIndexes = new int[] { 0, 2, 4 };
+            cn.Cells = new Cell[5];
+            Cell[] expectedCells = new Cell[] { cn.Cells[0], cn.Cells[2], cn.Cells[4] };
+
+            // Act
+            Cell[] result = cn.GetCells(cellIndexes);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedCells, result);
+        }
+
+        /// <summary>
+        /// Test used to check that the result array is equal to the expectedCells array, which is an empty array in this case.
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void GetCells_WithEmptyArray_ReturnsEmptyArray1()
+        {
+            // Arrange
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            int[] cellIndexes = new int[0];
+            Cell[] expectedCells = new Cell[0];
+
+            // Act
+            Cell[] result = cn.GetCells(cellIndexes);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedCells, result);
         }
 
 
