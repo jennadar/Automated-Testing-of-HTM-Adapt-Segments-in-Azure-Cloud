@@ -135,7 +135,7 @@ namespace MyExperiment
 
                         // Step 4 (oposite direction)
                         //TODO. do serialization of the result.
-                        await storageProvider.UploadResultFile("outputfile.txt", null);
+                        //await storageProvider.UploadResultFile("outputfile.txt", null);
 
                         // Step 5.
                         await storageProvider.UploadExperimentResult(result);
