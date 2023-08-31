@@ -41,6 +41,9 @@ namespace MyExperiment
 
         public async Task UploadExperimentResult(IExperimentResult result)
         {
+            // Set the LicenseContext before using the EPPlus library
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+               
             var client = new TableClient(this.config.StorageConnectionString, this.config.ResultTable);
 
             await client.CreateIfNotExistsAsync();
@@ -58,7 +61,25 @@ namespace MyExperiment
                 worksheet.Cells[1, 3].Value = "ActualResult";
                 worksheet.Cells[1, 4].Value = "****";
 
+                for (int i = 0; i < count; i++)
+                {
+                    // Your existing code to create the ExperimentResult entity
+                    ExperimentResult res = new ExperimentResult("damir", i.ToString())
+                    {
+                        Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+                        Accuracy = (float)0.5,
+                        Input = i,
+                        //Encoded_Array = result.Encoded_Array
+                    };
 
+                    // Add data to the Excel worksheet
+                    worksheet.Cells[i + 2, 1].Value = res.Timestamp;
+                    worksheet.Cells[i + 2, 2].Value = res.Accuracy;
+                    worksheet.Cells[i + 2, 3].Value = res.Input;
+                    //worksheet.Cells[i + 2, 4].Value = res.Encoded_Array;
+
+                    await client.UpsertEntityAsync(res);
+                }
 
                 await client.UpsertEntityAsync((ExperimentResult)result);
 
@@ -75,17 +96,6 @@ namespace MyExperiment
                     await blobClient.UploadAsync(stream, true);
                 }
             }
-
-            ExperimentResult res = new ExperimentResult("damir", "123")
-            {
-                //Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
-
-                Accuracy = (float)0.5,
-            };
-
-         
-            
-
         }
 
         /*  public async Task<byte[]> UploadResultFile(string fileName, byte[] data)

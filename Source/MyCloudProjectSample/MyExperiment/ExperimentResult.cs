@@ -16,6 +16,11 @@ namespace MyExperiment
             this.RowKey = rowKey;
         }
 
+        public ExperimentResult()
+        {
+            // Default parameterless constructor
+        }
+
         public string PartitionKey { get; set; }
 
         public string RowKey { get; set; }
