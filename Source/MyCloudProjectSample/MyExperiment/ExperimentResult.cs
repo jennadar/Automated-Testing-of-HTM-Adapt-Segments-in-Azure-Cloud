@@ -32,6 +32,8 @@ namespace MyExperiment
 
         public string ExperimentId { get; set; }
 
+        public string ExperimentName { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -53,8 +55,10 @@ namespace MyExperiment
 
         public int Input { get; set; }
 
-        public int Permanence { get; set; }
+        public int Permanence_Array { get; set; }
 
+        public byte[] excelData { get; set; }
 
+        public Dictionary<double, string> encodedData { get; set; }
     }
 }

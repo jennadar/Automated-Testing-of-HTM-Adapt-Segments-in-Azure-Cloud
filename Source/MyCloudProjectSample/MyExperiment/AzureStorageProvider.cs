@@ -41,70 +41,32 @@ namespace MyExperiment
 
         public async Task UploadExperimentResult(IExperimentResult result)
         {
-            // Set the LicenseContext before using the EPPlus library
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-               
-            var client = new TableClient(this.config.StorageConnectionString, this.config.ResultTable);
+            var experimentLabel = result.ExperimentName;
 
-            await client.CreateIfNotExistsAsync();
-            var count = result.Input;
-
-            // Create a new Excel package
-            using (var package = new ExcelPackage())
+            switch (experimentLabel)
             {
-                // Create a worksheet
-                var worksheet = package.Workbook.Worksheets.Add("TestResults");
+                case "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive":
 
-                // Adding headers
-                worksheet.Cells[1, 1].Value = "TestName";
-                worksheet.Cells[1, 2].Value = "ExpectedResult";
-                worksheet.Cells[1, 3].Value = "ActualResult";
-                worksheet.Cells[1, 4].Value = "****";
+                    BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
+                    BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("ifpresynapticcellwasactivee");
 
-                for (int i = 0; i < count; i++)
-                {
-                    // Your existing code to create the ExperimentResult entity
-                    ExperimentResult res = new ExperimentResult("damir", i.ToString())
+                    // Write encoded data to Excel file
+                    byte[] excelData = result.excelData;
+
+                    // Generate a unique blob name (you can customize this logic)
+                    string blobName = $"Test_data_{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+                    // Upload the Excel data to the blob container
+                    BlobClient blobClient = containerClient.GetBlobClient(blobName);
+                    using (MemoryStream memoryStream = new MemoryStream(excelData))
                     {
-                        Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
-                        Accuracy = (float)0.5,
-                        Input = i,
-                        //Permanence = result.Permanence,
-                    };
+                        await blobClient.UploadAsync(memoryStream);
+                    }
 
-                    // Add data to the Excel worksheet
-                    worksheet.Cells[i + 2, 1].Value = res.Timestamp;
-                    worksheet.Cells[i + 2, 2].Value = res.Accuracy;
-                    worksheet.Cells[i + 2, 3].Value = res.Input;
-                    //worksheet.Cells[i + 2, 4].Value = res.Encoded_Array;
 
-                    await client.UpsertEntityAsync(res);
-                }
-
-                await client.UpsertEntityAsync((ExperimentResult)result);
-
-                // Save the Excel package to a stream
-                using (var stream = new MemoryStream())
-                {
-                    package.SaveAs(stream);
-                    stream.Seek(0, SeekOrigin.Begin); // Ensure the stream position is set to the beginning
-
-                    // Upload the Excel file to Azure Blob Storage
-                    var connectionString = "DefaultEndpointsProtocol=https;AccountName=unitestascc1;AccountKey=+t9h+axcMrFD5n/7lM9znJziZ9Ou1xtqR0hEYpSXvhX8h9Z+x6dv5vMoqop7jFJu02fMd4IESgCh+AStNYhqVw==;EndpointSuffix=core.windows.net";
-                    var containerName = "resultcontainer";
-                    BlobClient blobClient = new BlobClient(connectionString, containerName, "test_results.xlsx");
-                    await blobClient.UploadAsync(stream, true);
-                }
+                    break;
             }
-        }
-
-        /*  public async Task<byte[]> UploadResultFile(string fileName, byte[] data)
-          {
-
-
-              throw new NotImplementedException();
-          }*/
-
+            }
 
 
 

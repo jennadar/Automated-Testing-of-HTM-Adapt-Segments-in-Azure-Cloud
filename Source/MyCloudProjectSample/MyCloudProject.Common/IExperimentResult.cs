@@ -9,6 +9,7 @@ namespace MyCloudProject.Common
     {
         string ExperimentId { get; set; }
 
+        string ExperimentName { get; set; }
         string Name { get; set; }
 
         string Description { get; set; }
@@ -19,10 +20,13 @@ namespace MyCloudProject.Common
 
         public int Input { get; set; }
 
+        //public string PermValueList { get; set; }
+        
+        public byte[] excelData { get; set; }
         public class TestResults
         {
             public int Input { get; set; }
-            public string Permanence { get; set; }
+            public string PermValueList { get; set; }
         }
 
         // ********************************************************Additional Required Inputs***************************************************************//

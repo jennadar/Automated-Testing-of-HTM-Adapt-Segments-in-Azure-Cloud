@@ -69,18 +69,14 @@ namespace MyExperiment
                         res.Input = (int)entry.Key;
                         string encodedValue = entry.Value;
                         PermValueList.Add(Tuple.Create(res.Input, encodedValue));
-
-                        //Console.WriteLine("Input: {0}, Encoded Array: {1}", res.Input, entry.Value);
-                        //resultList.Add(res); // Add the new ExperimentResult to the resultList
+                       
                     }
-                    // Convert the encodedDataList to a formatted string and store it in res.Encoded_Array
-                    res.Permanence_Array = string.Join(", ", PermValueList.Select(tuple => $"Input: {tuple.Item1}, Encoded Value: {tuple.Item2}"));
+                   
+                    Console.WriteLine(PermValueList);
 
-                    Console.WriteLine(res.Permanence_Array);
-
-                    // Now you have encodedDataList with pairs of (input, encodedValue)
+                    // Now you have encodedDataList with pairs of (input, PermValueList)
                     res.excelData = WriteEncodedDataToExcel(PermValueList);
-                    res.ExperimentName = "EncodeIntoArray";
+                    res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
 
                     break;
 
@@ -262,8 +258,13 @@ namespace MyExperiment
             /// permanence is incremented for presynaptie cell 23 from 
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
             Assert.AreEqual(0.2, s1.Permanence);
+
+            // Create a dictionary with the desired key-value pair
+            Dictionary<double, string> result = new Dictionary<double, string>();
+            result.Add(s1.Permanence, "Permanence Value");
+
             Console.WriteLine(s1.Permanence);
-            return s1.Permanence;
+            return result;
         }
 
         /// <summary>
