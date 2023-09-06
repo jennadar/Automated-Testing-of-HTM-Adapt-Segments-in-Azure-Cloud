@@ -69,7 +69,7 @@ namespace MyExperiment
                         Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                         Accuracy = (float)0.5,
                         Input = i,
-                        //Encoded_Array = result.Encoded_Array
+                        //Permanence = result.Permanence,
                     };
 
                     // Add data to the Excel worksheet

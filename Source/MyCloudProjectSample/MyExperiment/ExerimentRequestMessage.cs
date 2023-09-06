@@ -11,8 +11,9 @@ namespace MyExperiment
         public string InputFile { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string testFile { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public string testFile { get; set; }
+        //public string testFile { get; set; }
     }
 }
 

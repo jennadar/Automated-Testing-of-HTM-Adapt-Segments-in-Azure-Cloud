@@ -19,6 +19,11 @@ namespace MyCloudProject.Common
 
         public int Input { get; set; }
 
+        public class TestResults
+        {
+            public int Input { get; set; }
+            public string Permanence { get; set; }
+        }
 
         // ********************************************************Additional Required Inputs***************************************************************//
         //public string InputSequenceFileUrl { get; set; }

@@ -7,8 +7,10 @@ using MyCloudProject.Common;
 using NeoCortexApi;
 using NeoCortexApi.Entities;
 using Newtonsoft.Json.Linq;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -47,11 +49,39 @@ namespace MyExperiment
             res.StartTimeUtc = DateTime.UtcNow;
 
             // Run your experiment code here.
+            Dictionary<double, string> PermValue;
             switch (inputFile)
             {
                
                 case "Testcase1":
-                    TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                    PermValue = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                    int index = 0; // Index to keep track of the position in the datastore array
+                                   // Set the LicenseContext before using the EPPlus library
+                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                    List<Tuple<int, string>> PermValueList = new List<Tuple<int, string>>();
+                    ExperimentResult result = new ExperimentResult("damir", "0")
+                    {
+                        Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+                        Accuracy = (float)0.5
+                    };
+                    foreach (var entry in PermValue)
+                    {
+                        res.Input = (int)entry.Key;
+                        string encodedValue = entry.Value;
+                        PermValueList.Add(Tuple.Create(res.Input, encodedValue));
+
+                        //Console.WriteLine("Input: {0}, Encoded Array: {1}", res.Input, entry.Value);
+                        //resultList.Add(res); // Add the new ExperimentResult to the resultList
+                    }
+                    // Convert the encodedDataList to a formatted string and store it in res.Encoded_Array
+                    res.Permanence_Array = string.Join(", ", PermValueList.Select(tuple => $"Input: {tuple.Item1}, Encoded Value: {tuple.Item2}"));
+
+                    Console.WriteLine(res.Permanence_Array);
+
+                    // Now you have encodedDataList with pairs of (input, encodedValue)
+                    res.excelData = WriteEncodedDataToExcel(PermValueList);
+                    res.ExperimentName = "EncodeIntoArray";
+
                     break;
 
                 case "Testcase2":
@@ -98,6 +128,34 @@ namespace MyExperiment
         }
 
 
+        public byte[] WriteEncodedDataToExcel(List<Tuple<int, string>> PermValueList)
+        {
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("TestResults");
+
+                // Add headers
+                worksheet.Cells[1, 1].Value = "Input";
+                worksheet.Cells[1, 2].Value = "Permenance";
+
+                // Fill data
+                for (int i = 0; i < PermValueList.Count; i++)
+                {
+                    worksheet.Cells[i + 2, 1].Value = PermValueList[i].Item1;
+                    worksheet.Cells[i + 2, 2].Value = PermValueList[i].Item2;
+                }
+
+                // Auto fit columns
+                worksheet.Cells.AutoFitColumns();
+
+                // Save the Excel package to a memory stream
+                using (var stream = new MemoryStream())
+                {
+                    package.SaveAs(stream);
+                    return stream.ToArray();
+                }
+            }
+        }
 
         /// <inheritdoc/>
         public async Task RunQueueListener(CancellationToken cancelToken)
@@ -184,7 +242,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public double TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
+        public Dictionary<double, string> TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();

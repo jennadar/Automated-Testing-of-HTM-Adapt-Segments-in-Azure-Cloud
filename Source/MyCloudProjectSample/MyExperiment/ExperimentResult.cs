@@ -53,6 +53,8 @@ namespace MyExperiment
 
         public int Input { get; set; }
 
+        public int Permanence { get; set; }
+
 
     }
 }
