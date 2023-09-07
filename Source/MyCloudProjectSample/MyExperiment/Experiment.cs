@@ -11,10 +11,13 @@ using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+
+
 
 namespace MyExperiment
 {
@@ -49,12 +52,12 @@ namespace MyExperiment
             res.StartTimeUtc = DateTime.UtcNow;
 
             // Run your experiment code here.
-            Dictionary<double, string> PermValue;
+            Dictionary<double, string> PermData;
             switch (inputFile)
             {
                
                 case "Testcase1":
-                    PermValue = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                    PermData = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
                     int index = 0; // Index to keep track of the position in the datastore array
                                    // Set the LicenseContext before using the EPPlus library
                     ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -64,15 +67,15 @@ namespace MyExperiment
                         Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                         Accuracy = (float)0.5
                     };
-                    foreach (var entry in PermValue)
+                    foreach (var entry in PermData)
                     {
                         res.Input = (int)entry.Key;
-                        string encodedValue = entry.Value;
-                        PermValueList.Add(Tuple.Create(res.Input, encodedValue));
+                        string permValue = entry.Value;
+                        PermValueList.Add(Tuple.Create(res.Input, permValue));
                        
                     }
-                   
-                    Console.WriteLine(PermValueList);
+                    res.Perm_Array = string.Join(", ", PermValueList.Select(tuple => $"Input: {tuple.Item1}, Encoded Value: {tuple.Item2}"));
+                    Console.WriteLine(res.Perm_Array);
 
                     // Now you have encodedDataList with pairs of (input, PermValueList)
                     res.excelData = WriteEncodedDataToExcel(PermValueList);
@@ -124,7 +127,7 @@ namespace MyExperiment
         }
 
 
-        public byte[] WriteEncodedDataToExcel(List<Tuple<int, string>> PermValueList)
+        public byte[] WriteEncodedDataToExcel(List<Tuple<int, string>> permValue)
         {
             using (var package = new ExcelPackage())
             {
@@ -135,10 +138,10 @@ namespace MyExperiment
                 worksheet.Cells[1, 2].Value = "Permenance";
 
                 // Fill data
-                for (int i = 0; i < PermValueList.Count; i++)
+                for (int i = 0; i < permValue.Count; i++)
                 {
-                    worksheet.Cells[i + 2, 1].Value = PermValueList[i].Item1;
-                    worksheet.Cells[i + 2, 2].Value = PermValueList[i].Item2;
+                    worksheet.Cells[i + 2, 1].Value = permValue[i].Item1;
+                    worksheet.Cells[i + 2, 2].Value = permValue[i].Item2;
                 }
 
                 // Auto fit columns

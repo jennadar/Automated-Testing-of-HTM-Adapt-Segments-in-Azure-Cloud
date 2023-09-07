@@ -20,7 +20,7 @@ namespace MyCloudProject.Common
 
         public int Input { get; set; }
 
-        //public string PermValueList { get; set; }
+        public string Perm_Array { get; set; }
         
         public byte[] excelData { get; set; }
         public class TestResults

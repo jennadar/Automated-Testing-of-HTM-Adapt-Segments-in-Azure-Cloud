@@ -55,7 +55,7 @@ namespace MyExperiment
 
         public int Input { get; set; }
 
-        public int Permanence_Array { get; set; }
+        public String Perm_Array { get; set; }
 
         public byte[] excelData { get; set; }
 

@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using OfficeOpenXml;
 using System.IO;
 
 namespace MyExperiment
@@ -48,7 +47,7 @@ namespace MyExperiment
                 case "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive":
 
                     BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
-                    BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("ifpresynapticcellwasactivee");
+                    BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("ifpresynapticcellwasactive");
 
                     // Write encoded data to Excel file
                     byte[] excelData = result.excelData;
