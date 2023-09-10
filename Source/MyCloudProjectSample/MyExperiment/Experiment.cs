@@ -8,8 +8,10 @@ using NeoCortexApi;
 using NeoCortexApi.Entities;
 using Newtonsoft.Json.Linq;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -52,35 +54,35 @@ namespace MyExperiment
             res.StartTimeUtc = DateTime.UtcNow;
 
             // Run your experiment code here.
-            Dictionary<double, string> PermData;
             switch (inputFile)
             {
                
                 case "Testcase1":
-                    PermData = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                    List<Tuple<double, double, bool?>> PermData = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
                     int index = 0; // Index to keep track of the position in the datastore array
                                    // Set the LicenseContext before using the EPPlus library
                     ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-                    List<Tuple<int, string>> PermValueList = new List<Tuple<int, string>>();
+                    List<Tuple<string, double, double, bool?>> AdaptSegmentsList = new List<Tuple<string, double, double, bool?>>();
                     ExperimentResult result = new ExperimentResult("damir", "0")
                     {
                         Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
-                        Accuracy = (float)0.5
                     };
                     foreach (var entry in PermData)
                     {
-                        res.Input = (int)entry.Key;
-                        string permValue = entry.Value;
-                        PermValueList.Add(Tuple.Create(res.Input, permValue));
-                       
+                        res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
+                        res.UpdatedPerm = entry.Item1;
+                        res.InputPerm = entry.Item2;
+                        res.TestCaseResults = entry.Item3;
+                        //res.Input = (int)entry.Key;
+                        //string permValue = entry.Value;
+                        AdaptSegmentsList.Add(Tuple.Create(res.ExperimentName, res.InputPerm, res.UpdatedPerm, res.TestCaseResults));
+
                     }
-                    res.Perm_Array = string.Join(", ", PermValueList.Select(tuple => $"Input: {tuple.Item1}, Encoded Value: {tuple.Item2}"));
+                    res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase Name: {tuple.Item1} ,InputPermanence: {tuple.Item1}, UpdatedPermanence: {tuple.Item2}, InputPermanenceValue: {tuple.Item3}"));
                     Console.WriteLine(res.Perm_Array);
 
-                    // Now you have encodedDataList with pairs of (input, PermValueList)
-                    res.excelData = WriteEncodedDataToExcel(PermValueList);
-                    res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
-
+                    // Now you have PermValueList with pairs of (input, PermValueList)
+                    res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
                     break;
 
                 case "Testcase2":
@@ -127,21 +129,46 @@ namespace MyExperiment
         }
 
 
-        public byte[] WriteEncodedDataToExcel(List<Tuple<int, string>> permValue)
+        public byte[] WriteEncodedDataToExcel(List<Tuple<string, double, double, bool?>> PermValueList)
         {
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("TestResults");
-
+                ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
                 // Add headers
-                worksheet.Cells[1, 1].Value = "Input";
-                worksheet.Cells[1, 2].Value = "Permenance";
+                worksheet.Cells[1, 1].Value = "TestCase Name";
+                worksheet.Cells[1, 2].Value = "Input Permenance Value";
+                worksheet.Cells[1, 3].Value = "Updated Permenance Value";
+                worksheet.Cells[1, 4].Value = "Test Case Results";
+
+                // Set the fill color and font color for the header row
+                var headerCells = worksheet.Cells["A1:D1"];
+                headerCells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                headerCells.Style.Fill.BackgroundColor.SetColor(Color.LightGoldenrodYellow); // Set your desired background color
+                headerCells.Style.Font.Color.SetColor(Color.Black); // Set your desired font color
 
                 // Fill data
-                for (int i = 0; i < permValue.Count; i++)
+                for (int i = 0; i < PermValueList.Count; i++)
                 {
-                    worksheet.Cells[i + 2, 1].Value = permValue[i].Item1;
-                    worksheet.Cells[i + 2, 2].Value = permValue[i].Item2;
+                    worksheet.Cells[i + 2, 1].Value = PermValueList[i].Item1;
+                    worksheet.Cells[i + 2, 2].Value = PermValueList[i].Item2;
+                    worksheet.Cells[i + 2, 3].Value = PermValueList[i].Item3;
+                    worksheet.Cells[i + 2, 4].Value = PermValueList[i].Item4;
+
+                    // Set the color of the "Test Case Results" cell based on the boolean value
+                    var resultCell = worksheet.Cells[i + 2, 4];
+                    bool? testResult = PermValueList[i].Item4;
+                    if (testResult.HasValue)
+                    {
+                        resultCell.Value = testResult.Value;
+                        resultCell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        resultCell.Style.Font.Color.SetColor(testResult.Value ? Color.Black : Color.Black);
+                        resultCell.Style.Fill.BackgroundColor.SetColor(testResult.Value ? Color.LightGreen : Color.LightPink);
+                    }
+                    else
+                    {
+                        resultCell.Value = "N/A";
+                    }
                 }
 
                 // Auto fit columns
@@ -231,7 +258,6 @@ namespace MyExperiment
 
         private const string CONNECTIONS_CANNOT_BE_NULL = "Connections cannot be null";
         private const string DISTALDENDRITE_CANNOT_BE_NULL = "Object reference not set to an instance of an object.";
-
         /// <summary>
         /// Testing whether the permanence of a synapse in a distal dendrite segment increases if its presynaptic cell 
         /// was active in the previous cycle.with a permanence value of 0.1. Then it calls the AdaptSegment 
@@ -241,16 +267,16 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Dictionary<double, string> TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
+        public List<Tuple<double, double, bool?>> TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);
-
+            double InputPerm = 0.1;
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.1);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm);
 
             // Invoking AdaptSegments with only the cells with index 23
             /// whose presynaptic cell is considered to be Active in the
@@ -258,17 +284,33 @@ namespace MyExperiment
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
 
             //Assert
-            /// permanence is incremented for presynaptie cell 23 from 
+            /// permanence is incremented for presynaptic cell 23 from 
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
             Assert.AreEqual(0.2, s1.Permanence);
+            Boolean? testResult;
+            if (0.1 == s1.Permanence)
+            {
+                // The assertion condition is met, set the result to true
+                testResult = true;
+            }
+            else
+            {
+                // The assertion condition is not met, set the result to false
+                testResult = false;
+            }
 
             // Create a dictionary with the desired key-value pair
-            Dictionary<double, string> result = new Dictionary<double, string>();
-            result.Add(s1.Permanence, "Permanence Value");
+            /*Dictionary<double, double, string> result = new Dictionary<double, double, string>();
+            result.Add(s1.Permanence, InputPerm, null);*/
+            // Create a list of MyResult objects with the desired data
+            List<Tuple<double, double, bool?>> result = new List<Tuple<double, double, bool?>>();
+            //List<ExperimentResult> result = new List<ExperimentResult>();
+            result.Add(Tuple.Create(s1.Permanence, InputPerm, testResult));
 
             Console.WriteLine(s1.Permanence);
             return result;
         }
+        
 
         /// <summary>
         /// Testing the scenario where a synapse's presynaptic cell was not active in the previous cycle, 

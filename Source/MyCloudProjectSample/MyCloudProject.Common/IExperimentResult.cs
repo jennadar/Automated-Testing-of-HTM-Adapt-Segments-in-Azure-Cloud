@@ -18,16 +18,20 @@ namespace MyCloudProject.Common
 
         DateTime? EndTimeUtc { get; set; }
 
-        public int Input { get; set; }
+        public double UpdatedPerm { get; set; }
 
+        public double InputPerm { get; set; }
         public string Perm_Array { get; set; }
-        
+
+        public string AdditionalInfo { get; set; }
         public byte[] excelData { get; set; }
         public class TestResults
         {
             public int Input { get; set; }
-            public string PermValueList { get; set; }
+            public string AdaptSegmentsList { get; set; }
         }
+
+        public bool? TestCaseResults { get; set; }
 
         // ********************************************************Additional Required Inputs***************************************************************//
         //public string InputSequenceFileUrl { get; set; }

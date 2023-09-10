@@ -47,7 +47,7 @@ namespace MyExperiment
                 case "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive":
 
                     BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
-                    BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("ifpresynapticcellwasactive");
+                    BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests");
 
                     // Write encoded data to Excel file
                     byte[] excelData = result.excelData;

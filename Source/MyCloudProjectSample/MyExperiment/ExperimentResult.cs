@@ -53,12 +53,15 @@ namespace MyExperiment
 
         public float Accuracy { get; set; }
 
-        public int Input { get; set; }
+        public double UpdatedPerm { get; set; }
+        public double InputPerm { get; set; }
 
+        public string AdditionalInfo { get; set; }
         public String Perm_Array { get; set; }
 
         public byte[] excelData { get; set; }
 
         public Dictionary<double, string> encodedData { get; set; }
+        public bool? TestCaseResults { get; set; }
     }
 }
