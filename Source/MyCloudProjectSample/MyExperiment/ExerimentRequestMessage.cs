@@ -11,22 +11,50 @@ namespace MyExperiment
         public string InputFile { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string testFile { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        //public string testFile { get; set; }
     }
 }
 
 
 /*
  
- {
+{
     "ExperimentId": "2023",
     "InputFile":"Testcase1",
     "Name": "sample",
     "Description": "None"
 }
+
+ {
+    "ExperimentId": "2023",
+"TestCases": [
+        {
+            "InputFile": "Testcase1",
+            "Name": "sample",
+            "Description": "None"
+        },
+        {
+            "InputFile": "Testcase2",
+            "Name": "sample1",
+            "Description": "None"
+        },
+    ]
+}
  
+ {
+    "ExperimentId": "2023",
+"TestCases" = new List<ExerimentRequestMessage.TestCase>
+        {
+            "InputFile": "Testcase1",
+            "Name": "sample",
+            "Description": "None"
+        },
+        {
+            "InputFile": "Testcase2",
+            "Name": "sample1",
+            "Description": "None"
+        }
+    ]
+}
  */
 
 

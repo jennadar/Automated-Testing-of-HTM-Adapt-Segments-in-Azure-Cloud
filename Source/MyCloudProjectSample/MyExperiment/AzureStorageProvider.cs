@@ -42,29 +42,28 @@ namespace MyExperiment
         {
             var experimentLabel = result.ExperimentName;
 
-            switch (experimentLabel)
+            BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests");
+
+            // Write encoded data to Excel file
+            byte[] excelData = result.excelData;
+
+            // Generate a unique blob name (you can customize this logic)
+            string blobName = $"Test_data_{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            // Upload the Excel data to the blob container
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+            using (MemoryStream memoryStream = new MemoryStream(excelData))
+            {
+                await blobClient.UploadAsync(memoryStream);
+            }
+
+            /*switch (experimentLabel)
             {
                 case "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive":
 
-                    BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
-                    BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests");
-
-                    // Write encoded data to Excel file
-                    byte[] excelData = result.excelData;
-
-                    // Generate a unique blob name (you can customize this logic)
-                    string blobName = $"Test_data_{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}.xlsx";
-
-                    // Upload the Excel data to the blob container
-                    BlobClient blobClient = containerClient.GetBlobClient(blobName);
-                    using (MemoryStream memoryStream = new MemoryStream(excelData))
-                    {
-                        await blobClient.UploadAsync(memoryStream);
-                    }
-
-
                     break;
-            }
+            }*/
             }
 
 
