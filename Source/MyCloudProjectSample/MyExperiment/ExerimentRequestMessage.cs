@@ -19,7 +19,7 @@ namespace MyExperiment
  
 {
     "ExperimentId": "2023",
-    "InputFile":"Testcase1",
+    "InputFile":"adaptsegmentstests",
     "Name": "sample",
     "Description": "None"
 }

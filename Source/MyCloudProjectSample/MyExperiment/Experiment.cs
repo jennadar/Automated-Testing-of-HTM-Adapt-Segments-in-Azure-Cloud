@@ -97,6 +97,24 @@ namespace MyExperiment
 
                 // Now you have PermValueList with pairs of (input, PermValueList)
                 res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
+
+                
+                    PermData = TestAdaptSegment_PermanenceIsLimitedWithinRange();
+                foreach (var entry in PermData)
+                {
+                    res.ExperimentName = "TestAdaptSegment_PermanenceIsLimitedWithinRange";
+                    res.UpdatedPerm = entry.Item1;
+                    res.InputPerm = entry.Item2;
+                    res.TestCaseResults = entry.Item3;
+                    AdaptSegmentsList.Add(Tuple.Create(res.ExperimentName, res.InputPerm, res.UpdatedPerm, res.TestCaseResults));
+
+                }
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase Name: {tuple.Item1} ,InputPermanence: {tuple.Item1}, UpdatedPermanence: {tuple.Item2}, InputPermanenceValue: {tuple.Item3}"));
+                Console.WriteLine(res.Perm_Array);
+
+                // Now you have PermValueList with pairs of (input, PermValueList)
+                res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
+
             }
 
             /*switch (inputFile)
@@ -406,16 +424,16 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public void TestAdaptSegment_PermanenceIsLimitedWithinRange()
+        public List<Tuple<double, double, bool?>> TestAdaptSegment_PermanenceIsLimitedWithinRange()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);
-
+            double InputPerm = 2.5;
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 2.5);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm);
 
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
             try
@@ -428,6 +446,15 @@ namespace MyExperiment
                     $"between expected value <1> and actual value <{s1.Permanence}>. ";
                 Assert.AreEqual(PERMANENCE_SHOULD_BE_IN_THE_RANGE, ex.Message);
             }
+            Boolean? testResult = s1.Permanence >= 0.1 && s1.Permanence <= 1.0 ? (bool?)true : (bool?)false;
+            if (testResult == true) { testResult = true; }// The assertion condition is met, set the result to true
+            else { testResult = false; }// The assertion condition is not met, set the result to false
+
+            // Creating a list of MyResult objects with the desired data
+            List<Tuple<double, double, bool?>> result = new List<Tuple<double, double, bool?>>();
+            result.Add(Tuple.Create(s1.Permanence, InputPerm, testResult));
+            Console.WriteLine(s1.Permanence);
+            return result;
         }
 
         /// <summary>
