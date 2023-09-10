@@ -12,15 +12,16 @@ The Adaptive Segments grow more specialized and effective at spotting patterns i
 Adaptive Segments are an important feature of the HTM algorithm because they allow the model to adapt to changes in the input data over time. By continually updating the Adaptive Segments based on new input, the HTM model can learn to recognize new patterns and sequences of activity in the data and respond appropriately. This makes HTM a powerful tool for applications such as anomaly detection, prediction, and classification in areas such as finance, medicine, and robotics. AdaptSegment module or component is tested as part of a type of software testing known as unit testing. The goal is to confirm that each piece of software code operates as intended). Unit tests isolate a specific piece of code and validate its accuracy. A singular function, method, procedure, module, or object might be considered a unit. 
 
 
-## What is your experiment about
+# Software Engineering Project
 
-Describe here what your experiment is doing. Provide a reference to your SE project documentation (PDF)*)
+[MySEProject](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/Team_UnitTestAS/SE%20Project%20-%20Team_UnitTestAS/SE_UnitTestASProject/AdaptSegment_FinalConsolidatedProject)
 
-1. What is the **input**?
+[Implement UnitTests for AdaptSegments Documentation](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/Team_UnitTestAS/SE%20Project%20-%20Team_UnitTestAS/Documentation%20of%20project)
 
-2. What is the **output**?
+[Implement UnitTests for AdaptSegments Readme](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS/Team_UnitTestAS_README.md)
 
-3. What your algorithmas does? How ?
+
+
 
 ## How to run experiment
 
