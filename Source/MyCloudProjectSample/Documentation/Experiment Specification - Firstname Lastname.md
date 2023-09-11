@@ -23,6 +23,17 @@ Adaptive Segments are an important feature of the HTM algorithm because they all
 [Unit Test cases](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS/SE%20Project%20-%20Team_UnitTestAS/SE_UnitTestASProject/AdaptSegment_FinalConsolidatedProject/UnitTests_AdaptSegments.cs)
 
 
+# Cloud Project
+
+[MyCloudProjectSample](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/Team_UnitTestAS_CC/Source/MyCloudProjectSample)
+
+[MyExperiment](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyExperiment)
+
+[Experiment.cs](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyExperiment/Experiment.cs)
+
+[MyCloudProject](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject)
+
+
 
 
 ## How to run experiment
