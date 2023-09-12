@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -54,7 +55,9 @@ namespace MyExperiment
             res.StartTimeUtc = DateTime.UtcNow;
 
             // Run your experiment code here.
-            List<Tuple<double, double, bool?>> PermData = null;
+            Tuple<List<double>, List<double>, bool?> PermDataList = null;
+            List<Tuple<string, string, List<double>, List<double>, bool?>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, bool?>>();
+            
             int index = 0;// Index to keep track of the position in the datastore array
                           // Set the LicenseContext before using the EPPlus library
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -62,54 +65,59 @@ namespace MyExperiment
             {
                 Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
             };
-            List<Tuple<string, double, double, bool?>> AdaptSegmentsList = new List<Tuple<string, double, double, bool?>>();
+
 
             if (inputFile == "adaptsegmentstests")
             {
-                PermData = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
-                foreach (var entry in PermData)
-                {
-                    res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
-                    res.UpdatedPerm = entry.Item1;
-                    res.InputPerm = entry.Item2;
-                    res.TestCaseResults = entry.Item3;
-                    AdaptSegmentsList.Add(Tuple.Create(res.ExperimentName, res.InputPerm, res.UpdatedPerm, res.TestCaseResults));
-
-                }
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase Name: {tuple.Item1} ,InputPermanence: {tuple.Item1}, UpdatedPermanence: {tuple.Item2}, InputPermanenceValue: {tuple.Item3}"));
+                ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
+                ///******************************************************** TestCase 1 ***************************************************************//
+                PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("1", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList with pairs of (input, PermValueList)
                 res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
 
-                PermData = TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive();
-                foreach (var entry in PermData)
-                {
-                    res.ExperimentName = "TestAdaptSegment_PermanenceWekened_IfPresynapticCellWasInActive";
-                    res.UpdatedPerm = entry.Item1;
-                    res.InputPerm = entry.Item2;
-                    res.TestCaseResults = entry.Item3;
-                    AdaptSegmentsList.Add(Tuple.Create(res.ExperimentName, res.InputPerm, res.UpdatedPerm, res.TestCaseResults));
 
-                }
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase Name: {tuple.Item1} ,InputPermanence: {tuple.Item1}, UpdatedPermanence: {tuple.Item2}, InputPermanenceValue: {tuple.Item3}"));
+                ///******************************************************** TestCase 2 ***************************************************************//
+                PermDataList = TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive();
+                res.ExperimentName = "TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("2", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                Console.WriteLine(res.Perm_Array);
+                // Now you have PermValueList with pairs of (input, PermValueList)
+                res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
+
+                ///******************************************************** TestCase 3 ***************************************************************//
+                PermDataList = TestAdaptSegment_PermanenceIsLimitedWithinRange();
+                res.ExperimentName = "TestAdaptSegment_PermanenceIsLimitedWithinRange";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("3", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList with pairs of (input, PermValueList)
                 res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
 
-                
-                    PermData = TestAdaptSegment_PermanenceIsLimitedWithinRange();
-                foreach (var entry in PermData)
-                {
-                    res.ExperimentName = "TestAdaptSegment_PermanenceIsLimitedWithinRange";
-                    res.UpdatedPerm = entry.Item1;
-                    res.InputPerm = entry.Item2;
-                    res.TestCaseResults = entry.Item3;
-                    AdaptSegmentsList.Add(Tuple.Create(res.ExperimentName, res.InputPerm, res.UpdatedPerm, res.TestCaseResults));
 
-                }
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase Name: {tuple.Item1} ,InputPermanence: {tuple.Item1}, UpdatedPermanence: {tuple.Item2}, InputPermanenceValue: {tuple.Item3}"));
+                ///******************************************************** TestCase 4 ***************************************************************//
+                PermDataList = TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity();
+                res.ExperimentName = "TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("4", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList with pairs of (input, PermValueList)
@@ -119,93 +127,23 @@ namespace MyExperiment
 
             /*switch (inputFile)
             {
-                    case "Testcase1":
-                    PermData = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
-                    foreach (var entry in PermData)
-                    {
-                        res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
-                        res.UpdatedPerm = entry.Item1;
-                        res.InputPerm = entry.Item2;
-                        res.TestCaseResults = entry.Item3;
-                        AdaptSegmentsList.Add(Tuple.Create(res.ExperimentName, res.InputPerm, res.UpdatedPerm, res.TestCaseResults));
-
-                    }
-                    res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase Name: {tuple.Item1} ,InputPermanence: {tuple.Item1}, UpdatedPermanence: {tuple.Item2}, InputPermanenceValue: {tuple.Item3}"));
-                    Console.WriteLine(res.Perm_Array);
-
-                    // Now you have PermValueList with pairs of (input, PermValueList)
-                    res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
-                    break;
-
-                case "Testcase2":
-                    PermData = TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive();
-                    foreach (var entry in PermData)
-                    {
-                        res.ExperimentName = "TestAdaptSegment_PermanenceWekened_IfPresynapticCellWasInActive";
-                        res.UpdatedPerm = entry.Item1;
-                        res.InputPerm = entry.Item2;
-                        res.TestCaseResults = entry.Item3;
-                        AdaptSegmentsList.Add(Tuple.Create(res.ExperimentName, res.InputPerm, res.UpdatedPerm, res.TestCaseResults));
-
-                    }
-                    res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase Name: {tuple.Item1} ,InputPermanence: {tuple.Item1}, UpdatedPermanence: {tuple.Item2}, InputPermanenceValue: {tuple.Item3}"));
-                    Console.WriteLine(res.Perm_Array);
-
-                    // Now you have PermValueList with pairs of (input, PermValueList)
-                    res.excelData = WriteEncodedDataToExcel(AdaptSegmentsList);
-                    break;
-
-                case "Testcase3":
-                TestAdaptSegment_PermanenceIsLimitedWithinRange();
-                break;
-
-            case "Testcase4":
-                TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity();
-                break;
-
-            case "Testcase5":
-                GetCells_WithEmptyArray_ReturnsEmptyArray();
-                break;
-
-            case "Testcase6":
-                TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
-                break;
-
-            case "Testcase7":
-                TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
-                break;
-
-            case "Testcase8":
-                TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
-                break;
-
-            case "Testcase9":
-                TestAdaptSegment_PermanenceMaxBound();
-                break;
-
-
-            case "Testcase10":
-                GetCells_WithValidArray_ReturnsExpectedCells();
-                break;
-
-
-
             }*/
             return Task.FromResult<IExperimentResult>(res); // TODO...
         }
 
 
-        public byte[] WriteEncodedDataToExcel(List<Tuple<string, double, double, bool?>> PermValueList)
+        public byte[] WriteEncodedDataToExcel(List<Tuple<string, string, List<double>, List<double>, bool?>> PermValueList)
         {
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("TestResults");
                 ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
                 // Add headers
-                worksheet.Cells[1, 1].Value = "TestCase Name";
-                worksheet.Cells[1, 2].Value = "Input Permenance Value";
-                worksheet.Cells[1, 3].Value = "Updated Permenance Value";
-                worksheet.Cells[1, 4].Value = "Test Case Results";
+                worksheet.Cells[1, 1].Value = "TestCase No";
+                worksheet.Cells[1, 2].Value = "TestCase Name";
+                worksheet.Cells[1, 3].Value = "Input Permenance Value";
+                worksheet.Cells[1, 4].Value = "Updated Permenance Value";
+                worksheet.Cells[1, 5].Value = "Test Case Results";
 
                 // Set the fill color and font color for the header row
                 var headerCells = worksheet.Cells["A1:D1"];
@@ -218,12 +156,13 @@ namespace MyExperiment
                 {
                     worksheet.Cells[i + 2, 1].Value = PermValueList[i].Item1;
                     worksheet.Cells[i + 2, 2].Value = PermValueList[i].Item2;
-                    worksheet.Cells[i + 2, 3].Value = PermValueList[i].Item3;
-                    worksheet.Cells[i + 2, 4].Value = PermValueList[i].Item4;
+                    worksheet.Cells[i + 2, 3].Value = string.Join(", ", PermValueList[i].Item3);
+                    worksheet.Cells[i + 2, 4].Value = string.Join(", ", PermValueList[i].Item4);
+                    worksheet.Cells[i + 2, 5 ].Value = PermValueList[i].Item5;
 
                     // Set the color of the "Test Case Results" cell based on the boolean value
-                    var resultCell = worksheet.Cells[i + 2, 4];
-                    bool? testResult = PermValueList[i].Item4;
+                    var resultCell = worksheet.Cells[i + 2, 5];
+                    bool? testResult = PermValueList[i].Item5;
                     if (testResult.HasValue)
                     {
                         resultCell.Value = testResult.Value;
@@ -248,7 +187,6 @@ namespace MyExperiment
                 }
             }
         }
-
         /// <inheritdoc/>
         public async Task RunQueueListener(CancellationToken cancelToken)
         {
@@ -268,7 +206,7 @@ namespace MyExperiment
             // Implements the step 3 in the architecture picture.
             while (cancelToken.IsCancellationRequested == false)
             {
-                    QueueMessage message = await queueClient.ReceiveMessageAsync();
+                QueueMessage message = await queueClient.ReceiveMessageAsync();
 
                 if (message != null)
                 {
@@ -333,16 +271,16 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public List<Tuple<double, double, bool?>> TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
+        public Tuple<List<double>, List<double>, bool?> TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);
-            double InputPerm = 0.1;
+            double[] InputPerm = new double[] { 0.1 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]);
 
             // Invoking AdaptSegments with only the cells with index 23
             /// whose presynaptic cell is considered to be Active in the
@@ -354,23 +292,19 @@ namespace MyExperiment
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
             Assert.AreEqual(0.2, s1.Permanence);
             Boolean? testResult;
-            if (0.2 == s1.Permanence)
-            {
-                // The assertion condition is met, set the result to true
-                testResult = true;
-            }
-            else
-            {
-                // The assertion condition is not met, set the result to false
-                testResult = false;
-            }
+            if (0.2 == s1.Permanence) { testResult = true; }// The assertion condition is met, set the result to true
+            else { testResult = false; }// The assertion condition is not met, set the result to false
 
-            // Creating a list of MyResult objects with the desired data
-            List<Tuple<double, double, bool?>> result = new List<Tuple<double, double, bool?>>();
-            result.Add(Tuple.Create(s1.Permanence, InputPerm, testResult));
+            List<Tuple<List<double>, List<double>, bool?>> result = new List<Tuple<List<double>, List<double>, bool?>>();
+            List<double> synPermList = new List<double>
+            {s1.Permanence};
+            List<double> InputPermList = new List<double>
+            {InputPerm[0]};
 
-            Console.WriteLine(s1.Permanence);
-            return result;
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, bool?> tuple = Tuple.Create(InputPermList, synPermList, testResult);
+            result.Add(tuple);
+            return tuple;
         }
 
 
@@ -381,16 +315,16 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public List<Tuple<double, double, bool?>> TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive()
+        public Tuple<List<double>, List<double>, bool?> TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);
-            double InputPerm = 0.9;
+            double[] InputPerm = new double[] { 0.9 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(500), InputPerm);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(500), InputPerm[0]);
 
 
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 57 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
@@ -400,23 +334,19 @@ namespace MyExperiment
             /// But the synapse is not destroyed as permanence > HtmConfig.Epsilon
             Assert.AreEqual(0.8, s1.Permanence);
             Boolean? testResult;
-            if (0.8 == s1.Permanence)
-            {
-                // The assertion condition is met, set the result to true
-                testResult = true;
-            }
-            else
-            {
-                // The assertion condition is not met, set the result to false
-                testResult = false;
-            }
+            if (0.8 == s1.Permanence) { testResult = true; }// The assertion condition is met, set the result to true
+            else { testResult = false; }// The assertion condition is not met, set the result to false
 
-            // Creating a list of MyResult objects with the desired data
-            List<Tuple<double, double, bool?>> result = new List<Tuple<double, double, bool?>>();
-            result.Add(Tuple.Create(s1.Permanence, InputPerm, testResult));
+            List<Tuple<List<double>, List<double>, bool?>> result = new List<Tuple<List<double>, List<double>, bool?>>();
+            List<double> synPermList = new List<double>
+            {s1.Permanence};
+            List<double> InputPermList = new List<double>
+            {InputPerm[0]};
 
-            Console.WriteLine(s1.Permanence);
-            return result;
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, bool?> tuple = Tuple.Create(InputPermList, synPermList, testResult);
+            result.Add(tuple);
+            return tuple;
         }
 
         /// <summary>
@@ -424,16 +354,16 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public List<Tuple<double, double, bool?>> TestAdaptSegment_PermanenceIsLimitedWithinRange()
+        public Tuple<List<double>, List<double>, bool?> TestAdaptSegment_PermanenceIsLimitedWithinRange()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);
-            double InputPerm = 2.5;
+            double[] InputPerm = new double[] { 2.5 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]);
 
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
             try
@@ -450,11 +380,16 @@ namespace MyExperiment
             if (testResult == true) { testResult = true; }// The assertion condition is met, set the result to true
             else { testResult = false; }// The assertion condition is not met, set the result to false
 
-            // Creating a list of MyResult objects with the desired data
-            List<Tuple<double, double, bool?>> result = new List<Tuple<double, double, bool?>>();
-            result.Add(Tuple.Create(s1.Permanence, InputPerm, testResult));
-            Console.WriteLine(s1.Permanence);
-            return result;
+            List<Tuple<List<double>, List<double>, bool?>> result = new List<Tuple<List<double>, List<double>, bool?>>();
+            List<double> synPermList = new List<double>
+            {s1.Permanence};
+            List<double> InputPermList = new List<double>
+            {InputPerm[0]};
+
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, bool?> tuple = Tuple.Create(InputPermList, synPermList, testResult);
+            result.Add(tuple);
+            return tuple;
         }
 
         /// <summary>
@@ -465,18 +400,18 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public void TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity()
+        public Tuple<List<double>, List<double>, bool?> TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();///The connections object holds the infrastructure, and is used by both the SpatialPooler, TemporalMemory.
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);///use connection for specified object to build and implement algoarithm 
-
+            double[] InputPerm = new double[] { 0.5, 0.6, 0.9 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));/// Created a Distal dendrite segment of a cell0
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.5);/// Created a synapse on a distal segment of a cell index 23
-            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(37), 0.6);/// Created a synapse on a distal segment of a cell index 37
-            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(477), 0.9);/// Created a synapse on a distal segment of a cell index 477
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]);/// Created a synapse on a distal segment of a cell index 23
+            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(37), InputPerm[1]);/// Created a synapse on a distal segment of a cell index 37
+            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(477), InputPerm[2]);/// Created a synapse on a distal segment of a cell index 477
 
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 37 }), cn.HtmConfig.PermanenceIncrement,
                 cn.HtmConfig.PermanenceDecrement);/// Invoking AdaptSegments with only the cells with index 23 and 37
@@ -486,8 +421,70 @@ namespace MyExperiment
             Assert.AreEqual(0.6, s1.Permanence, 0.01);/// permanence is incremented for cell 23 from 0.5 to 0.6 as presynaptic cell was Active in the previous cycle.
             Assert.AreEqual(0.7, s2.Permanence, 0.01);/// permanence is incremented for cell 37 from 0.6 to 0.7 as presynaptic cell was Active in the previous cycle.
             Assert.AreEqual(0.8, s3.Permanence, 0.01);/// permanence is decremented for cell 477 from 0.5 to 0.6 as presynaptic cell was InActive in the previous cycle.
+            Boolean? testResult = (s1.Permanence >= 0.01 && s1.Permanence <= 0.6) |
+            (s2.Permanence >= 0.01 && s2.Permanence <= 0.7) | (s3.Permanence >= 0.01 && s3.Permanence <= 0.8) ? (bool?)true : (bool?)false;
+            if (testResult == true) { testResult = true; }// The assertion condition is met, set the result to true
+            else { testResult = false; }// The assertion condition is not met, set the result to false
+
+            List<Tuple<List<double>, List<double>, bool?>> result = new List<Tuple<List<double>, List<double>, bool?>>();
+            List<double> synPermList = new List<double>
+            {
+                s1.Permanence,
+                s2.Permanence,
+                s3.Permanence
+            };
+            List<double> InputPermList = new List<double>
+            {
+                InputPerm[0],
+                InputPerm[1],
+                InputPerm[2]
+            };
+
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, bool?> tuple = Tuple.Create(InputPermList, synPermList, testResult);
+            result.Add(tuple);
+            return tuple;
         }
 
+        /// <summary>
+        /// This test creates a new distal dendrite segment and uses a for loop to create synapses until the 
+        /// maximum number of synapses per segment(225 synapses) is reached.Once the maximum is reached, 
+        /// the segment is adapted using the TemporalMemory.AdaptSegment method.Finally, the test asserts 
+        /// that there is only one segment and 225 synapses in the connections object.
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public void TestAdaptSegment_SegmentState_WhenMaximumSynapsesPerSegment()
+        {
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn1 = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn1);
+            tm.Init(cn1);
+            DistalDendrite dd1 = cn1.CreateDistalSegment(cn1.GetCell(1));
+            // Create maximum synapses per segment (225 synapses)
+            int numSynapses = 0;
+            for (int i = 0; i < cn1.HtmConfig.MaxSegmentsPerCell; i++)
+            {
+                // Create synapse connected to a random cell
+                Synapse s = cn1.CreateSynapse(dd1, cn1.GetCell(5), 0.5);
+                numSynapses++;
+
+                // Adapt the segment if it has reached the maximum synapses allowed per segment
+                if (numSynapses == cn1.HtmConfig.MaxSynapsesPerSegment)
+                {
+                    TemporalMemory.AdaptSegment(cn1, dd1, cn1.GetCells(new int[] { 5 }), cn1.HtmConfig.PermanenceIncrement, cn1.HtmConfig.PermanenceDecrement);
+                }
+            }
+            var field1 = cn1.GetType().GetField("m_NextSegmentOrdinal", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field2 = cn1.GetType().GetField("m_NumSynapses", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var NoOfSegments = Convert.ToInt32(field1.GetValue(cn1));
+            var NoOfSynapses = Convert.ToInt32(field2.GetValue(cn1));
+
+            //Assert
+            Assert.AreEqual(1, NoOfSegments);
+            Assert.AreEqual(225, NoOfSynapses);
+        }
 
         /// <summary>
         /// Test used to check that the result array is equal to the expectedCells array, which is an empty array in this case.

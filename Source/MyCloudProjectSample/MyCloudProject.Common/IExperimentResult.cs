@@ -18,9 +18,6 @@ namespace MyCloudProject.Common
 
         DateTime? EndTimeUtc { get; set; }
 
-        public double UpdatedPerm { get; set; }
-
-        public double InputPerm { get; set; }
         public string Perm_Array { get; set; }
 
         public string AdditionalInfo { get; set; }

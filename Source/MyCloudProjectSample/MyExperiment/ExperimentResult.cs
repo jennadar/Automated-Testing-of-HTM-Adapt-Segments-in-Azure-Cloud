@@ -52,9 +52,9 @@ namespace MyExperiment
         // Your properties related to experiment.
 
         public float Accuracy { get; set; }
+        public List<double> UpdatedPermList { get; set; }
 
-        public double UpdatedPerm { get; set; }
-        public double InputPerm { get; set; }
+        public List<double> InputPermList { get; set; }
 
         public string AdditionalInfo { get; set; }
         public String Perm_Array { get; set; }
