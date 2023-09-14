@@ -56,12 +56,15 @@ namespace MyExperiment
 
         public List<double> InputPermList { get; set; }
 
+        public int SynapseCount { get; set; }
+
+        public int SegmentCount { get; set; }
         public string AdditionalInfo { get; set; }
         public String Perm_Array { get; set; }
 
         public byte[] excelData { get; set; }
 
-        public Dictionary<double, string> encodedData { get; set; }
-        public bool? TestCaseResults { get; set; }
+        //public Dictionary<double, string> encodedData { get; set; }
+        public string TestCaseResults { get; set; }
     }
 }

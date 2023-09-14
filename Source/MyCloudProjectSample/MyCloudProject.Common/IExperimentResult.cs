@@ -28,7 +28,7 @@ namespace MyCloudProject.Common
             public string AdaptSegmentsList { get; set; }
         }
 
-        public bool? TestCaseResults { get; set; }
+        public string TestCaseResults { get; set; }
 
     }
 
