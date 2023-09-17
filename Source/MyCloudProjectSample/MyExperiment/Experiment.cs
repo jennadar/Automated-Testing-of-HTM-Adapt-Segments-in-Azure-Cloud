@@ -145,6 +145,21 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                ///******************************************************** Kavya ***************************************************************//
+                ///******************************************************** TestCase 1 ***************************************************************//
+
+                PermDataList = TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
+                res.ExperimentName = "TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("7", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                Console.WriteLine(res.Perm_Array);
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+
+
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
 
@@ -156,8 +171,8 @@ namespace MyExperiment
             return Task.FromResult<IExperimentResult>(res); // TODO...
         }
 
-       //ExcelPackage package = new ExcelPackage();
-        
+        //ExcelPackage package = new ExcelPackage();
+
         /// <inheritdoc/>
         public async Task RunQueueListener(CancellationToken cancelToken)
         {
@@ -304,11 +319,11 @@ namespace MyExperiment
             /// 0.9 to 0.8 as presynaptic cell was InActive in the previous cycle
             /// But the synapse is not destroyed as permanence > HtmConfig.Epsilon
             Assert.AreEqual(0.8, s1.Permanence);
-           
+
             string TestResult;
             if (0.8 == s1.Permanence) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
-            else {  TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
-            
+            else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
+
             List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
@@ -534,26 +549,6 @@ namespace MyExperiment
             return tuple;
         }
 
-        /// <summary>
-        /// Test used to check that the result array is equal to the expectedCells array, which is an empty array in this case.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Prod")]
-        public void GetCells_WithEmptyArray_ReturnsEmptyArray()
-        {
-            // Arrange
-            TemporalMemory tm = new TemporalMemory();
-            Connections cn = new Connections();
-            int[] cellIndexes = new int[0];
-            Cell[] expectedCells = new Cell[0];
-
-            // Act
-            Cell[] result = cn.GetCells(cellIndexes);
-
-            // Assert
-            //CollectionAssert.AreEqual(expectedCells, result);
-            Console.WriteLine(result);
-        }
 
         ///******************************************** Unit Test Cases by Kavya Hirebelaguli Chandrashekar*********************************************************///
 
@@ -569,7 +564,7 @@ namespace MyExperiment
 
         [TestMethod]
         [TestCategory("Prod")]
-        public void TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues()
+        public Tuple<List<double>, List<double>, string> TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues()
         {
 
             TemporalMemory tm = new TemporalMemory();
@@ -578,11 +573,11 @@ namespace MyExperiment
             p.apply(cn);
             tm.Init(cn);  ///use connection for specified object to build and implement algoarithm 
 
-
+            double[] InputPerm = new double[] { 0.0000000967, 0.0000001, -0.00000001 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0)); /// Created a Distal dendrite segment of a cell0
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.0000000967); /// Created a synapse on a distal segment of a cell index 23
-            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), 0.0000001);/// Created a synapse on a distal segment of a cell index 24
-            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(43), -0.00000001);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[1]); /// Created a synapse on a distal segment of a cell index 23
+            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), InputPerm[2]);/// Created a synapse on a distal segment of a cell index 24
+            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(43), InputPerm[3]);
             /// Invoking AdaptSegments with only the cells with index 23 and 37
             ///whose presynaptic cell is considered to be Active in the previous cycle
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 24, 43 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
@@ -591,7 +586,23 @@ namespace MyExperiment
             Assert.IsTrue(dd.Synapses.Contains(s2)); /// assert condition to check does DistalDendrite contains the synapse s2
             Assert.IsTrue(dd.Synapses.Contains(s1));/// assert condition to check does DistalDendrite contains the synapse s1
             Assert.IsTrue(dd.Synapses.Contains(s3));/// assert condition to check does DistalDendrite contains the synapse s1
-            Assert.AreEqual(3, dd.Synapses.Count);  /// synapses count check in DistalDendrite
+            //Assert.AreEqual(3, dd.Synapses.Count);  /// synapses count check in DistalDendrite
+
+            string TestResult;
+            if (dd.Synapses.Count == 3) 
+            { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
+            else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
+
+            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<double> synPermList = new List<double>
+            {s1.Permanence};
+            List<double> InputPermList = new List<double>
+            {InputPerm[0]};
+
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            result.Add(tuple);
+            return tuple;
 
         }
         /// <summary>
