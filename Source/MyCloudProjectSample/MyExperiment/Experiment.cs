@@ -145,7 +145,7 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
-                ///******************************************************** Kavya ***************************************************************//
+                ///******************************************************** Kavya Hirebelaguli Chandrshekar***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
 
                 PermDataList = TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
@@ -194,6 +194,25 @@ namespace MyExperiment
 
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+
+                ///******************************************************** TestCase 4 ***************************************************************//
+
+
+                PermDataList = TestAdaptSegment_CheckMultipleSynapseState();
+                res.ExperimentName = "TestAdaptSegment_CheckMultipleSynapseState";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("10", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                Console.WriteLine(res.Perm_Array);
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+
+
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
+                
 
 
             }
@@ -728,6 +747,60 @@ namespace MyExperiment
 
         }
 
+        /// <summary>
+        /// TestAdaptSegmentCheckMultipleSynapse
+        ///Checking the destroyes of synapses and the count of synapses at the end
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public Tuple<List<double>, List<double>, string> TestAdaptSegment_CheckMultipleSynapseState()
+        {
+            // Arrange
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn);
+            tm.Init(cn);
+
+            double[] InputPerm = new double[] { 0.2656, 0.0124, 0.7656, 0.0547, 0.001, 0.002 - 0.2345, -0.134345 };
+            DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.2656);
+            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), 0.0124);
+            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(25), 0.7656);
+            Synapse s4 = cn.CreateSynapse(dd, cn.GetCell(26), 0.0547);
+            Synapse s5 = cn.CreateSynapse(dd, cn.GetCell(28), 0.001);
+            Synapse s6 = cn.CreateSynapse(dd, cn.GetCell(31), 0.002);
+            Synapse s7 = cn.CreateSynapse(dd, cn.GetCell(35), -0.2345);
+            Synapse s8 = cn.CreateSynapse(dd, cn.GetCell(38), -0.134345);
+            // Act
+            TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 24, 25, 26, 28, 31, 35, 38 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
+
+
+            Assert.IsTrue(dd.Synapses.Contains(s2));
+            Assert.IsTrue(dd.Synapses.Contains(s1));
+            Assert.IsTrue(dd.Synapses.Contains(s3));
+            Assert.IsTrue(dd.Synapses.Contains(s4));
+            Assert.IsTrue(dd.Synapses.Contains(s5));
+            Assert.IsTrue(dd.Synapses.Contains(s6));
+            Assert.IsFalse(dd.Synapses.Contains(s7));
+            Assert.IsFalse(dd.Synapses.Contains(s8));
+            //Assert.AreEqual(6, dd.Synapses.Count);
+            string TestResult;
+            if (dd.Synapses.Count == 6)
+            { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
+            else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
+
+            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<double> synPermList = new List<double>
+            {s1.Permanence};
+            List<double> InputPermList = new List<double>
+            {InputPerm[0]};
+
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            result.Add(tuple);
+            return tuple;
+        }
         /// <summary>
         /// This unit test is testing the maximum permanence value set by the AdaptSegment method. 
         /// For the permanece value > 1.0, AdaptSegments will set permanence to maximum bound 1.0. 
