@@ -100,7 +100,7 @@ namespace MyExperiment
             headerCells.Style.Font.Color.SetColor(Color.Black); // Set your desired font color
 
             // Fill data
-            for (int j = 0; j < PermValueList.Count; j++)
+            for (int j = PermValueList.Count - 1; j < PermValueList.Count; j++)
             {
                 int i = currentRow;
                 worksheet.Cells[i + 2, 1].Value = PermValueList[j].Item1;

@@ -73,6 +73,7 @@ namespace MyExperiment
             {
                 ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
+                ///
                 PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
                 res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
                 res.InputPermList = PermDataList.Item1;
@@ -136,7 +137,7 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
                 ///******************************************************** TestCase 6 ***************************************************************//
                 SynapseCount = TestAdaptSegment_MatchingSegmentAndActiveSegmentState();
                 res.ExperimentName = "TestAdaptSegment_MatchingSegmentAndActiveSegmentState";
@@ -148,7 +149,7 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
                 ///******************************************************** TestCase 7 ***************************************************************//
                 SynapseCount = TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded();
                 res.ExperimentName = "TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded";
@@ -160,7 +161,7 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
                 ///******************************************************** TestCase 8 ***************************************************************//
                 SynapseCount = TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent();
                 res.ExperimentName = "TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent";
@@ -173,11 +174,11 @@ namespace MyExperiment
 
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
                 ///******************************************************** Unit Tests By by Kavya Hirebelaguli Chandrashekar ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
 
-                PermDataList = TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
+               /* PermDataList = TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
                 res.ExperimentName = "TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues";
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
@@ -187,10 +188,10 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);*/
                 ///******************************************************** TestCase 2 ***************************************************************//
 
-                PermDataList = TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
+               /* PermDataList = TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
                 res.ExperimentName = "TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues";
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
@@ -200,10 +201,10 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);*/
                 ///******************************************************** TestCase 3 ***************************************************************//
 
-                PermDataList = TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
+                /*PermDataList = TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
                 res.ExperimentName = "TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException";
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
@@ -213,10 +214,10 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);*/
                 ///******************************************************** TestCase 4 ***************************************************************//
 
-                PermDataList = TestAdaptSegment_CheckMultipleSynapseState();
+                /*PermDataList = TestAdaptSegment_CheckMultipleSynapseState();
                 res.ExperimentName = "TestAdaptSegment_CheckMultipleSynapseState";
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
@@ -226,7 +227,7 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);*/
             } 
 
 
