@@ -145,10 +145,36 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                ///******************************************************** TestCase 7 ***************************************************************//
+                SynapseCount = TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded();
+                res.ExperimentName = "TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded";
+                res.SynapseCount = SynapseCount.Item1;
+                res.SegmentCount = SynapseCount.Item2;
+                res.TestCaseResults = SynapseCount.Item3;
+                SegmentCount.Add(Tuple.Create("7", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                Console.WriteLine(res.Perm_Array);
+
+                ///******************************************************** TestCase 8 ***************************************************************//
+                SynapseCount = TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent();
+                res.ExperimentName = "TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent";
+                res.SynapseCount = SynapseCount.Item1;
+                res.SegmentCount = SynapseCount.Item2;
+                res.TestCaseResults = SynapseCount.Item3;
+                SegmentCount.Add(Tuple.Create("8", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                Console.WriteLine(res.Perm_Array);
+
+
+                ///******************************************************** Unit Tests By by Kavya Hirebelaguli Chandrashekar ***************************************************************//
+                ///******************************************************** TestCase 1 ***************************************************************//
+
+
+
+
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
-
-            }
+            } 
 
             /*switch (inputFile)
             {
@@ -466,7 +492,7 @@ namespace MyExperiment
 
             List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<int, int, string> tuple = Tuple.Create(NoOfSegments, NoOfSynapses, TestResult);
+            Tuple<int, int, string> tuple = Tuple.Create(NoOfSynapses, NoOfSegments, TestResult);
             result.Add(tuple);
             return tuple;
         }
@@ -529,31 +555,145 @@ namespace MyExperiment
 
             List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<int, int, string> tuple = Tuple.Create(NoOfSegments, NoOfSynapses, TestResult);
+            Tuple<int, int, string> tuple = Tuple.Create(NoOfSynapses, NoOfSegments, TestResult);
             result.Add(tuple);
             return tuple;
         }
 
         /// <summary>
-        /// Test used to check that the result array is equal to the expectedCells array, which is an empty array in this case.
+        /// Here's an example implementation of a unit test that creates more than 225 synapses using a for 
+        /// loop associated with one distal dendrite segment which is going to result in ArgumentOutOfRangeException:
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public void GetCells_WithEmptyArray_ReturnsEmptyArray()
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]///This attribute is used to specify the expected 
+                                                                ///exception. Therefore, the test will pass if the expected exception 
+                                                                ///of type ArgumentOutOfRangeException is thrown, and it will fail if 
+                                                                ///any other exception or no exception is thrown.
+        public Tuple<int, int, string> TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded()
         {
-            // Arrange
             TemporalMemory tm = new TemporalMemory();
-            Connections cn = new Connections();
-            int[] cellIndexes = new int[0];
-            Cell[] expectedCells = new Cell[0];
+            Connections cn1 = new Connections();
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn1);
+            tm.Init(cn1);
+            DistalDendrite dd1 = cn1.CreateDistalSegment(cn1.GetCell(1));
+            int numSynapses = 0;/// Create maximum synapses per segment (225 synapses)
+            int totalCells = cn1.Cells.Length;// Get total number of cells in cn1
+            // Generate a random integer between 1 and totalCells
+            Random random = new Random();
+            int randomCellNumber = random.Next(1, totalCells + 1);
+            for (int i = 0; i < cn1.HtmConfig.MaxSegmentsPerCell; i++)
+            {
+                // Create synapse connected to a random cell
+                Synapse s = cn1.CreateSynapse(dd1, cn1.GetCell(randomCellNumber), 0.5);
+                numSynapses++;
 
-            // Act
-            Cell[] result = cn.GetCells(cellIndexes);
+                // Adapt the segment if it has reached the maximum synapses allowed per segment
+                if (numSynapses == cn1.HtmConfig.MaxSynapsesPerSegment)
+                {
+                    TemporalMemory.AdaptSegment(cn1, dd1, cn1.GetCells(new int[] { randomCellNumber }), cn1.HtmConfig.PermanenceIncrement, cn1.HtmConfig.PermanenceDecrement);
+                }
+            }
+            // Adapt the segment if it has crossed the maximum synapses allowed per segment by destroying any weak synapse of that segment.
+            // Create one more synapse to exceed the maximum number of synapses per segment
+            Synapse s226 = cn1.CreateSynapse(dd1, cn1.GetCell(randomCellNumber), 0.6);
+            numSynapses++;
 
-            // Assert
-            //CollectionAssert.AreEqual(expectedCells, result);
-            Console.WriteLine(result);
+            if (numSynapses >= cn1.HtmConfig.MaxSynapsesPerSegment)
+            {
+                //226th cell of the segment does not contains anything. Therefore trying to access the 226th throws an ArgumentOutofRangeException.
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+                {
+                    // Attempt to access Synapse 226
+                    Synapse Syn226 = dd1.Synapses[226];
+                });
+            }
+
+
+            Boolean? testResult = (numSynapses == 226) ? (bool?)true : (bool?)false;
+            string TestResult;
+            if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
+            else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
+
+            List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<int, int, string> tuple = Tuple.Create(numSynapses-1, 1, TestResult);
+            result.Add(tuple);
+            return tuple;
         }
+
+        /// <summary>
+        /// The test checks that the segment is destroyed when all its synapses are destroyed.
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Prod")]
+        public Tuple<int, int, string> TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent()
+        {
+            TemporalMemory tm = new TemporalMemory();
+            Connections cn1 = new Connections();
+            /* Connections cn2 = new Connections();
+             Connections cn3 = new Connections();*/
+            Parameters p = Parameters.getAllDefaultParameters();
+            p.apply(cn1);
+            tm.Init(cn1);
+
+            DistalDendrite dd1 = cn1.CreateDistalSegment(cn1.GetCell(0));
+            DistalDendrite dd2 = cn1.CreateDistalSegment(cn1.GetCell(0));
+            DistalDendrite dd3 = cn1.CreateDistalSegment(cn1.GetCell(0));
+            DistalDendrite dd4 = cn1.CreateDistalSegment(cn1.GetCell(0));
+            DistalDendrite dd5 = cn1.CreateDistalSegment(cn1.GetCell(0));
+            Synapse s1 = cn1.CreateSynapse(dd1, cn1.GetCell(23), -1.5);
+            Synapse s2 = cn1.CreateSynapse(dd2, cn1.GetCell(24), 1.5);
+            Synapse s3 = cn1.CreateSynapse(dd3, cn1.GetCell(25), 0.1);
+            Synapse s4 = cn1.CreateSynapse(dd4, cn1.GetCell(26), -1.1);
+            Synapse s5 = cn1.CreateSynapse(dd5, cn1.GetCell(27), -0.5);
+
+            TemporalMemory.AdaptSegment(cn1, dd1, cn1.GetCells(new int[] { 23, 24, 25 }), cn1.HtmConfig.PermanenceIncrement, cn1.HtmConfig.PermanenceDecrement);
+            TemporalMemory.AdaptSegment(cn1, dd2, cn1.GetCells(new int[] { 25, 24, 26 }), cn1.HtmConfig.PermanenceIncrement, cn1.HtmConfig.PermanenceDecrement);
+            TemporalMemory.AdaptSegment(cn1, dd3, cn1.GetCells(new int[] { 27, 24, 23 }), cn1.HtmConfig.PermanenceIncrement, cn1.HtmConfig.PermanenceDecrement);
+            var field1 = cn1.GetType().GetField("m_ActiveSegments", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field2 = cn1.GetType().GetField("m_MatchingSegments", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field4 = cn1.GetType().GetField("m_NextSegmentOrdinal", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field5 = cn1.GetType().GetField("m_NumSynapses", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field9 = cn1.GetType().GetField("nextSegmentOrdinal", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field6 = cn1.GetType().GetField("m_SegmentForFlatIdx", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            MethodInfo destroyDistalDendriteMethod = typeof(Connections).GetMethod("DestroyDistalDendrite", BindingFlags.Public
+                | BindingFlags.Instance | BindingFlags.NonPublic);
+            var m_ASegment = field1.GetValue(cn1);
+            var m_MSegment = field2.GetValue(cn1);
+
+
+            ///Assert the segment and synapse status before the DestroyDistalDendrite method is explicitly called.
+            Assert.AreEqual(5, Convert.ToInt32(field4.GetValue(cn1)));
+            Assert.AreEqual(3, Convert.ToInt32(field5.GetValue(cn1)));
+
+            ///DestroyDistalDendrite is invoked for dd1,dd2,dd3,dd4.
+            destroyDistalDendriteMethod.Invoke(cn1, new object[] { dd1 });
+            destroyDistalDendriteMethod.Invoke(cn1, new object[] { dd2 });
+            destroyDistalDendriteMethod.Invoke(cn1, new object[] { dd3 });
+            destroyDistalDendriteMethod.Invoke(cn1, new object[] { dd4 });
+
+            ///Now checking the segment and synapse status after the DestroyDistalDendrite method is explicitly called.
+            int numSegments = Convert.ToInt32(field5.GetValue(cn1));
+            int numSynapses = Convert.ToInt32(field4.GetValue(cn1));
+            Assert.AreEqual(1, numSegments);
+            Assert.AreEqual(5, numSynapses);
+
+            Boolean? testResult = (numSegments == 1 && numSynapses == 5) ? (bool?)true : (bool?)false;
+            string TestResult;
+            if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
+            else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
+
+            List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<int, int, string> tuple = Tuple.Create(numSynapses, numSegments, TestResult);
+            result.Add(tuple);
+            return tuple;
+        }
+
+
 
         ///******************************************** Unit Test Cases by Kavya Hirebelaguli Chandrashekar*********************************************************///
 

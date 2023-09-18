@@ -34,11 +34,11 @@ namespace MyExperiment
         {
             ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
             // Add headers
-            worksheet.Cells[1, 1].Value = "TestCase No";
-            worksheet.Cells[1, 2].Value = "TestCase Name";
-            worksheet.Cells[1, 3].Value = "Input Permenance Value";
-            worksheet.Cells[1, 4].Value = "Updated Permenance Value";
-            worksheet.Cells[1, 7].Value = "Test Case Results";
+            worksheet.Cells[1, 1].Value = "Test No";
+            worksheet.Cells[1, 2].Value = "Test Name";
+            worksheet.Cells[1, 3].Value = "Input Perm Value";
+            worksheet.Cells[1, 4].Value = "Updated Perm Value";
+            worksheet.Cells[1, 7].Value = "Test Results";
 
             // Set the fill color and font color for the header row
             var headerCells = worksheet.Cells["A1:G1"];
