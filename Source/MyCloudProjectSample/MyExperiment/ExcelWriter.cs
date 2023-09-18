@@ -30,7 +30,7 @@ namespace MyExperiment
         }
 
 
-        public byte[] WriteTestOutputDataToExcel(List<Tuple<string, string, List<double>, List<double>, string?>> PermValueList)
+        public byte[] WriteTestOutputDataToExcel(List<Tuple<string, string, List<double>, List<double>, string?, string>> PermValueList)
         {
             ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
             // Add headers
@@ -39,9 +39,10 @@ namespace MyExperiment
             worksheet.Cells[1, 3].Value = "Input Perm Value";
             worksheet.Cells[1, 4].Value = "Updated Perm Value";
             worksheet.Cells[1, 7].Value = "Test Results";
+            worksheet.Cells[1, 8].Value = "Comments";
 
             // Set the fill color and font color for the header row
-            var headerCells = worksheet.Cells["A1:G1"];
+            var headerCells = worksheet.Cells["A1:H1"];
             headerCells.Style.Fill.PatternType = ExcelFillStyle.Solid;
             headerCells.Style.Fill.BackgroundColor.SetColor(Color.LightGoldenrodYellow); // Set your desired background color
             headerCells.Style.Font.Color.SetColor(Color.Black); // Set your desired font color
@@ -55,6 +56,7 @@ namespace MyExperiment
                 worksheet.Cells[i + 2, 3].Value = string.Join(", ", PermValueList[i].Item3);
                 worksheet.Cells[i + 2, 4].Value = string.Join(", ", PermValueList[i].Item4);
                 worksheet.Cells[i + 2, 7].Value = PermValueList[i].Item5;
+                worksheet.Cells[i + 2, 8].Value = PermValueList[i].Item6;
 
                 // Set the color of the "Test Case Results" cell based on the boolean value
                 var resultCell = worksheet.Cells[i + 2, 7];
@@ -85,7 +87,7 @@ namespace MyExperiment
         }
 
 
-        public byte[] WriteTestOutputDataToExcel(List<Tuple<string, string, int, int, string>> PermValueList)
+        public byte[] WriteTestOutputDataToExcel(List<Tuple<string, string, int, int, string, string>> PermValueList)
         {
             ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
             // Add headers
@@ -94,7 +96,7 @@ namespace MyExperiment
             //worksheet.Cells[1, 7].Value = "Test Case Results";
 
             // Set the fill color and font color for the header row
-            var headerCells = worksheet.Cells["A1:G1"];
+            var headerCells = worksheet.Cells["A1:H1"];
             headerCells.Style.Fill.PatternType = ExcelFillStyle.Solid;
             headerCells.Style.Fill.BackgroundColor.SetColor(Color.LightGoldenrodYellow); // Set your desired background color
             headerCells.Style.Font.Color.SetColor(Color.Black); // Set your desired font color
@@ -108,6 +110,7 @@ namespace MyExperiment
                 worksheet.Cells[i + 2, 5].Value = PermValueList[j].Item3;
                 worksheet.Cells[i + 2, 6].Value = PermValueList[j].Item4;
                 worksheet.Cells[i + 2, 7].Value = PermValueList[j].Item5;
+                worksheet.Cells[i + 2, 8].Value = PermValueList[j].Item6;
 
                 // Set the color of the "Test Case Results" cell based on the boolean value
                 var resultCell = worksheet.Cells[i + 2, 7];

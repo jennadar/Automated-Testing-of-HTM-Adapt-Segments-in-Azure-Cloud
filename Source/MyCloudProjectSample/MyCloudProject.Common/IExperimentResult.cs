@@ -30,6 +30,8 @@ namespace MyCloudProject.Common
 
         public string TestCaseResults { get; set; }
 
+        public string Comments { get; set; }
+
     }
 
 }

@@ -66,5 +66,7 @@ namespace MyExperiment
 
         //public Dictionary<double, string> encodedData { get; set; }
         public string TestCaseResults { get; set; }
+
+        public string Comments { get; set; }
     }
 }

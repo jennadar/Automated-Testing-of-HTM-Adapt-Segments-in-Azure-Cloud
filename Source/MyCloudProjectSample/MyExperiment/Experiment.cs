@@ -16,6 +16,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -56,10 +57,10 @@ namespace MyExperiment
             res.StartTimeUtc = DateTime.UtcNow;
 
             // Run your experiment code here.
-            Tuple<List<double>, List<double>, string> PermDataList = null;
-            List<Tuple<string, string, List<double>, List<double>, string>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, string>>();
-            Tuple<int, int, string> SynapseCount = null;
-            List<Tuple<string, string, int, int, string>> SegmentCount = new List<Tuple<string, string, int, int, string>>();
+            Tuple<List<double>, List<double>, string, string> PermDataList = null;
+            List<Tuple<string, string, List<double>, List<double>, string, string>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, string, string>>();
+            Tuple<int, int, string, string> SynapseCount = null;
+            List<Tuple<string, string, int, int, string, string>> SegmentCount = new List<Tuple<string, string, int, int, string, string>>();
             int index = 0;// Index to keep track of the position in the datastore array
                           // Set the LicenseContext before using the EPPlus library
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -79,8 +80,10 @@ namespace MyExperiment
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
                 res.TestCaseResults = PermDataList.Item3;
-                AdaptSegmentsList.Add(Tuple.Create("1", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = PermDataList.Item4;
+                AdaptSegmentsList.Add(Tuple.Create("1", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -93,8 +96,10 @@ namespace MyExperiment
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
                 res.TestCaseResults = PermDataList.Item3;
-                AdaptSegmentsList.Add(Tuple.Create("2", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = PermDataList.Item4;
+                AdaptSegmentsList.Add(Tuple.Create("2", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
@@ -105,8 +110,10 @@ namespace MyExperiment
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
                 res.TestCaseResults = PermDataList.Item3;
-                AdaptSegmentsList.Add(Tuple.Create("3", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = PermDataList.Item4;
+                AdaptSegmentsList.Add(Tuple.Create("3", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -119,8 +126,10 @@ namespace MyExperiment
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
                 res.TestCaseResults = PermDataList.Item3;
-                AdaptSegmentsList.Add(Tuple.Create("4", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = PermDataList.Item4;
+                AdaptSegmentsList.Add(Tuple.Create("4", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -132,8 +141,10 @@ namespace MyExperiment
                 res.SynapseCount = SynapseCount.Item1;
                 res.SegmentCount = SynapseCount.Item2;
                 res.TestCaseResults = SynapseCount.Item3;
-                SegmentCount.Add(Tuple.Create("5", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = SynapseCount.Item4;
+                SegmentCount.Add(Tuple.Create("5", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
+                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -144,8 +155,10 @@ namespace MyExperiment
                 res.SynapseCount = SynapseCount.Item1;
                 res.SegmentCount = SynapseCount.Item2;
                 res.TestCaseResults = SynapseCount.Item3;
-                SegmentCount.Add(Tuple.Create("6", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = SynapseCount.Item4;
+                SegmentCount.Add(Tuple.Create("6", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
+                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -156,8 +169,10 @@ namespace MyExperiment
                 res.SynapseCount = SynapseCount.Item1;
                 res.SegmentCount = SynapseCount.Item2;
                 res.TestCaseResults = SynapseCount.Item3;
-                SegmentCount.Add(Tuple.Create("7", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = SynapseCount.Item4;
+                SegmentCount.Add(Tuple.Create("7", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
+                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -168,8 +183,10 @@ namespace MyExperiment
                 res.SynapseCount = SynapseCount.Item1;
                 res.SegmentCount = SynapseCount.Item2;
                 res.TestCaseResults = SynapseCount.Item3;
-                SegmentCount.Add(Tuple.Create("8", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = SynapseCount.Item4;
+                SegmentCount.Add(Tuple.Create("8", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
+                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
 
@@ -323,7 +340,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
@@ -347,14 +364,16 @@ namespace MyExperiment
             if (0.2 == s1.Permanence) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
+            string Comments;
+            Comments = "Permenance increment successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -367,7 +386,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_PermanenceWeakened_IfPresynapticCellWasInActive()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
@@ -390,14 +409,16 @@ namespace MyExperiment
             if (0.8 == s1.Permanence) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
+            string Comments;
+            Comments = "Permenance decrement successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -407,7 +428,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_PermanenceIsLimitedWithinRange()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_PermanenceIsLimitedWithinRange()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
@@ -434,14 +455,16 @@ namespace MyExperiment
             if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
+            string Comments;
+            Comments = "Permenance is limited within the range 0.1 to 1, successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -454,7 +477,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_UpdatesSynapsePermanenceValues_BasedOnPreviousCycleActivity()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();///The connections object holds the infrastructure, and is used by both the SpatialPooler, TemporalMemory.
@@ -481,7 +504,7 @@ namespace MyExperiment
             if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {
                 s1.Permanence,
@@ -494,9 +517,11 @@ namespace MyExperiment
                 InputPerm[1],
                 InputPerm[2]
             };
+            string Comments;
+            Comments = "Permenance increment or decrement based on previous cycle state is successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -509,7 +534,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<int, int, string> TestAdaptSegment_SegmentState_WhenMaximumSynapsesPerSegment()
+        public Tuple<int, int, string, string> TestAdaptSegment_SegmentState_WhenMaximumSynapsesPerSegment()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn1 = new Connections();
@@ -539,15 +564,17 @@ namespace MyExperiment
             //Assert
             Assert.AreEqual(1, NoOfSegments);
             Assert.AreEqual(225, NoOfSynapses);
+            string Comments;
+            Comments = "Maximum Synapse per segment can be = " + NoOfSynapses;
 
             Boolean? testResult = (NoOfSegments == 1 && NoOfSynapses == 225) ? (bool?)true : (bool?)false;
             string TestResult;
             if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
+            List<Tuple<int, int, string, string>> result = new List<Tuple<int, int, string, string>>();
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<int, int, string> tuple = Tuple.Create(NoOfSynapses, NoOfSegments, TestResult);
+            Tuple<int, int, string, string> tuple = Tuple.Create(NoOfSynapses, NoOfSegments, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -559,7 +586,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<int, int, string> TestAdaptSegment_MatchingSegmentAndActiveSegmentState()
+        public Tuple<int, int, string, string> TestAdaptSegment_MatchingSegmentAndActiveSegmentState()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn1 = new Connections();
@@ -601,6 +628,8 @@ namespace MyExperiment
             Assert.AreEqual(1, NoOfSynapses);
             Assert.AreEqual(0, activeSegments);
             Assert.AreEqual(0, matchingSegments);
+            string Comments;
+            Comments = "Number of Matching segments = " + matchingSegments + " Number of Active segments = " + activeSegments;
 
             Boolean? testResult = (NoOfSegments == 5 && NoOfSynapses == 1 && activeSegments == 0 &&
                 matchingSegments == 0) ? (bool?)true : (bool?)false;
@@ -608,9 +637,9 @@ namespace MyExperiment
             if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
+            List<Tuple<int, int, string, string>> result = new List<Tuple<int, int, string, string>>();
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<int, int, string> tuple = Tuple.Create(NoOfSynapses, NoOfSegments, TestResult);
+            Tuple<int, int, string, string> tuple = Tuple.Create(NoOfSynapses, NoOfSegments, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -626,7 +655,7 @@ namespace MyExperiment
                                                                 ///exception. Therefore, the test will pass if the expected exception 
                                                                 ///of type ArgumentOutOfRangeException is thrown, and it will fail if 
                                                                 ///any other exception or no exception is thrown.
-        public Tuple<int, int, string> TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded()
+        public Tuple<int, int, string, string> TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn1 = new Connections();
@@ -665,16 +694,17 @@ namespace MyExperiment
                     Synapse Syn226 = dd1.Synapses[226];
                 });
             }
-
+            string Comments;
+            Comments = "Maximum synapses = " + (numSynapses - 1) + " is reached";
 
             Boolean? testResult = (numSynapses == 226) ? (bool?)true : (bool?)false;
             string TestResult;
             if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
+            List<Tuple<int, int, string, string>> result = new List<Tuple<int, int, string, string>>();
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<int, int, string> tuple = Tuple.Create(numSynapses-1, 1, TestResult);
+            Tuple<int, int, string, string> tuple = Tuple.Create(numSynapses-1, 1, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -685,7 +715,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<int, int, string> TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent()
+        public Tuple<int, int, string, string> TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn1 = new Connections();
@@ -737,15 +767,17 @@ namespace MyExperiment
             int numSynapses = Convert.ToInt32(field4.GetValue(cn1));
             Assert.AreEqual(1, numSegments);
             Assert.AreEqual(5, numSynapses);
+            string Comments;
+            Comments = "Only " + numSegments + " segment is present and remaining segments are destroyed";
 
             Boolean? testResult = (numSegments == 1 && numSynapses == 5) ? (bool?)true : (bool?)false;
             string TestResult;
             if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<int, int, string>> result = new List<Tuple<int, int, string>>();
+            List<Tuple<int, int, string, string>> result = new List<Tuple<int, int, string, string>>();
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<int, int, string> tuple = Tuple.Create(numSynapses, numSegments, TestResult);
+            Tuple<int, int, string, string> tuple = Tuple.Create(numSynapses, numSegments, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -766,7 +798,7 @@ namespace MyExperiment
 
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues()
         {
 
             TemporalMemory tm = new TemporalMemory();
@@ -795,14 +827,16 @@ namespace MyExperiment
             { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
+            string Comments;
+            Comments = "Permenance increment successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
 
@@ -815,7 +849,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues()
         {
             // Arrange
             TemporalMemory tm = new TemporalMemory();
@@ -842,14 +876,16 @@ namespace MyExperiment
             { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
+            string Comments;
+            Comments = "Permenance increment successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -860,7 +896,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
@@ -884,14 +920,16 @@ namespace MyExperiment
             if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
+            string Comments;
+            Comments = "Permenance increment successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
 
@@ -903,7 +941,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public Tuple<List<double>, List<double>, string> TestAdaptSegment_CheckMultipleSynapseState()
+        public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_CheckMultipleSynapseState()
         {
             // Arrange
             TemporalMemory tm = new TemporalMemory();
@@ -940,14 +978,16 @@ namespace MyExperiment
             { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
-            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
             {s1.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
+            string Comments;
+            Comments = "Permenance increment successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
