@@ -163,6 +163,24 @@ namespace MyExperiment
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
 
+                ///******************************************************** TestCase 2 ***************************************************************//
+
+                PermDataList = TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
+                res.ExperimentName = "TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("8", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                Console.WriteLine(res.Perm_Array);
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+
+
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
+
+
             }
 
             /*switch (inputFile)
@@ -613,7 +631,7 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public void TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues()
+        public Tuple<List<double>, List<double>, string> TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues()
         {
             // Arrange
             TemporalMemory tm = new TemporalMemory();
@@ -622,7 +640,7 @@ namespace MyExperiment
             p.apply(cn);
             tm.Init(cn);
 
-
+            double[] InputPerm = new double[] { -0.199991, -0.29999 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
             Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), -0.199991);
             Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), -0.29999);
@@ -633,7 +651,23 @@ namespace MyExperiment
 
             Assert.IsFalse(dd.Synapses.Contains(s2)); /// assert condition to check does DistalDendrite contains the synapse s2
             Assert.IsFalse(dd.Synapses.Contains(s1)); /// assert condition to check does DistalDendrite contains the synapse s2
-            Assert.AreEqual(0, dd.Synapses.Count);  /// synapses count check in DistalDendrite
+            //Assert.AreEqual(0, dd.Synapses.Count);  /// synapses count check in DistalDendrite
+
+            string TestResult;
+            if (dd.Synapses.Count == 0)
+            { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
+            else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
+
+            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<double> synPermList = new List<double>
+            {s1.Permanence};
+            List<double> InputPermList = new List<double>
+            {InputPerm[0]};
+
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            result.Add(tuple);
+            return tuple;
         }
 
 
