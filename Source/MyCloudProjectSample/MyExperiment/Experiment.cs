@@ -135,6 +135,8 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** TestCase 6 ***************************************************************//
                 SynapseCount = TestAdaptSegment_MatchingSegmentAndActiveSegmentState();
                 res.ExperimentName = "TestAdaptSegment_MatchingSegmentAndActiveSegmentState";
@@ -145,6 +147,8 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** TestCase 7 ***************************************************************//
                 SynapseCount = TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded();
                 res.ExperimentName = "TestAdaptSegment_WhenMaxSynapsesPerSegmentIsReachedAndExceeded";
@@ -155,6 +159,8 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** TestCase 8 ***************************************************************//
                 SynapseCount = TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent();
                 res.ExperimentName = "TestAdaptSegment_SegmentIsDestroyed_WhenNoSynapseIsPresent";
@@ -166,6 +172,8 @@ namespace MyExperiment
                 Console.WriteLine(res.Perm_Array);
 
 
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** Unit Tests By by Kavya Hirebelaguli Chandrashekar ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
 
@@ -178,6 +186,8 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** TestCase 2 ***************************************************************//
 
                 PermDataList = TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
@@ -189,6 +199,8 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** TestCase 3 ***************************************************************//
 
                 PermDataList = TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
@@ -200,8 +212,9 @@ namespace MyExperiment
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
 
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** TestCase 4 ***************************************************************//
-
 
                 PermDataList = TestAdaptSegment_CheckMultipleSynapseState();
                 res.ExperimentName = "TestAdaptSegment_CheckMultipleSynapseState";
@@ -211,7 +224,6 @@ namespace MyExperiment
                 AdaptSegmentsList.Add(Tuple.Create("12", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
                 Console.WriteLine(res.Perm_Array);
-
 
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
