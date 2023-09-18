@@ -48,19 +48,19 @@ namespace MyExperiment
             headerCells.Style.Font.Color.SetColor(Color.Black); // Set your desired font color
 
             // Fill data
-            for (int i = 0; i < PermValueList.Count; i++)
+            for (int j = PermValueList.Count - 1; j < PermValueList.Count; j++)
             {
-                i = currentRow;
-                worksheet.Cells[i + 2, 1].Value = PermValueList[i].Item1;
-                worksheet.Cells[i + 2, 2].Value = PermValueList[i].Item2;
-                worksheet.Cells[i + 2, 3].Value = string.Join(", ", PermValueList[i].Item3);
-                worksheet.Cells[i + 2, 4].Value = string.Join(", ", PermValueList[i].Item4);
-                worksheet.Cells[i + 2, 7].Value = PermValueList[i].Item5;
-                worksheet.Cells[i + 2, 8].Value = PermValueList[i].Item6;
+                int i = currentRow;
+                worksheet.Cells[i + 2, 1].Value = PermValueList[j].Item1;
+                worksheet.Cells[i + 2, 2].Value = PermValueList[j].Item2;
+                worksheet.Cells[i + 2, 3].Value = string.Join(", ", PermValueList[j].Item3);
+                worksheet.Cells[i + 2, 4].Value = string.Join(", ", PermValueList[j].Item4);
+                worksheet.Cells[i + 2, 7].Value = PermValueList[j].Item5;
+                worksheet.Cells[i + 2, 8].Value = PermValueList[j].Item6;
 
                 // Set the color of the "Test Case Results" cell based on the boolean value
                 var resultCell = worksheet.Cells[i + 2, 7];
-                string testResult = PermValueList[i].Item5;
+                string testResult = PermValueList[j].Item5;
                 if (!string.IsNullOrEmpty(testResult))
                 {
                     resultCell.Value = testResult;

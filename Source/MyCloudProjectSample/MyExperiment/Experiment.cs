@@ -83,7 +83,7 @@ namespace MyExperiment
                 res.Comments = PermDataList.Item4;
                 AdaptSegmentsList.Add(Tuple.Create("1", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
-                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -99,7 +99,7 @@ namespace MyExperiment
                 res.Comments = PermDataList.Item4;
                 AdaptSegmentsList.Add(Tuple.Create("2", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
-                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
@@ -113,7 +113,7 @@ namespace MyExperiment
                 res.Comments = PermDataList.Item4;
                 AdaptSegmentsList.Add(Tuple.Create("3", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
-                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -129,7 +129,7 @@ namespace MyExperiment
                 res.Comments = PermDataList.Item4;
                 AdaptSegmentsList.Add(Tuple.Create("4", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
-                $"UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -144,7 +144,7 @@ namespace MyExperiment
                 res.Comments = SynapseCount.Item4;
                 SegmentCount.Add(Tuple.Create("5", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
-                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"SegmentCount: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -158,7 +158,7 @@ namespace MyExperiment
                 res.Comments = SynapseCount.Item4;
                 SegmentCount.Add(Tuple.Create("6", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
-                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"SegmentCount: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -172,7 +172,7 @@ namespace MyExperiment
                 res.Comments = SynapseCount.Item4;
                 SegmentCount.Add(Tuple.Create("7", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
-                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"SegmentCount: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
@@ -186,7 +186,7 @@ namespace MyExperiment
                 res.Comments = SynapseCount.Item4;
                 SegmentCount.Add(Tuple.Create("8", res.ExperimentName, res.SynapseCount, res.SegmentCount, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", SegmentCount.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,SynapseCount: {tuple.Item3}, " +
-                $"SegmentCount: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}, Comments: {tuple.Item6}"));
+                $"SegmentCount: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
 
@@ -195,30 +195,32 @@ namespace MyExperiment
                 ///******************************************************** Unit Tests By by Kavya Hirebelaguli Chandrashekar ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
 
-               /* PermDataList = TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
+                PermDataList = TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
                 res.ExperimentName = "TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues";
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
                 res.TestCaseResults = PermDataList.Item3;
-                AdaptSegmentsList.Add(Tuple.Create("9", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                res.Comments = PermDataList.Item4;
+                AdaptSegmentsList.Add(Tuple.Create("9", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
 
                 // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);*/
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
                 ///******************************************************** TestCase 2 ***************************************************************//
 
-               /* PermDataList = TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
-                res.ExperimentName = "TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues";
-                res.InputPermList = PermDataList.Item1;
-                res.UpdatedPermList = PermDataList.Item2;
-                res.TestCaseResults = PermDataList.Item3;
-                AdaptSegmentsList.Add(Tuple.Create("10", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
-                Console.WriteLine(res.Perm_Array);
+                /* PermDataList = TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
+                 res.ExperimentName = "TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues";
+                 res.InputPermList = PermDataList.Item1;
+                 res.UpdatedPermList = PermDataList.Item2;
+                 res.TestCaseResults = PermDataList.Item3;
+                 AdaptSegmentsList.Add(Tuple.Create("10", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                 Console.WriteLine(res.Perm_Array);
 
-                // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);*/
+                 // Now you have PermValueList
+                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);*/
                 ///******************************************************** TestCase 3 ***************************************************************//
 
                 /*PermDataList = TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
@@ -809,9 +811,9 @@ namespace MyExperiment
 
             double[] InputPerm = new double[] { 0.0000000967, 0.0000001, -0.00000001 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0)); /// Created a Distal dendrite segment of a cell0
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[1]); /// Created a synapse on a distal segment of a cell index 23
-            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), InputPerm[2]);/// Created a synapse on a distal segment of a cell index 24
-            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(43), InputPerm[3]);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]); /// Created a synapse on a distal segment of a cell index 23
+            Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), InputPerm[1]);/// Created a synapse on a distal segment of a cell index 24
+            Synapse s3 = cn.CreateSynapse(dd, cn.GetCell(43), InputPerm[2]);
             /// Invoking AdaptSegments with only the cells with index 23 and 37
             ///whose presynaptic cell is considered to be Active in the previous cycle
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 24, 43 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
@@ -829,11 +831,11 @@ namespace MyExperiment
 
             List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
             List<double> synPermList = new List<double>
-            {s1.Permanence};
+            {s1.Permanence, s2.Permanence, s3.Permanence};
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
             string Comments;
-            Comments = "Permenance increment successfull";
+            Comments = "Does not destroy synpase for small negatve permanence is succesfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
             Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
