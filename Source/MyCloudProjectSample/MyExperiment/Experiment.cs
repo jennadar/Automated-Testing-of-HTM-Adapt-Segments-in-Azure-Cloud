@@ -180,6 +180,21 @@ namespace MyExperiment
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(SegmentCount);
 
+                ///******************************************************** TestCase 3 ***************************************************************//
+
+                
+                PermDataList = TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException();
+                res.ExperimentName = "TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                AdaptSegmentsList.Add(Tuple.Create("9", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, UpdatedPermanence: {tuple.Item4}, InputPermanenceValue: {tuple.Item5}"));
+                Console.WriteLine(res.Perm_Array);
+
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+
 
             }
 
@@ -676,14 +691,14 @@ namespace MyExperiment
         /// </summary>
         [TestMethod]
         [TestCategory("Prod")]
-        public void TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException()
+        public Tuple<List<double>, List<double>, string> TestAdaptSegment_ShouldThrow_DD_ObjectShouldNotBeNUllException()
         {
             TemporalMemory tm = new TemporalMemory();
             Connections cn = new Connections();
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);
-
+            double[] InputPerm = new double[] { 0.1 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
             Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.1);
 
@@ -695,6 +710,22 @@ namespace MyExperiment
             {
                 Assert.AreEqual(DISTALDENDRITE_CANNOT_BE_NULL, ex.Message);
             }
+            Boolean? testResult = s1.Permanence >= 0.1 && s1.Permanence <= 1.0 ? (bool?)true : (bool?)false;
+            string TestResult;
+            if (testResult == true) { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
+            else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
+
+            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            List<double> synPermList = new List<double>
+            {s1.Permanence};
+            List<double> InputPermList = new List<double>
+            {InputPerm[0]};
+
+            // Add a new tuple if the list doesn't have an existing tuple at the current index
+            Tuple<List<double>, List<double>, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult);
+            result.Add(tuple);
+            return tuple;
+
         }
 
         /// <summary>
