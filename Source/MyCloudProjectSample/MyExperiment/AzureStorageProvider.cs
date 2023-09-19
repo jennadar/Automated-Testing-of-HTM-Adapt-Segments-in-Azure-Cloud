@@ -43,7 +43,7 @@ namespace MyExperiment
             var experimentLabel = result.ExperimentName;
 
             BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests");
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests-teamas");
 
             // Write encoded data to Excel file
             byte[] excelData = result.excelData;
