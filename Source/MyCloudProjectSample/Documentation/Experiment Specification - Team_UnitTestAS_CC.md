@@ -46,9 +46,9 @@ Below mentioned code snippet shows the input data used for the experment
 {
     "ExperimentId": "2023",
     "InputFile":"adaptsegmentstests",
-    "Name": "sample",
-    "Description": "None"
-};
+    "Name": "Unit Tests for Adapt Segments",
+    "Description": "Test the functionality of the AdaptSegments method and achieve code coverage"
+}
 ~~~
 
 - ExperimentId : 2023 - is unique identifier for the experiment  
