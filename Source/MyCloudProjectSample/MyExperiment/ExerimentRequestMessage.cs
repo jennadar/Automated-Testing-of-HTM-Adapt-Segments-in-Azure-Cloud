@@ -20,8 +20,8 @@ namespace MyExperiment
 {
     "ExperimentId": "2023",
     "InputFile":"adaptsegmentstests",
-    "Name": "sample",
-    "Description": "None"
+    "Name": "Unit Tests for Adapt Segments",
+    "Description": "Test the functionality of the AdaptSegments method and achieve code coverage"
 }
 
  {
@@ -57,17 +57,3 @@ namespace MyExperiment
 }
  */
 
-
-
-/*
- 
- {
-    "ExperimentId": "ML22/23-7",
-    "InputFile":"InputData.txt",
-    "Name": "PermanenceStrengthening",
-    "Description": "Predict the Cell State",
-    "testFile": "testingData.txt"
-
-}
- 
- */
