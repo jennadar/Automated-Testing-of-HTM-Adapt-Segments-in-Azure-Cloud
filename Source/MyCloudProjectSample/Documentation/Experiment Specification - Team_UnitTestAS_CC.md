@@ -43,7 +43,7 @@ Input to this experiment are from string text of the adaptsegmentstests.
 The experiment input is defined in the class [ExerimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject.Common/ExerimentRequestMessage.cs) which takes in the experiment details along with the names of the input sequences file and the testing sequences file.
 
 ~~~json
-public interface IExerimentRequestMessage
+  public interface IExerimentRequestMessage
     {
         string ExperimentId { get; set; }
 
@@ -88,7 +88,56 @@ what are the blob containers you used e.g.:
 
 The output will be a result object of class [ExperimentResult](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyExperiment/ExperimentResult.cs)
 
+~~~json
+public interface IExerimentRequestMessage
+    {
+        string ExperimentId { get; set; }
+        string InputFile { get; set; }
+        string Name { get; set; }
+        string Description { get; set; }
+    }
 
+public class ExperimentResult : ITableEntity, IExperimentResult
+    {
+        public ExperimentResult(string partitionKey, string rowKey)
+        {
+            this.PartitionKey = partitionKey;
+            this.RowKey = rowKey;
+        }
+
+        public ExperimentResult()
+        {
+            // Default parameterless constructor
+        }
+
+        public string PartitionKey { get; set; }
+        public string RowKey { get; set; }
+        public DateTimeOffset? Timestamp { get; set; }
+        public ETag ETag { get; set; }
+        public string ExperimentId { get; set; }
+        public string ExperimentName { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime? StartTimeUtc { get; set; }
+        public DateTime? EndTimeUtc { get; set; }
+        public long DurationSec { get; set; }
+        public string InputFileUrl { get; set; }
+        public string testFileUrl { get; set; }
+        public string[] OutputFiles { get; set; }
+        // Your properties related to experiment.
+        public float Accuracy { get; set; }
+        public List<double> UpdatedPermList { get; set; }
+        public List<double> InputPermList { get; set; }
+        public int SynapseCount { get; set; }
+        public int SegmentCount { get; set; }
+        public string AdditionalInfo { get; set; }
+        public String Perm_Array { get; set; }
+        public byte[] excelData { get; set; }
+        //public Dictionary<double, string> encodedData { get; set; }
+        public string TestCaseResults { get; set; }
+        public string Comments { get; set; }
+    }
+~~~
 
 This information is then passed and stored in the Azure table storage.
 
