@@ -40,9 +40,22 @@ Adaptive Segments are an important feature of the HTM algorithm because they all
 
 Input to this experiment are from string text of the adaptsegmentstests.
 
-The experiment input is defined in the class ExerimentRequestMessage which takes in the experiment details along with the names of the input sequences file and the testing sequences file.
+The experiment input is defined in the class [ExerimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject.Common/ExerimentRequestMessage.cs) which takes in the experiment details along with the names of the input sequences file and the testing sequences file.
 
+~~~json
+public interface IExerimentRequestMessage
+    {
+        string ExperimentId { get; set; }
 
+        string InputFile { get; set; }
+
+        string Name { get; set; }
+
+        string Description { get; set; }
+    }
+~~~
+
+An Azure queue message in the queue 'unittestascc-trigger-queue' present in the storage account ´´´ccprojectsd´´´ will trigger the experiment and will pass in the details and files required for the experiment.
 Below mentioned code snippet shows the input data used for the experment
  
 
@@ -57,7 +70,8 @@ Below mentioned code snippet shows the input data used for the experment
 
 - ExperimentId : 2023 - is unique identifier for the experiment  
 - InputFile: adaptsegmentstests  - specifies the name or identifier of the input file or data that the experiment will use.
-- Name : This field represent the name or label for the experiment itself  
+- Name : This field represent the name or label for the experiment itself.
+- Description : Test the functionality of the AdaptSegments method and achieve code coverage  
 
 **_Describe your blob container registry:**  
 
@@ -71,6 +85,12 @@ what are the blob containers you used e.g.:
 
 
 ## Output to the Experiment experiment
+
+The output will be a result object of class [ExperimentResult](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyExperiment/ExperimentResult.cs)
+
+
+
+This information is then passed and stored in the Azure table storage.
 
 The output of the Experiment provides information about the test name, initial and updated synapse permanence values, and counts of processed synapses and segments.
  
