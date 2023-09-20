@@ -84,7 +84,38 @@ Column names of the table with explanation
 5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
 
    
-## Workflow of the Experiment experiment
+## Workflow 
+
+We start with a distal dendrite segment, which consists of a set of synapses connecting to various presynaptic cells. (Fig.1)
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/4a894a50-9781-410c-8b00-8f82a267002b) Fig.1
+
+During the previous cycle, some of the presynaptic cells may have been active, while others may have been inactive. We pass a list of the active cells prevActiveCells to the AdaptSegment method. (Fig.2)
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/8d842446-a797-476a-a96c-e29f95388198) Fig.2
+
+For each synapse in the segment, we check whether its presynaptic cell was active in the previous cycle. If it was, we increment the synapse's permanence value by the permanenceIncrement value. If it was not active, we decrement the permanence value by the permanenceDecrement value. We keep the permanence value within the minimum and maximum bounds of 0 and 1 respectively. (Fig.3)
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/18e87d36-6e2b-471d-9414-006c826d029a)  Fig.3
+
+If the permanence value of a synapse falls below the EPSILON value, we destroy the synapse and remove it from the segment. In this example, the permanence value of synapse S1 falls below EPSILON, so we add it to a list of synapses to be destroyed. (Fig.4)
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/384e97fc-0aa3-4982-b697-265413565e64) Fig.4
+
+Finally, if there are no synapses left in the segment, we destroy the segment as well. (Fig.5)
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/4c0dccfb-9ece-41f3-afd9-2de746b8815c) Fig.5
+
+This process helps the HTM network to learn and adapt over time by strengthening connections between active cells and pruning away weak connections.
+
+
+
+
+
+
+
+
+
 
 
 
