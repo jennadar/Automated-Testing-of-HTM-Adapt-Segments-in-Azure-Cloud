@@ -36,22 +36,24 @@ Adaptive Segments are an important feature of the HTM algorithm because they all
 
 
 
-## How to run experiment
+## Input to the Experiment experiment
 
-Describe Your Cloud Experiment based on the Input/Output you gave in the Previous Section.
-
-**_Describe the Queue Json Message you used to trigger the experiment:_**  
+Input to this experiment are from inputFile adaptsegmentstests.
+Below mentioned code snippet shows the input data used for the experment
+ 
 
 ~~~json
 {
-     ExperimentId = "123",
-     InputFile = "https://beststudents2.blob.core.windows.net/documents2/daenet.mp4",
-     .. // see project sample for more information 
+    "ExperimentId": "2023",
+    "InputFile":"adaptsegmentstests",
+    "Name": "sample",
+    "Description": "None"
 };
 ~~~
 
-- ExperimentId : Id of the experiment which is run  
-- InputFile: The video file used for trainign process  
+- ExperimentId : 2023 - is unique identifier for the experiment  
+- InputFile: adaptsegmentstests  - specifies the name or identifier of the input file or data that the experiment will use.
+- Name : This field represent the name or label for the experiment itself  
 
 **_Describe your blob container registry:**  
 
@@ -64,19 +66,22 @@ what are the blob containers you used e.g.:
   - **file Example** screenshot, file, code  
 
 
-**_Describe the Result Table_**
+## Output to the Experiment experiment
 
- What is expected ?
+The output of the Experiment provides information about the test name, initial and updated synapse permanence values, and counts of processed synapses and segments.
  
- How many tables are there ? 
+Below is the Screenshot of your table from the portal or ASX (Azure Storage Explorer)
  
- How are they arranged ?
- 
- What do the columns of the table mean ?
- 
- Include a screenshot of your table from the portal or ASX (Azure Storage Explorer) in case the entity is too long, cut it in half or use another format
- 
- - Column1 : explaination
- - Column2 : ...
-Some columns are obligatory to the ITableEntities and don't need Explaination e.g. ETag, ...
+<img width="923" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/e5b0b0ce-d8ab-4521-8597-b8997747e5c1">
+
+
+Column names of the table with explanation
+
+1. Test Name : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
+2. Input Perm Value : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
+3. Updated Perm Value : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
+4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+
+
  
