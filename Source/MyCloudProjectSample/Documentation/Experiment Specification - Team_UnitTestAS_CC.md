@@ -39,6 +39,10 @@ Adaptive Segments are an important feature of the HTM algorithm because they all
 ## Input to the Experiment experiment
 
 Input to this experiment are from string text of the adaptsegmentstests.
+
+The experiment input is defined in the class ExerimentRequestMessage which takes in the experiment details along with the names of the input sequences file and the testing sequences file.
+
+
 Below mentioned code snippet shows the input data used for the experment
  
 
