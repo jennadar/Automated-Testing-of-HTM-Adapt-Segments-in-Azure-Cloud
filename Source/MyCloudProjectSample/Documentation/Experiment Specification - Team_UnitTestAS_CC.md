@@ -43,7 +43,7 @@ Input to this experiment are from string text of the adaptsegmentstests.
 The experiment input is defined in the class [ExerimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject.Common/ExerimentRequestMessage.cs) which takes in the experiment details along with the names of the input sequences file and the testing sequences file.
 
 ~~~json
-  public interface IExerimentRequestMessage
+public interface IExerimentRequestMessage
     {
         string ExperimentId { get; set; }
 
