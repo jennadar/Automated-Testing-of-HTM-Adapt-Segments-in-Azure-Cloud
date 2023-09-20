@@ -83,5 +83,10 @@ Column names of the table with explanation
 4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
 5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
 
+   
+## Workflow of the Experiment experiment
+
+
+
 
  
