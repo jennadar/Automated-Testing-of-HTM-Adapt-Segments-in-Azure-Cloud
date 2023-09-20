@@ -204,7 +204,92 @@ This process helps the HTM network to learn and adapt over time by strengthening
 
 The experiment can be run by starting the 'teamunittestascc-msl' container instance which can be found here
 
+![MicrosoftTeams-image (5)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/b54837d5-c5a4-40fd-bf9c-65419a510949)
 
+Once the experiment starts, it waits for the queue message which can be directly entered into the 'unittestascc-trigger-queue' queue storage or via the Azure Storage Explorer by using the following connection string DefaultEndpointsProtocol=https;AccountName=ccprojectsd;AccountKey=A/HxKCnv1X9riZalnZM9GRopm9Gz8MxpTavlkx1fklaGcsfxnuz8/K/3oJTkskIBYD2UqrrvqBY6+AStUCILGA==;EndpointSuffix=core.windows.net The complete configuration can be found here The sequences used for the experiment are present in the input container "adaptsegmentsunittests-teamas".
+
+Queue Message --> Make sure to turn OFF base64 encryption before queueing the message.
+
+![MicrosoftTeams-image (6)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/08dfb9a8-a586-4e65-b5f9-d86c5f86b644)
+
+
+Once the queue is given to the experiment, the queue message is displayed in the logs of the container instance and the experiment starts running. Please wait for the experiment to finish as the time depends on the number of learning sequences provided in the trainingSequences.txt file.
+
+![MicrosoftTeams-image (7)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/49e89d44-c544-4ef0-bb20-e8e6debacb57)
+
+Once the experiment is finished, the expected result in the Excel format.
+
+<img width="923" alt="269192242-e5b0b0ce-d8ab-4521-8597-b8997747e5c1" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/a386ff9d-c81d-4815-b630-d94e7fa1da5a">
+
+
+1. Test Name : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
+2. Input Perm Value : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
+3. Updated Perm Value : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
+4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+
+## Implemented Methods
+
+1. Run in Experiment.cs
+
+~~~json
+   // Run your experiment code here.
+            Tuple<List<double>, List<double>, string, string> PermDataList = null;
+            List<Tuple<string, string, List<double>, List<double>, string, string>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, string, string>>();
+            Tuple<int, int, string, string> SynapseCount = null;
+            List<Tuple<string, string, int, int, string, string>> SegmentCount = new List<Tuple<string, string, int, int, string, string>>();
+            int index = 0;// Index to keep track of the position in the datastore array
+                          // Set the LicenseContext before using the EPPlus library
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExperimentResult result = new ExperimentResult("damir", "0")
+            {
+                Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+            };
+            ExcelWriter excelreport = new ExcelWriter();
+
+            if (inputFile == "adaptsegmentstests")
+            {
+                
+                ///******************************************************** TestCase 1 ***************************************************************//
+                ///
+                PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                res.Comments = PermDataList.Item4;
+                AdaptSegmentsList.Add(Tuple.Create("1", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
+                Console.WriteLine(res.Perm_Array);
+
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+~~~
+
+2. UploadExperimentResult
+
+~~~json
+public async Task UploadExperimentResult(IExperimentResult result)
+        {
+            var experimentLabel = result.ExperimentName;
+
+            BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests-teamas");
+
+            // Write encoded data to Excel file
+            byte[] excelData = result.excelData;
+
+            // Generate a unique blob name (you can customize this logic)
+            string blobName = $"Test_data_{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            // Upload the Excel data to the blob container
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+            using (MemoryStream memoryStream = new MemoryStream(excelData))
+            {
+                await blobClient.UploadAsync(memoryStream);
+            }
+~~~
 
 
 
