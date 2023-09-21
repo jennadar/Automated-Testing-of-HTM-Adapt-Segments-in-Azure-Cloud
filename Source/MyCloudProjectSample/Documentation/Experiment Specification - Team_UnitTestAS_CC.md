@@ -42,7 +42,7 @@ Input to this experiment are from string text of the adaptsegmentstests.
 
 The experiment input is defined in the class [ExerimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject.Common/ExerimentRequestMessage.cs) which takes in the experiment details along with the names of the input sequences file and the testing sequences file.
 
-~~~json
+~~~csharp
 public interface IExerimentRequestMessage
     {
         string ExperimentId { get; set; }
@@ -84,7 +84,7 @@ Below mentioned code snippet shows the input data used for the experment
 
 The output will be a result object of class [ExperimentResult](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyExperiment/ExperimentResult.cs)
 
-~~~json
+~~~csharp
 
 public interface IExerimentRequestMessage
     {
@@ -235,7 +235,7 @@ What do the columns mean ?
 
 1. Run in Experiment.cs
 
-~~~json
+~~~csharp
  public Task<IExperimentResult> Run(string inputFile)
         {
             // TODO read file
@@ -282,7 +282,7 @@ What do the columns mean ?
 
 2. UploadExperimentResult
 
-~~~json
+~~~csharp
 public async Task UploadExperimentResult(IExperimentResult result)
         {
             var experimentLabel = result.ExperimentName;
