@@ -38,9 +38,9 @@ Adaptive Segments are an important feature of the HTM algorithm because they all
 
 ## Input to the Experiment experiment
 
-Input to this experiment are from string text of the adaptsegmentstests.
+Input to this experiment is just string text 'startadaptsegmentstests'.
 
-The experiment input is defined in the class [ExerimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject.Common/ExerimentRequestMessage.cs) which takes in the experiment details along with the names of the input sequences file and the testing sequences file.
+The experiment input is defined in the class [ExerimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject.Common/ExerimentRequestMessage.cs) which takes in the experiment details along with the names of the input file.
 
 ~~~csharp
 public interface IExerimentRequestMessage
@@ -62,7 +62,7 @@ Below mentioned code snippet shows the input data used for the experment
 ~~~json
 {
     "ExperimentId": "2023",
-    "InputFile":"adaptsegmentstests",
+    "InputFile":"startadaptsegmentstests",
     "Name": "Unit Tests for Adapt Segments",
     "Description": "Test the functionality of the AdaptSegments method and achieve code coverage"
 }
@@ -101,12 +101,10 @@ public class ExperimentResult : ITableEntity, IExperimentResult
             this.PartitionKey = partitionKey;
             this.RowKey = rowKey;
         }
-
         public ExperimentResult()
         {
             // Default parameterless constructor
         }
-
         public string PartitionKey { get; set; }
         public string RowKey { get; set; }
         public DateTimeOffset? Timestamp { get; set; }
@@ -118,19 +116,13 @@ public class ExperimentResult : ITableEntity, IExperimentResult
         public DateTime? StartTimeUtc { get; set; }
         public DateTime? EndTimeUtc { get; set; }
         public long DurationSec { get; set; }
-        public string InputFileUrl { get; set; }
-        public string testFileUrl { get; set; }
-        public string[] OutputFiles { get; set; }
         // Your properties related to experiment.
-        public float Accuracy { get; set; }
         public List<double> UpdatedPermList { get; set; }
         public List<double> InputPermList { get; set; }
         public int SynapseCount { get; set; }
         public int SegmentCount { get; set; }
-        public string AdditionalInfo { get; set; }
         public String Perm_Array { get; set; }
         public byte[] excelData { get; set; }
-        //public Dictionary<double, string> encodedData { get; set; }
         public string TestCaseResults { get; set; }
         public string Comments { get; set; }
     }
@@ -260,7 +252,7 @@ What do the columns mean ?
             };
             ExcelWriter excelreport = new ExcelWriter();
 
-            if (inputFile == "adaptsegmentstests")
+            if (inputFile == "startadaptsegmentstests")
             {
                 ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
