@@ -85,15 +85,6 @@ Below mentioned code snippet shows the input data used for the experment
 The output will be a result object of class [ExperimentResult](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyExperiment/ExperimentResult.cs)
 
 ~~~csharp
-
-public interface IExerimentRequestMessage
-    {
-        string ExperimentId { get; set; }
-        string InputFile { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-    }
-
 public class ExperimentResult : ITableEntity, IExperimentResult
     {
         public ExperimentResult(string partitionKey, string rowKey)
@@ -126,7 +117,6 @@ public class ExperimentResult : ITableEntity, IExperimentResult
         public string TestCaseResults { get; set; }
         public string Comments { get; set; }
     }
-
 ~~~
 
 This information is then passed and stored in the Azure table storage.
