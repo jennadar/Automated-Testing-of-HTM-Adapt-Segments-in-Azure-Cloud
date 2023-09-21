@@ -70,18 +70,14 @@ Below mentioned code snippet shows the input data used for the experment
 
 - ExperimentId : 2023 - is unique identifier for the experiment  
 - InputFile: adaptsegmentstests  - specifies the name or identifier of the input file or data that the experiment will use.
-- Name : This field represent the name or label for the experiment itself.
+- Name : This field represent the name or label for the Unit Tests for Adapt Segments experiment.
 - Description : Test the functionality of the AdaptSegments method and achieve code coverage  
 
 **_Describe your blob container registry:**  
 
-what are the blob containers you used e.g.:  
-- 'training_container' : for saving training dataset  
-  - the file provided for training:  
-  - zip, images, configs, ...  
-- 'result_container' : saving output written file  
+- 'adaptsegmentsunittests-teamas' : saving output written file in Excel format
   - The file inside are result from the experiment, for example:  
-  - **file Example** screenshot, file, code  
+  - **Test_data_20230919204634939.xlsx'** Excel file.  
 
 
 ## Output to the Experiment experiment
@@ -150,14 +146,15 @@ Below is the Screenshot of your table from the portal or ASX (Azure Storage Expl
 <img width="923" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/e5b0b0ce-d8ab-4521-8597-b8997747e5c1">
 
 
-Column names of the table with explanation
+Column names of the Excel with explanation
 
 1. Test Name : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
 2. Input Perm Value : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
 3. Updated Perm Value : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
 4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
 5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
-
+6. Test Results : Gives the status of the Test case run as 'Passed' or 'Failed'
+7. Comments : Gives a brief scenario description for each test cases.
    
 ## Workflow 
 
@@ -202,7 +199,7 @@ This process helps the HTM network to learn and adapt over time by strengthening
 
 ## How to run the experiment 
 
-The experiment can be run by starting the 'teamunittestascc-msl' container instance which can be found here
+The experiment can be run by starting the 'teamunittestascc' container instance which can be found here
 
 ![MicrosoftTeams-image (5)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/b54837d5-c5a4-40fd-bf9c-65419a510949)
 
@@ -213,27 +210,43 @@ Queue Message --> Make sure to turn OFF base64 encryption before queueing the me
 ![MicrosoftTeams-image (6)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/08dfb9a8-a586-4e65-b5f9-d86c5f86b644)
 
 
-Once the queue is given to the experiment, the queue message is displayed in the logs of the container instance and the experiment starts running. Please wait for the experiment to finish as the time depends on the number of learning sequences provided in the trainingSequences.txt file.
+Once the queue is given to the experiment, the queue message is displayed in the logs of the container instance and the experiment starts running. Each of the Unit Tests will be run and generates the excel report.
 
 ![MicrosoftTeams-image (7)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/49e89d44-c544-4ef0-bb20-e8e6debacb57)
 
-Once the experiment is finished, the expected result in the Excel format.
+Once the experiment is finished, the expected result is uploaded in the Excel format to the Blob container 'adaptsegmentsunittests-teamas'.
 
 <img width="923" alt="269192242-e5b0b0ce-d8ab-4521-8597-b8997747e5c1" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/a386ff9d-c81d-4815-b630-d94e7fa1da5a">
 
+Describe the Result
+How many Result Files are there ? There is only one Excel file 'Test_data_202309XXXXXXXXXX.xlsx'.
+
+What do the columns mean ?
 
 1. Test Name : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
 2. Input Perm Value : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
 3. Updated Perm Value : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
 4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
 5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+6. Test Results : Gives the status of the Test case run as 'Passed' or 'Failed'
+7. Comments : Gives a brief scenario description for each test cases.
 
 ## Implemented Methods
 
 1. Run in Experiment.cs
 
 ~~~json
-   // Run your experiment code here.
+ public Task<IExperimentResult> Run(string inputFile)
+        {
+            // TODO read file
+
+            // STARTING HERE WITH OUR SE EXPERIMENT i.e, UnitTest for AdaptSegments Method!!!!
+
+            ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
+
+            res.StartTimeUtc = DateTime.UtcNow;
+
+            // Run your experiment code here.
             Tuple<List<double>, List<double>, string, string> PermDataList = null;
             List<Tuple<string, string, List<double>, List<double>, string, string>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, string, string>>();
             Tuple<int, int, string, string> SynapseCount = null;
@@ -249,7 +262,7 @@ Once the experiment is finished, the expected result in the Excel format.
 
             if (inputFile == "adaptsegmentstests")
             {
-                
+                ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
                 ///
                 PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
