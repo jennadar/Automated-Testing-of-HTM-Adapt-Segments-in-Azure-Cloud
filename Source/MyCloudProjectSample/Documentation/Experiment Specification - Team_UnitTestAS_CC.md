@@ -75,7 +75,7 @@ Below mentioned code snippet shows the input data used for the experment
 
 ## blob container registry  
 
-- 'adaptsegmentsunittests-teamas' : saving output written file in Excel format
+- 'adaptsegmentsunittests-teamas' : saving output written into the file in Excel format
   - The file inside are result from the experiment, for example:  
   - **Test_data_20230919204634939.xlsx'** Excel file.  
 
@@ -123,7 +123,7 @@ This information is then passed and stored in the Azure table storage.
 
 The output of the Experiment provides information about the test name, initial and updated synapse permanence values, and counts of processed synapses and segments.
  
-Below is the Screenshot of your table from the portal or ASX (Azure Storage Explorer)
+Below is the Screenshot of blob container file in excel format from the portal or ASX (Azure Storage Explorer)
  
 <img width="923" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/e5b0b0ce-d8ab-4521-8597-b8997747e5c1">
 
