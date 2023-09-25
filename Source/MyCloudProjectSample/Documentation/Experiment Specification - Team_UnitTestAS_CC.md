@@ -2,7 +2,7 @@
 
 # Description
 
-The primary goals of the project involve developing a comprehensive unit test cases for the AdaptSegment method, to ensure its correct functionality in the HTM algorithm and also achieving full code coverage by utilizing the Code Coverage tool.
+The primary goals of the project involve developing a comprehensive unit test cases for the AdaptSegment method, to ensure its correct functionality in the HTM algorithm.
 The Hierarchical Temporal Memory (HTM) algorithm, a computer model based on the structure and function of the neocortex in the brain, includes Adaptive Segments as a crucial component. Using adaptive segments, repeating patterns in the input data can be represented in HTM and updated as fresh input is received.  
 
 An Adaptive Segment is a group of neurons in the HTM model that are activated together by a particular pattern of input. When a new pattern of input is presented to the HTM model, it is compared to the existing Adaptive Segments to determine whether it matches any of them. If the input matches an existing Adaptive Segment, the strength of the connections between the neurons in the segment is increased, and the segment is updated to reflect the new input. This process is known as reinforcement learning, and it is similar to the way that the brain learns and adapts to new information.
