@@ -38,7 +38,8 @@ Adaptive Segments are an important feature of the HTM algorithm because they all
 
 ## Input to the Experiment experiment
 
-Input to this experiment is just string text 'startadaptsegmentstests'.
+We trigger the experiment run by passing the below queue message given as a text message. The input to this experiment is just string text 'startadaptsegmentstests' which just triggers the testcases written for the Adaptsegments methodology.
+Similarly we can pass multiple strings to trigger the testcases written for different methodolgies if needed.
 
 The experiment input is defined in the class [ExerimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestAS_CC/Source/MyCloudProjectSample/MyCloudProject.Common/ExerimentRequestMessage.cs) which takes in the experiment details along with the names of the input file.
 
@@ -152,8 +153,7 @@ The Adapt Segment method is a part of the Temporal Memory class, which is a fund
 The method first initializes an empty list called synapsesToDestroy that will be used to store synapses that need to be destroyed because their permanence value has dropped below a certain threshold. Then, it iterates through all the synapses in the given segment object using a foreach loop. For each synapse, it retrieves its current permanence value and stores it in a local variable called permanence.
 The method then checks if the synapse's presynaptic cell was active in the previous cycle by using the Contains method of the prevActiveCells collection. If the presynaptic cell was active, the method increases the permanence value by permanenceIncrement; otherwise, it decreases the permanence value by permanenceDecrement. 
 
-After updating the permanence value, the method ensures that 
-the value is within the range of 0 to 1 by using a conditional statement. If the permanence value is less than 0, it is set to 0, and if it is greater than 1, it is set to 1. The method then checks if the permanence value is less than a predefined threshold value called EPSILON, which is a small positive number representing the minimum difference between two floating-point numbers that are considered distinct. If the permanence value is less than EPSILON, the method adds the synapse to the synapsesToDestroy list; otherwise, it updates the synapse's Permanence property with the new permanence value.
+After updating the permanence value, the method ensures that the value is within the range of 0 to 1 by using a conditional statement. If the permanence value is less than 0, it is set to 0, and if it is greater than 1, it is set to 1. The method then checks if the permanence value is less than a predefined threshold value called EPSILON, which is a small positive number representing the minimum difference between two floating-point numbers that are considered distinct. If the permanence value is less than EPSILON, the method adds the synapse to the synapsesToDestroy list; otherwise, it updates the synapse's Permanence property with the new permanence value.
 
 Finally, the method iterates through the synapsesToDestroy list and calls the DestroySynapse method of the Connections class to remove each synapse from the segment. If there are no synapses left in the segment, the method calls the DestroyDistalDendrite method of the Connections class to remove the segment from the dendrite.
 
