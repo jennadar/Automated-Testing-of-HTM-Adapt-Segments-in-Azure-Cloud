@@ -19,7 +19,7 @@ namespace MyExperiment
  
 {
     "ExperimentId": "2023",
-    "InputFile":"adaptsegmentstests",
+    "InputFile":"startadaptsegmentstests",
     "Name": "Unit Tests for Adapt Segments",
     "Description": "Test the functionality of the AdaptSegments method and achieve code coverage"
 }

@@ -14,7 +14,6 @@ namespace MyCloudProject.Common
         DateTime? StartTimeUtc { get; set; }
         DateTime? EndTimeUtc { get; set; }
         public string Perm_Array { get; set; }
-        public string AdditionalInfo { get; set; }
         public byte[] excelData { get; set; }
         public class TestResults
         {

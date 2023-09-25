@@ -71,11 +71,18 @@ namespace MyExperiment
             };
             ExcelWriter excelreport = new ExcelWriter();
 
-            if (inputFile == "adaptsegmentstests")
+            if (inputFile == "startadaptsegmentstests")
             {
+                /// <summary>
+                /// The below codes captures various data related to the test case, such as input and updated permanence values, test case results, and comments.
+                /// It stores this test case data in a tuple named res and then adds this tuple to a list named AdaptSegmentsList.
+                /// The code generates a string representation of the test case data and stores it in the res.Perm_Array variable.
+                /// Finally, it appears to write the test output data (stored in AdaptSegmentsList) to an Excel file using the excelreport.WriteTestOutputDataToExcel method.
+                /// </summary>
+
                 ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
-                ///
+
                 PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
                 res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
                 res.InputPermList = PermDataList.Item1;
@@ -212,7 +219,7 @@ namespace MyExperiment
                 ///******************************************************** TestCase 2 ***************************************************************//
 
                 PermDataList = TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues();
-                 res.ExperimentName = "TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues";
+                res.ExperimentName = "TestAdaptSegment_DestroySynapses_WithNegativePermanenceValues";
                 res.InputPermList = PermDataList.Item1;
                 res.UpdatedPermList = PermDataList.Item2;
                 res.TestCaseResults = PermDataList.Item3;
@@ -272,12 +279,7 @@ namespace MyExperiment
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
             }
-
-
-            /*switch (inputFile)
-            {
-            }*/
-                return Task.FromResult<IExperimentResult>(res); // TODO...
+            return Task.FromResult<IExperimentResult>(res); // TODO...
         }
 
         //ExcelPackage package = new ExcelPackage();
@@ -730,7 +732,7 @@ namespace MyExperiment
 
             List<Tuple<int, int, string, string>> result = new List<Tuple<int, int, string, string>>();
             // Add a new tuple if the list doesn't have an existing tuple at the current index
-            Tuple<int, int, string, string> tuple = Tuple.Create(numSynapses-1, 1, TestResult, Comments);
+            Tuple<int, int, string, string> tuple = Tuple.Create(numSynapses - 1, 1, TestResult, Comments);
             result.Add(tuple);
             return tuple;
         }
@@ -834,7 +836,7 @@ namespace MyExperiment
             tm.Init(cn);  ///use connection for specified object to build and implement algoarithm 
 
             double[] InputPerm = new double[] { 0.0000000967, 0.0000001, -0.00000001 };
-            
+
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0)); /// Created a Distal dendrite segment of a cell0
             Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]); /// Created a synapse on a distal segment of a cell index 23
             Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), InputPerm[1]);/// Created a synapse on a distal segment of a cell index 24
@@ -850,7 +852,7 @@ namespace MyExperiment
             //Assert.AreEqual(3, dd.Synapses.Count);  /// synapses count check in DistalDendrite
 
             string TestResult;
-            if (dd.Synapses.Count == 3) 
+            if (dd.Synapses.Count == 3)
             { TestResult = "PASSED"; }// The assertion condition is met, set the result to Passed
             else { TestResult = "FAILED"; }// The assertion condition is not met, set the result to Failed
 
@@ -862,9 +864,9 @@ namespace MyExperiment
             foreach (double value in InputPerm)
             {
                 value.ToString("0.0000000000");
-        }
+            }
 
-        string Comments;
+            string Comments;
             Comments = "Synapse count is " + dd.Synapses.Count + " because it does not destroy synpase for small negatve permanence is succesfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
@@ -942,19 +944,19 @@ namespace MyExperiment
             tm.Init(cn);
             double[] InputPerm = new double[] { 0.1 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]); 
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]);
 
             try
             {
                 Assert.ThrowsException<NullReferenceException>(() =>
                 {
                     TemporalMemory.AdaptSegment(cn, null, cn.GetCells(new int[] { 23 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
-                    
+
                 });
             }
             catch (NullReferenceException ex)
             {
-               Assert.AreEqual(DISTALDENDRITE_CANNOT_BE_NULL, ex.Message);
+                Assert.AreEqual(DISTALDENDRITE_CANNOT_BE_NULL, ex.Message);
             }
             Boolean? testResult = s1.Permanence >= 0.1 && s1.Permanence <= 1.0 ? (bool?)true : (bool?)false;
             string TestResult;
@@ -976,13 +978,13 @@ namespace MyExperiment
         }
 
 
-    
 
-    /// <summary>
-    /// TestAdaptSegmentCheckMultipleSynapse
-    ///Checking the destroyes of synapses and the count of synapses at the end
-    /// </summary>
-    [TestMethod]
+
+        /// <summary>
+        /// TestAdaptSegmentCheckMultipleSynapse
+        ///Checking the destroyes of synapses and the count of synapses at the end
+        /// </summary>
+        [TestMethod]
         [TestCategory("Prod")]
         public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_CheckMultipleSynapseState()
         {
@@ -993,7 +995,7 @@ namespace MyExperiment
             p.apply(cn);
             tm.Init(cn);
 
-            double[] InputPerm = new double[] { 0.2656, 0.0124, 0.7656, 0.0547, 0.001, 0.002, - 0.2345, -0.134345 };
+            double[] InputPerm = new double[] { 0.2656, 0.0124, 0.7656, 0.0547, 0.001, 0.002, -0.2345, -0.134345 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
             Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), 0.2656);
             Synapse s2 = cn.CreateSynapse(dd, cn.GetCell(24), 0.0124);
@@ -1026,7 +1028,7 @@ namespace MyExperiment
             {s1.Permanence, s2.Permanence, s3.Permanence,s4.Permanence,s5.Permanence,s6.Permanence,s7.Permanence,s8.Permanence};
             List<double> InputPermList = new List<double>
             { InputPerm[0], InputPerm[1], InputPerm[2], InputPerm[3],InputPerm[4],InputPerm[5],InputPerm[6], InputPerm[7] };
-            
+
 
             string Comments;
             Comments = "Synapse count is " + dd.Synapses.Count + " because it destroys synpase for small negatve permanence is succesfull";
@@ -1055,8 +1057,8 @@ namespace MyExperiment
             double[] InputPerm = new double[] { 1.1 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0)); /// Create a distal segment of a cell index 0 to learn sequence
             Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(15), InputPerm[0]);/// create a synapse on a dital segment of a cell with index 15 
-                                                                   /// It results with permanence 1 of the segment's synapse if the synapse's presynaptic cell index 23 was active. 
-                                                                   /// If it was not active, then it will decrement the permanence by 0.1
+                                                                            /// It results with permanence 1 of the segment's synapse if the synapse's presynaptic cell index 23 was active. 
+                                                                            /// If it was not active, then it will decrement the permanence by 0.1
 
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 15 }), cn.HtmConfig.PermanenceIncrement,
                 cn.HtmConfig.PermanenceDecrement);/// Invoking AdaptSegments with the cell 15 whose presynaptic cell is 

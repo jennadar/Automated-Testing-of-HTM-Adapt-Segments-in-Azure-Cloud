@@ -43,15 +43,8 @@ namespace MyExperiment
         public DateTime? EndTimeUtc { get; set; }
 
         public long DurationSec { get; set; }
-
-        public string InputFileUrl { get; set; }
-
-        public string testFileUrl { get; set; }
-
-        public string[] OutputFiles { get; set; }
         // Your properties related to experiment.
 
-        public float Accuracy { get; set; }
         public List<double> UpdatedPermList { get; set; }
 
         public List<double> InputPermList { get; set; }
@@ -59,12 +52,9 @@ namespace MyExperiment
         public int SynapseCount { get; set; }
 
         public int SegmentCount { get; set; }
-        public string AdditionalInfo { get; set; }
         public String Perm_Array { get; set; }
 
         public byte[] excelData { get; set; }
-
-        //public Dictionary<double, string> encodedData { get; set; }
         public string TestCaseResults { get; set; }
 
         public string Comments { get; set; }

@@ -21,6 +21,11 @@ namespace MyExperiment
         private ExcelPackage package;
         private ExcelWorksheet worksheet;
         private int currentRow; // Track the current row number
+
+        /// <summary>
+        /// This code essentially creates a dynamic Excel report with customizable headers and data formatting, making it suitable for presenting test data with test 
+        /// results and comments in a structured Excel format.
+        /// </summary>
         public ExcelWriter()
         {
             package = new ExcelPackage();
