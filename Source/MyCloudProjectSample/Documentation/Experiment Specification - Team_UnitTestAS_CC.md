@@ -137,7 +137,31 @@ Column names of the Excel with explanation
 5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
 6. Test Results : Gives the status of the Test case run as 'Passed' or 'Failed'
 7. Comments : Gives a brief scenario description for each test cases.
-   
+
+
+## Method : AdatSegment 
+
+The Adapt Segment method is a part of the Temporal Memory class, which is a fundamental component of the Hierarchical Temporal Memory (HTM) algorithm. This method is responsible for updating the permanence values of synapses in a given distal dendrite segment based on whether the synapse's presynaptic cell was active in the previous cycle or not. The method takes several parameters, which are described below:
+
+•	conn: An instance of the Connections class, which is used to perform various operations related to synapses and dendrites.
+•	segment: A DistalDendrite object that represents the segment to be adapted.
+•	prevActiveCells: A collection of Cell objects that represents the set of active cells in the previous cycle. These cells are used to determine whether a synapse's presynaptic cell was active or not.
+•	permanenceIncrement: A double value that represents the amount by which the permanence value of a synapse should be increased if its presynaptic cell was active in the previous cycle.
+•	permanenceDecrement: A double value that represents the amount by which the permanence value of a synapse should be decreased if its presynaptic cell was not active in the previous cycle.
+
+The method first initializes an empty list called synapsesToDestroy that will be used to store synapses that need to be destroyed because their permanence value has dropped below a certain threshold. Then, it iterates through all the synapses in the given segment object using a foreach loop. For each synapse, it retrieves its current permanence value and stores it in a local variable called permanence.
+The method then checks if the synapse's presynaptic cell was active in the previous cycle by using the Contains method of the prevActiveCells collection. If the presynaptic cell was active, the method increases the permanence value by permanenceIncrement; otherwise, it decreases the permanence value by permanenceDecrement. 
+
+After updating the permanence value, the method ensures that 
+the value is within the range of 0 to 1 by using a conditional statement. If the permanence value is less than 0, it is set to 0, and if it is greater than 1, it is set to 1. The method then checks if the permanence value is less than a predefined threshold value called EPSILON, which is a small positive number representing the minimum difference between two floating-point numbers that are considered distinct. If the permanence value is less than EPSILON, the method adds the synapse to the synapsesToDestroy list; otherwise, it updates the synapse's Permanence property with the new permanence value.
+
+Finally, the method iterates through the synapsesToDestroy list and calls the DestroySynapse method of the Connections class to remove each synapse from the segment. If there are no synapses left in the segment, the method calls the DestroyDistalDendrite method of the Connections class to remove the segment from the dendrite.
+
+The CreateDistalSegment function creates a new distal dendrite segment for a given cell if the maximum number of segments per cell has not been reached. If the limit has been reached, the least recently used segment is destroyed. The new segment is assigned a unique index and added to the cell's list of distal dendrites.
+The DestroyDistalDendrite function removes a given distal dendrite segment and all its synapses from the cell's list of distal dendrites and destroys the synapses. The segment's index is added to a list of free indices for reuse.
+The LeastRecentlyUsedSegment function returns the least recently used distal dendrite segment for a given cell. The NumSegments function returns the number of distal dendrite segments for a given cell or for all cells.
+
+
 ## Workflow 
 
 We start with a distal dendrite segment, which consists of a set of synapses connecting to various presynaptic cells. (Fig.1)
