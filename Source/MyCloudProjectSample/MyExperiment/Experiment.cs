@@ -346,14 +346,6 @@ namespace MyExperiment
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
 
             }
-<<<<<<< HEAD
-=======
-
-
-            /*switch (inputFile)
-            {
-            }*/
->>>>>>> 3c956f7bb3beac60fc1af7ff012320387a7244d4
             return Task.FromResult<IExperimentResult>(res); // TODO...
         }
 
