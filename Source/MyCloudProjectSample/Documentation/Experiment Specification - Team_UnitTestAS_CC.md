@@ -194,22 +194,24 @@ This process helps the HTM network to learn and adapt over time by strengthening
 
 ## Azure
 
-1. The name of the resource group is CCProjectR
+1.   The name of the resource group is CCProjectR
 
 ![MicrosoftTeams-image (2)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/305bd856-2a07-4ea3-8348-3f3ee900b564)
 
-2.Storage Account ccprojectsd
+2.   Storage Account ccprojectsd
 
-3.Container Registry CCProjectC
+3.   Container Registry CCProjectC
 
-4.Container Instance teamunittestascc-msl
+4.   Container Instance teamunittestascc
 
 ![MicrosoftTeams-image (3)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/aeb4e4f5-4c60-4e20-9590-bb44a6de6cde)
 
-5. Docker Image ccprojectc.azurecr.io/teamunittestasccmycloudproject:latest
+5.   Docker Image ccprojectc.azurecr.io/teamunittestasccmycloudproject:latest
 ![MicrosoftTeams-image (4)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/16c0ad13-c32b-4de0-a56b-4650e0591d71)
 
 ## How to run the experiment 
+
+## Step 1:  Message input from queue portal
 
 The experiment can be run by starting the 'teamunittestascc' container instance which can be found here
 
@@ -228,20 +230,22 @@ Once the queue is given to the experiment, the queue message is displayed in the
 
 Once the experiment is finished, the expected result is uploaded in the Excel format to the Blob container 'adaptsegmentsunittests-teamas'.
 
-<img width="923" alt="269192242-e5b0b0ce-d8ab-4521-8597-b8997747e5c1" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/a386ff9d-c81d-4815-b630-d94e7fa1da5a">
+<img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/bc7ebb23-ed27-4962-b342-5b547b385d8c">
+
 
 Describe the Result
-How many Result Files are there ? There is only one Excel file 'Test_data_202309XXXXXXXXXX.xlsx'.
+How many Result Files are there ? 
+We have consolidated the results of all the testcases executed and stored it in is a single Excel file. for Example: 'Test_data_202309XXXXXXXXXX.xlsx'. which is uploaded into the blob container '**adaptsegmentsunittests-teamas**'.
 
 What do the columns mean ?
 
-1. Test Name : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
-2. Input Perm Value : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
-3. Updated Perm Value : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
-4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
-5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
-6. Test Results : Gives the status of the Test case run as 'Passed' or 'Failed'
-7. Comments : Gives a brief scenario description for each test cases.
+1. **Test Name** : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
+2. **Input Perm Value** : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
+3. **Updated Perm Value** : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
+4. **SynapseCount** : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+5. **SegmentCount** : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+6. **Test Results** : Gives the status of the Test case run as 'Passed' or 'Failed'
+7. **Comments** : Gives a brief scenario description for each test cases.
 
 ## Implemented Methods
 
