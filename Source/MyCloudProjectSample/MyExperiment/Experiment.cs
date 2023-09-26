@@ -345,6 +345,7 @@ namespace MyExperiment
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
 
+                Console.WriteLine("Experiment Unit Test AdaptSegments run successfully");
             }
             return Task.FromResult<IExperimentResult>(res); // TODO...
         }
@@ -956,7 +957,7 @@ namespace MyExperiment
 
             Assert.IsTrue(dd.Synapses.Contains(s1)); /// assert condition to check does DistalDendrite contains the synapse s1
             Assert.IsFalse(dd.Synapses.Contains(s2)); /// assert condition to check does DistalDendrite contains the synapse s2
-            
+
 
             string TestResult;
             if (dd.Synapses.Count == 1)
@@ -1003,7 +1004,7 @@ namespace MyExperiment
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 15 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
             try
             {
-                    Assert.IsFalse(dd.Synapses.Contains(s1));
+                Assert.IsFalse(dd.Synapses.Contains(s1));
             }
             catch (AssertFailedException ex)
             {

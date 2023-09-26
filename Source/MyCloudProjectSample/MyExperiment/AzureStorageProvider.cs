@@ -59,14 +59,7 @@ namespace MyExperiment
             {
                 await blobClient.UploadAsync(memoryStream);
             }
-
-            /*switch (experimentLabel)
-            {
-                case "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive":
-
-                    break;
-            }*/
-            }
+        }
 
 
 
