@@ -125,8 +125,10 @@ This information is then passed and stored in the Azure table storage.
 The output of the Experiment provides information about the test name, initial and updated synapse permanence values, and counts of processed synapses and segments.
  
 Below is the Screenshot of blob container file in excel format from the portal or ASX (Azure Storage Explorer)
+
  
-<img width="923" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/e5b0b0ce-d8ab-4521-8597-b8997747e5c1">
+<img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/a95cfe98-bf7f-42d8-8f51-0c78aa8d816a">
+
 
 
 Column names of the Excel with explanation
