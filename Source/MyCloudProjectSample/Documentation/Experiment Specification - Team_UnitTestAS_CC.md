@@ -235,13 +235,13 @@ How many Result Files are there ? There is only one Excel file 'Test_data_202309
 
 What do the columns mean ?
 
-1. Test Name : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
-2. Input Perm Value : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
-3. Updated Perm Value : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
-4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
-5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
-6. Test Results : Gives the status of the Test case run as 'Passed' or 'Failed'
-7. Comments : Gives a brief scenario description for each test cases.
+1. **Test Name** : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
+2. **Input Perm Value** : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
+3. **Updated Perm Value** : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
+4. **SynapseCount** : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+5. **SegmentCount** : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+6. **Test Results** : Gives the status of the Test case run as 'Passed' or 'Failed'
+7. **Comments** : Gives a brief scenario description for each test cases.
 
 ## Implemented Methods
 
