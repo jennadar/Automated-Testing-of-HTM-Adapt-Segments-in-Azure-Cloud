@@ -202,7 +202,7 @@ This process helps the HTM network to learn and adapt over time by strengthening
 
 3.Container Registry CCProjectC
 
-4.Container Instance teamunittestascc-msl
+4.Container Instance teamunittestascc
 
 ![MicrosoftTeams-image (3)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/aeb4e4f5-4c60-4e20-9590-bb44a6de6cde)
 
