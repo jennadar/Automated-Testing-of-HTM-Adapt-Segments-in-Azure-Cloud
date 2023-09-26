@@ -133,24 +133,28 @@ Below is the Screenshot of blob container file in excel format from the portal o
 
 Column names of the Excel with explanation
 
-1. Test Name : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
-2. Input Perm Value : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
-3. Updated Perm Value : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
-4. SynapseCount : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
-5. SegmentCount : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
-6. Test Results : Gives the status of the Test case run as 'Passed' or 'Failed'
-7. Comments : Gives a brief scenario description for each test cases.
+1. **Test Name** : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
+3. **Input Perm Value** : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
+4. **Updated Perm Value** : Indicate the resulting permanence value of a synapse after the AdaptSegment method has been applied. It represents the updated or modified permanence value.
+5. **SynapseCount** : Represents the count or number of synapses that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+6. **SegmentCount** : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
+7. **Test Results** : Gives the status of the Test case run as 'Passed' or 'Failed'
+8. **Comments** : Gives a brief scenario description for each test cases.
 
 
 ## Method : AdatSegment 
 
 The Adapt Segment method is a part of the Temporal Memory class, which is a fundamental component of the Hierarchical Temporal Memory (HTM) algorithm. This method is responsible for updating the permanence values of synapses in a given distal dendrite segment based on whether the synapse's presynaptic cell was active in the previous cycle or not. The method takes several parameters, which are described below:
 
-•	conn: An instance of the Connections class, which is used to perform various operations related to synapses and dendrites.
-•	segment: A DistalDendrite object that represents the segment to be adapted.
-•	prevActiveCells: A collection of Cell objects that represents the set of active cells in the previous cycle. These cells are used to determine whether a synapse's presynaptic cell was active or not.
-•	permanenceIncrement: A double value that represents the amount by which the permanence value of a synapse should be increased if its presynaptic cell was active in the previous cycle.
-•	permanenceDecrement: A double value that represents the amount by which the permanence value of a synapse should be decreased if its presynaptic cell was not active in the previous cycle.
+• **conn**: An instance of the Connections class, which is used to perform various operations related to synapses and dendrites.
+
+• **segment** : A DistalDendrite object that represents the segment to be adapted.
+
+• **prevActiveCells** : A collection of Cell objects that represents the set of active cells in the previous cycle. These cells are used to determine whether a synapse's presynaptic cell was active or not.
+
+• **permanenceIncrement** : A double value that represents the amount by which the permanence value of a synapse should be increased if its presynaptic cell was active in the previous cycle.
+
+• **permanenceDecrement** : A double value that represents the amount by which the permanence value of a synapse should be decreased if its presynaptic cell was not active in the previous cycle.
 
 The method first initializes an empty list called synapsesToDestroy that will be used to store synapses that need to be destroyed because their permanence value has dropped below a certain threshold. Then, it iterates through all the synapses in the given segment object using a foreach loop. For each synapse, it retrieves its current permanence value and stores it in a local variable called permanence.
 The method then checks if the synapse's presynaptic cell was active in the previous cycle by using the Contains method of the prevActiveCells collection. If the presynaptic cell was active, the method increases the permanence value by permanenceIncrement; otherwise, it decreases the permanence value by permanenceDecrement. 
