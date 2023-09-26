@@ -228,10 +228,12 @@ Once the queue is given to the experiment, the queue message is displayed in the
 
 Once the experiment is finished, the expected result is uploaded in the Excel format to the Blob container 'adaptsegmentsunittests-teamas'.
 
-<img width="923" alt="269192242-e5b0b0ce-d8ab-4521-8597-b8997747e5c1" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/a386ff9d-c81d-4815-b630-d94e7fa1da5a">
+<img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/bc7ebb23-ed27-4962-b342-5b547b385d8c">
+
 
 Describe the Result
-How many Result Files are there ? There is only one Excel file 'Test_data_202309XXXXXXXXXX.xlsx'.
+How many Result Files are there ? 
+We have consolidated the results of all the testcases executed and stored it in is a single Excel file. for Example: 'Test_data_202309XXXXXXXXXX.xlsx'. which is uploaded into the blob container '**adaptsegmentsunittests-teamas**'.
 
 What do the columns mean ?
 
