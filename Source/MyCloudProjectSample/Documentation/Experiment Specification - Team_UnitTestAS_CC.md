@@ -211,6 +211,8 @@ This process helps the HTM network to learn and adapt over time by strengthening
 
 ## How to run the experiment 
 
+## Step 1:  Message input from queue portal
+
 The experiment can be run by starting the 'teamunittestascc' container instance which can be found here
 
 ![MicrosoftTeams-image (5)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/b54837d5-c5a4-40fd-bf9c-65419a510949)
