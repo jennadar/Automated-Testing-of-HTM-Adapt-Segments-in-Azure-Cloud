@@ -192,6 +192,83 @@ Finally, if there are no synapses left in the segment, we destroy the segment as
 
 This process helps the HTM network to learn and adapt over time by strengthening connections between active cells and pruning away weak connections.
 
+## Implemented Methods
+
+1. Run in Experiment.cs
+
+~~~csharp
+ public Task<IExperimentResult> Run(string inputFile)
+        {
+            // TODO read file
+
+            // STARTING HERE WITH OUR SE EXPERIMENT i.e, UnitTest for AdaptSegments Method!!!!
+
+            ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
+
+            res.StartTimeUtc = DateTime.UtcNow;
+
+            // Run your experiment code here.
+            Tuple<List<double>, List<double>, string, string> PermDataList = null;
+            List<Tuple<string, string, List<double>, List<double>, string, string>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, string, string>>();
+            Tuple<int, int, string, string> SynapseCount = null;
+            List<Tuple<string, string, int, int, string, string>> SegmentCount = new List<Tuple<string, string, int, int, string, string>>();
+            int index = 0;// Index to keep track of the position in the datastore array
+                          // Set the LicenseContext before using the EPPlus library
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExperimentResult result = new ExperimentResult("damir", "0")
+            {
+                Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+            };
+            ExcelWriter excelreport = new ExcelWriter();
+
+            if (inputFile == "startadaptsegmentstests")
+            {
+                ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
+                ///******************************************************** TestCase 1 ***************************************************************//
+                ///
+                PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
+                res.InputPermList = PermDataList.Item1;
+                res.UpdatedPermList = PermDataList.Item2;
+                res.TestCaseResults = PermDataList.Item3;
+                res.Comments = PermDataList.Item4;
+                AdaptSegmentsList.Add(Tuple.Create("1", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
+                Console.WriteLine(res.Perm_Array);
+
+                // Now you have PermValueList
+                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+~~~
+
+Here various objects and variables, such as lists and Excel-related objects, are declared and initialized for later use in the experiment. If the inputFile parameter is equal to "startadaptsegmentstests," it proceeds to run a specific set of unit tests related to the "AdaptSegments" method. It calls a unit test method TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive and stores the results in PermDataList. It also populates various properties of the ExperimentResult object with the test results. Finally It uses an ExcelWriter object to write the test output data to an Excel file. 
+
+2. UploadExperimentResult
+The UploadExperimentResult method is responsible for uploading experiment results, particularly Excel data, to a Blob Storage container. 
+
+~~~csharp
+public async Task UploadExperimentResult(IExperimentResult result)
+        {
+            var experimentLabel = result.ExperimentName;
+
+            BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests-teamas");
+
+            // Write encoded data to Excel file
+            byte[] excelData = result.excelData;
+
+            // Generate a unique blob name (you can customize this logic)
+            string blobName = $"Test_data_{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            // Upload the Excel data to the blob container
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+            using (MemoryStream memoryStream = new MemoryStream(excelData))
+            {
+                await blobClient.UploadAsync(memoryStream);
+            }
+~~~
+
+
 ## Azure
 
 1.   The name of the resource group is CCProjectR
@@ -257,79 +334,6 @@ The expected result is uploaded in the Excel format to the Blob container 'adapt
 5. **SegmentCount** : Represent the count or number of segments or distal dendrites that were processed or affected by the AdaptSegment method within the scope of the test or experiment.
 6. **Test Results** : Gives the status of the Test case run as 'Passed' or 'Failed'
 7. **Comments** : Gives a brief scenario description for each test cases.
-
-## Implemented Methods
-
-1. Run in Experiment.cs
-
-~~~csharp
- public Task<IExperimentResult> Run(string inputFile)
-        {
-            // TODO read file
-
-            // STARTING HERE WITH OUR SE EXPERIMENT i.e, UnitTest for AdaptSegments Method!!!!
-
-            ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
-
-            res.StartTimeUtc = DateTime.UtcNow;
-
-            // Run your experiment code here.
-            Tuple<List<double>, List<double>, string, string> PermDataList = null;
-            List<Tuple<string, string, List<double>, List<double>, string, string>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, string, string>>();
-            Tuple<int, int, string, string> SynapseCount = null;
-            List<Tuple<string, string, int, int, string, string>> SegmentCount = new List<Tuple<string, string, int, int, string, string>>();
-            int index = 0;// Index to keep track of the position in the datastore array
-                          // Set the LicenseContext before using the EPPlus library
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            ExperimentResult result = new ExperimentResult("damir", "0")
-            {
-                Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
-            };
-            ExcelWriter excelreport = new ExcelWriter();
-
-            if (inputFile == "startadaptsegmentstests")
-            {
-                ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
-                ///******************************************************** TestCase 1 ***************************************************************//
-                ///
-                PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
-                res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive";
-                res.InputPermList = PermDataList.Item1;
-                res.UpdatedPermList = PermDataList.Item2;
-                res.TestCaseResults = PermDataList.Item3;
-                res.Comments = PermDataList.Item4;
-                AdaptSegmentsList.Add(Tuple.Create("1", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
-                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
-                Console.WriteLine(res.Perm_Array);
-
-                // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
-~~~
-
-2. UploadExperimentResult
-
-~~~csharp
-public async Task UploadExperimentResult(IExperimentResult result)
-        {
-            var experimentLabel = result.ExperimentName;
-
-            BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("adaptsegmentsunittests-teamas");
-
-            // Write encoded data to Excel file
-            byte[] excelData = result.excelData;
-
-            // Generate a unique blob name (you can customize this logic)
-            string blobName = $"Test_data_{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}.xlsx";
-
-            // Upload the Excel data to the blob container
-            BlobClient blobClient = containerClient.GetBlobClient(blobName);
-            using (MemoryStream memoryStream = new MemoryStream(excelData))
-            {
-                await blobClient.UploadAsync(memoryStream);
-            }
-~~~
 
 
 
