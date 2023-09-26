@@ -194,19 +194,19 @@ This process helps the HTM network to learn and adapt over time by strengthening
 
 ## Azure
 
-1.  The name of the resource group is CCProjectR
+1.   The name of the resource group is CCProjectR
 
 ![MicrosoftTeams-image (2)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/305bd856-2a07-4ea3-8348-3f3ee900b564)
 
-2.  Storage Account ccprojectsd
+2.   Storage Account ccprojectsd
 
-3.  Container Registry CCProjectC
+3.   Container Registry CCProjectC
 
-4.  Container Instance teamunittestascc
+4.   Container Instance teamunittestascc
 
 ![MicrosoftTeams-image (3)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/aeb4e4f5-4c60-4e20-9590-bb44a6de6cde)
 
-5.  Docker Image ccprojectc.azurecr.io/teamunittestasccmycloudproject:latest
+5.   Docker Image ccprojectc.azurecr.io/teamunittestasccmycloudproject:latest
 ![MicrosoftTeams-image (4)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/16c0ad13-c32b-4de0-a56b-4650e0591d71)
 
 ## How to run the experiment 
