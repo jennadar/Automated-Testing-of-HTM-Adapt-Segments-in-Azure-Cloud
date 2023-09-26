@@ -213,31 +213,42 @@ This process helps the HTM network to learn and adapt over time by strengthening
 
 ## Step 1:  Message input from queue portal
 
+### How to add message :
+
+Azure portal > Home > ccprojectsd | Queues > unittestascc-trigger-queue> Add message
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/1c1075ca-b67a-4ea0-b5ca-2180a5aefb7d)
+
+### Message added to queue
+
+![MicrosoftTeams-image (6)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/08dfb9a8-a586-4e65-b5f9-d86c5f86b644)
+
 The experiment can be run by starting the 'teamunittestascc' container instance which can be found here
 
 ![MicrosoftTeams-image (5)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/b54837d5-c5a4-40fd-bf9c-65419a510949)
 
 Once the experiment starts, it waits for the queue message which can be directly entered into the 'unittestascc-trigger-queue' queue storage or via the Azure Storage Explorer by using the following connection string DefaultEndpointsProtocol=https;AccountName=ccprojectsd;AccountKey=A/HxKCnv1X9riZalnZM9GRopm9Gz8MxpTavlkx1fklaGcsfxnuz8/K/3oJTkskIBYD2UqrrvqBY6+AStUCILGA==;EndpointSuffix=core.windows.net The complete configuration can be found here The sequences used for the experiment are present in the input container "adaptsegmentsunittests-teamas".
 
-Queue Message --> Make sure to turn OFF base64 encryption before queueing the message.
-
-![MicrosoftTeams-image (6)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/08dfb9a8-a586-4e65-b5f9-d86c5f86b644)
-
-
 Once the queue is given to the experiment, the queue message is displayed in the logs of the container instance and the experiment starts running. Each of the Unit Tests will be run and generates the excel report.
 
-![MicrosoftTeams-image (7)](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/49e89d44-c544-4ef0-bb20-e8e6debacb57)
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/d9aa9ca0-2776-47b5-b258-61c38ce7c1f0)
 
-Once the experiment is finished, the expected result is uploaded in the Excel format to the Blob container 'adaptsegmentsunittests-teamas'.
+
+When the experiment is successful below message -'**Experiment Unit Test AdaptSegments run successfully**' will be shown.
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/6d5c6f33-9eeb-49c8-a12d-07546b2e8658)
+
+## Step2: Describe the Experiment Result Output Container
+
+After the experiments are completed, the result file is stored in Azure storage blob containers
+
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/babbeb20-fc32-4c62-83d9-9bde75cf5b75)
+
+
+The expected result is uploaded in the Excel format to the Blob container 'adaptsegmentsunittests-teamas'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. for Example: 'Test_data_202309XXXXXXXXXX.xlsx'. which is uploaded into the blob container '**adaptsegmentsunittests-teamas**'.
 
 <img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/assets/118343468/bc7ebb23-ed27-4962-b342-5b547b385d8c">
 
-
-Describe the Result
-How many Result Files are there ? 
-We have consolidated the results of all the testcases executed and stored it in is a single Excel file. for Example: 'Test_data_202309XXXXXXXXXX.xlsx'. which is uploaded into the blob container '**adaptsegmentsunittests-teamas**'.
-
-What do the columns mean ?
 
 1. **Test Name** : Represents the name or identifier of the test or experiment that generated the data in the output table. It helps identify which test case or scenario produced the specific results.
 2. **Input Perm Value** : Represent the initial permanence value of a synapse or some input parameter related to the test. It may indicate the starting value of a synapse's permanence before the AdaptSegment method is applied.
