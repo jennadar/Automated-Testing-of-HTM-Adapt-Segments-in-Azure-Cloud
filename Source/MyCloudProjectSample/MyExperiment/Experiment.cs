@@ -80,7 +80,7 @@ namespace MyExperiment
                 /// Finally, it appears to write the test output data (stored in AdaptSegmentsList) to an Excel file using the excelreport.WriteTestOutputDataToExcel method.
                 /// </summary>
 
-                ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
+               
                 ///******************************************************** TestCase 1 ***************************************************************//
 
                 PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
@@ -250,7 +250,6 @@ namespace MyExperiment
                 // Now you have PermValueList
                 res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
 
-                ///******************************************************** Unit Tests By by Kavya Hirebelaguli Chandrashekar ***************************************************************//
                 ///******************************************************** TestCase 1 ***************************************************************//
 
                 PermDataList = TestAdaptSegment_DoesNotDestroySynapses_ForSmallNNegativePermanenceValues();
@@ -418,8 +417,7 @@ namespace MyExperiment
 
         #region Private Methods
 
-        ///******************************************************** Unit Tests By Jishnu Shivaraman ***************************************************************//
-
+        
 
         /// <summary>
         /// Unit Tests for AdaptSegments method of the Temporal Memory Class.
@@ -1028,8 +1026,6 @@ namespace MyExperiment
             result.Add(tuple);
             return tuple;
         }
-
-        ///******************************************** Unit Test Cases by Kavya Hirebelaguli Chandrashekar*********************************************************///
 
         /// <summary>
         /// These test methods will test if the AdaptSegment method correctly destroys synapses
