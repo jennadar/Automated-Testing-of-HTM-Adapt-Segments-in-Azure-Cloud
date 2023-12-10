@@ -89,7 +89,7 @@ namespace MyExperiment
                 res.UpdatedPermList = PermDataList.Item2;
                 res.TestCaseResults = PermDataList.Item3;
                 res.Comments = PermDataList.Item4;
-                AdaptSegmentsList.Add(Tuple.Create("01", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                AdaptSegmentsList.Add(Tuple.Create("0", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
                 res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
                 $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
                 Console.WriteLine(res.Perm_Array);
@@ -499,7 +499,9 @@ namespace MyExperiment
             tm.Init(cn);
             double[] InputPerm = new double[] { 0.1 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]);
+            Random rnd = new Random();
+            int cell_num = rnd.Next(0, 225);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(cell_num), InputPerm[0]);
 
             // Invoking AdaptSegments with only the cells with index 23
             /// whose presynaptic cell is considered to be Active in the
