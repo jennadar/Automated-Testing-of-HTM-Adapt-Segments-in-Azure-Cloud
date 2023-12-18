@@ -82,20 +82,23 @@ namespace MyExperiment
 
 
                 ///******************************************************** TestCase 0 ***************************************************************//
+                for (int runIndex = 0; runIndex < 10; runIndex++)
+                {
+                    PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
+                    res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasNotActive";
+                    res.InputPermList = PermDataList.Item1;
+                    res.UpdatedPermList = PermDataList.Item2;
+                    res.TestCaseResults = PermDataList.Item3;
+                    res.Comments = PermDataList.Item4;
+                    AdaptSegmentsList.Add(Tuple.Create("0."+runIndex.ToString(), res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                    res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                    $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
+                    Console.WriteLine(res.Perm_Array);
 
-                PermDataList = TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive();
-                res.ExperimentName = "TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasNotActive";
-                res.InputPermList = PermDataList.Item1;
-                res.UpdatedPermList = PermDataList.Item2;
-                res.TestCaseResults = PermDataList.Item3;
-                res.Comments = PermDataList.Item4;
-                AdaptSegmentsList.Add(Tuple.Create("0", res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
-                res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
-                $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
-                Console.WriteLine(res.Perm_Array);
-
-                // Now you have PermValueList
-                res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                    // Now you have PermValueList
+                    res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                    runIndex++;
+                }
 
                 ///******************************************************** TestCase 1 ***************************************************************//
 
@@ -441,6 +444,7 @@ namespace MyExperiment
 
         private const string CONNECTIONS_CANNOT_BE_NULL = "Connections cannot be null";
         private const string DISTALDENDRITE_CANNOT_BE_NULL = "Object reference not set to an instance of an object.";
+        Random rnd = new Random();
         /// <summary>
         /// Testing whether the permanence of a synapse in a distal dendrite segment increases if its presynaptic cell 
         /// was active in the previous cycle.with a permanence value of 0.1. Then it calls the AdaptSegment 
@@ -499,9 +503,7 @@ namespace MyExperiment
             tm.Init(cn);
             double[] InputPerm = new double[] { 0.1 };
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-            Random rnd = new Random();
-            int cell_num = rnd.Next(0, 225);
-            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(cell_num), InputPerm[0]);
+            Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(rnd.Next(0, 225)), InputPerm[0]);
 
             // Invoking AdaptSegments with only the cells with index 23
             /// whose presynaptic cell is considered to be Active in the
