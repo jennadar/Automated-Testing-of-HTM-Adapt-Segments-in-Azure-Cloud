@@ -1459,50 +1459,6 @@ namespace MyExperiment
             // Assert
             CollectionAssert.AreEqual(expectedCells, result);
         }
-
-        <summary>
-        //The test case is to check when the presynaptic cell was active in the previous cycle and excepts that 
-        //the synapse's permanence is increased accordingly
-        public class TemporalMemoryTest
-        {
-            [TestMethod]
-            [TestCategory("Prod")]
-            public Tuple<List<double>, List<double>, string, string> TestAdaptSegment_PermanenceNotStrengthened_IfPresynapticcellwasinactive()
-            {
-                TemporalMemeory tm = new TemporalMemeory();
-                Connecntions cn = new Connecntions();
-                Parameters p = Parameters.getAllDefaultParameters();
-                p.apply(cn);
-                tm.Init(cn);
-                double[] InputPerm = new double[] { 0.1 };
-                DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
-                Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(23), InputPerm[0]);
-
-
-
-                TemporalMemoryTest.AdaptSegment(cn, dd, cn.GetCell(new int[] {23}), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement)
-
-
-
-                Assert.AreEqual(0.1, s1.Permanence);
-                string TestResult = (0.1 == s1.Permanence) ? "PASSED" : "FAILED";
-                string Comments = "Permanence remains unchanged as the presynaptic cell was inactive";
-
-
-                List<Tuple<List<double>, List<double>, string, string>> result = new List<Tuple<List<double>, List<double>, string, string>>();
-                List<double> synPermList = new List<double> {s1.Permanence};
-                List<double> InputPermList = new List<double> {InputPerm[0]};
-
-
-                Tuple<synPermList<double>, List<double>, string, string> tuple = tuple.Create(InputPermList, synPermList, TestResult, Comments);
-                result.Add(tuple);
-                return tuple;
-            }
-
-        
-
-
-
         #endregion
     }
 }
