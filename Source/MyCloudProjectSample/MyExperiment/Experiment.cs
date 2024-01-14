@@ -1461,6 +1461,40 @@ namespace MyExperiment
             // Assert
             CollectionAssert.AreEqual(expectedCells, result);
         }
+        [TestClass]
+        public class AdaptSegmentTests
+        {
+            [TestMethod]
+            public void TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive()
+            {
+                // Arrange
+                Connections conn = new Connections();  // You may need to instantiate an appropriate Connections object.
+                DistalDendrite segment = new DistalDendrite();  // Instantiate a DistalDendrite object.
+                Cell activeCell = new Cell();
+                ICollection<Cell> prevActiveCells = new List<Cell> { activeCell };
+                double initialPermanence = 0.5;  // Set an initial permanence value for the synapse.
+                Synapse synapse = new Synapse(activeCell, initialPermanence);
+                segment.AddSynapse(synapse);
+
+                double permanenceIncrement = 0.1;
+                double permanenceDecrement = 0.05;
+
+                // Act
+                AdaptSegment(conn, segment, prevActiveCells, permanenceIncrement, permanenceDecrement);
+
+                // Assert
+                // Check that the synapse's permanence has been incremented.
+                Assert.AreEqual(initialPermanence + permanenceIncrement, synapse.Permanence);
+
+                // Check that no synapses were destroyed.
+                Assert.AreEqual(1, segment.Synapses.Count);
+
+                // You can add more specific assertions or checks based on your requirements.
+            }
+
+            // Add more test methods for other scenarios as needed.
+        }
+
         #endregion
     }
 }
