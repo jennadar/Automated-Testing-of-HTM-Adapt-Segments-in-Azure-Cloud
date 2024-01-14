@@ -9,6 +9,10 @@ As the Hierarchical Temporal Memory (HTM) model is exposed to more input data ov
 
 This makes HTM an effective tool for application in fields like robotics, finance, and health that include anomaly detection, prediction, and classification. The testing of the AdaptSegment module or component is conducted through a specialized form of software testing known as unit testing. The primary objective of unit testing is to verify that every segment of the software code functions precisely as intended. These tests meticulously isolate individual components, be it a function, method, procedure, module, or object, to validate their accuracy and adherence to the intended functionality. The essence lies in confirming that each unit of code operates seamlessly within the broader software system.
 
+# Cloud Project
+
+https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/master/Source/MyCloudProjectSample
+
 
 
 ## What is your experiment about
