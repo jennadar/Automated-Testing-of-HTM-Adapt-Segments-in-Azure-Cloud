@@ -501,7 +501,9 @@ namespace MyExperiment
             Parameters p = Parameters.getAllDefaultParameters();
             p.apply(cn);
             tm.Init(cn);
-            double[] InputPerm = new double[] { 0.1 };
+            //double[] InputPerm = new double[] { 0.1 };
+            double[] InputPerm = new double[] { new Random().NextDouble() * (1 - 0.1) + 0.1 };
+            Console.WriteLine($"InputPerm value: {InputPerm[0]}");
             DistalDendrite dd = cn.CreateDistalSegment(cn.GetCell(0));
             Synapse s1 = cn.CreateSynapse(dd, cn.GetCell(rnd.Next(0, 225)), InputPerm[0]);
 
@@ -524,7 +526,7 @@ namespace MyExperiment
             List<double> InputPermList = new List<double>
             {InputPerm[0]};
             string Comments;
-            Comments = "Permenance increment successfull";
+            Comments = "InputPermanence: {InputPerm[0]}, UpdatedPermanence: {s1.Permanence}. Permenance increment successfull";
 
             // Add a new tuple if the list doesn't have an existing tuple at the current index
             Tuple<List<double>, List<double>, string, string> tuple = Tuple.Create(InputPermList, synPermList, TestResult, Comments);
