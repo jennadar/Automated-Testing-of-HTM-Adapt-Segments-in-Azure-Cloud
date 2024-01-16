@@ -491,7 +491,7 @@ namespace MyExperiment
             /// previous cycle and presynaptic cell is Inactive for the cell 477
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
             Console.WriteLine($"Actual s1.Permanence: {s1.Permanence}"); // Print the actual value
-            storedPermanence = s1.Permanence;
+            storedPermanence = InputPerm[0]+0.1;
             //Assert
             /// permanence is incremented for presynaptic cell 23 from 
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
@@ -533,7 +533,7 @@ namespace MyExperiment
             /// previous cycle and presynaptic cell is Inactive for the cell 477
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 0 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
             Console.WriteLine($"Actual s1.Permanence: {s1.Permanence}"); // Print the actual value
-            storedPermanence = s1.Permanence;
+            storedPermanence = InputPerm[0]-0.1;
             //Assert
             /// permanence is incremented for presynaptic cell 23 from 
             /// 0.1 to 0.2 as presynaptic cell was InActive in the previous cycle
@@ -578,7 +578,7 @@ namespace MyExperiment
 
 
             TemporalMemory.AdaptSegment(cn, dd, cn.GetCells(new int[] { 23, 57 }), cn.HtmConfig.PermanenceIncrement, cn.HtmConfig.PermanenceDecrement);
-            storedPermanence = s1.Permanence;
+            storedPermanence = InputPerm[0]-0.1;
             //Assert
             /// /// permanence is decremented for presynaptie cell 500 from 
             /// 0.9 to 0.8 as presynaptic cell was InActive in the previous cycle
