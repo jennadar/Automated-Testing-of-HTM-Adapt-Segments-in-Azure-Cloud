@@ -191,15 +191,24 @@ Unless the maximum limit is reached, in which case the least recently used segme
 ## Workflow
 
 - The distal dendrite segment, which is the first segment we examine, is made up of a series of synapses that link to different presynaptic cells.
+
 ![Workflow-1](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-1.png)
+
 - It's possible that certain presynaptic cells were active while others were quiescent during the preceding cycle. A list of the active cells is passed before us.AdaptSegment approach to ActiveCells technique.
+
 ![Workflow-2](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-2.png)
+
 - We determine whether the presynaptic cell of each synapse in the segment was activated during the preceding cycle. If so, we add the permanenceIncrement value to the synapse's permanence value. We decrement the persistence value by the permanenceDecrement value if it was not active. We maintain the persistence value between 0 and 1, respectively, as the lowest and maximum boundaries. 
+
 ![Workflow-3](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-3.png)
 - We eliminate a synapse and delete it from the segment if its permanence value is less than the EPSILON value. Since synapse S1's permanence value in this case is less than EPSILON, we add it to the list of synapses that should be destroyed. 
+
 ![Workflow-4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-4.png)
+
 - Lastly, we also destroy the section if there are no synapses remaining in it.
+
 -![Workflow-5](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-5.png)
+
 - Through the strengthening of connections between active cells and the pruning of weak connections, this process aids in the HTM network's ability to learn and adapt over time.
 
 
@@ -316,4 +325,5 @@ Once the queue is given to the experiment, the queue message is displayed in the
 ## Step 2: Experiment Result Output Container
 After the experiments are completed, the result file is stored in Azure storage blob containers
 ![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/storage-output.png)
-The expected result is uploaded in the Excel format to the Blob container 'project-x-result-files'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. For example:'Test_data_20240109224957260.xlsx'. which is uploaded into the blob container 'project-x-result-files'(https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Output.png)
+The expected result is uploaded in the Excel format to the Blob container 'project-x-result-files'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. For example:'Test_data_20240109224957260.xlsx'. which is uploaded into the blob container 'project-x-result-files'.
+![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Output.png)
