@@ -65,7 +65,7 @@ e)   **Azure Queue Storage**:
 
 - To initiate the experiment run, we activate it by running the queue. The message, in this instance, contains the string 'startadaptsegmentstests,' serving as the input to execute the test cases designed for the AdaptSegments methodology. 
 - This approach allows for flexibility, enabling the triggering of test cases for various methodologies by passing different strings as needed.
-- The class that receives the names of the input files [ExperimentRequestMessage] (https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/master/Source/MyCloudProjectSample/MyCloudProject.Common)and the details of the experiment defines the input for the experiment.
+- The class that receives the names of the input files [ExperimentRequestMessage](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/tree/master/Source/MyCloudProjectSample/MyCloudProject.Common)and the details of the experiment defines the input for the experiment.
 
 ~~~csharp
  public interface IExerimentRequestMessage
@@ -99,12 +99,11 @@ The experiment will be started by an Azure queue message in the 'unittestxcc-tri
 
 - 'adaptsegmentunittest-teamunittesrxcc': saving output written into the file in Excel format.
      - The file inside are result from the experiment, for example:
-          - *_____* Excel file.
+          - *Test_data_20240109224957260.xlsx* Excel file.
 
 ## Output of the Experiment
 
-The output of the experiment will be a result object of class [ExperimentResult] (https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Source/MyCloudProjectSample/MyExperiment/ExperimentResult.cs)
-
+The output of the experiment will be a result object of class [ExperimentResult](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Source/MyCloudProjectSample/MyExperiment/ExperimentResult.cs)
 ~~~csharp
 public class ExperimentResult : ITableEntity, IExperimentResult
     {
@@ -158,12 +157,14 @@ public class ExperimentResult : ITableEntity, IExperimentResult
         public string Comments { get; set; }
     }
 ~~~
+
 Following that, this data is sent and kept in the Azure table storage.
 The test name, starting and updated synapse permanence values, and counts of processed synapses and segments are all included in the experiment's output.
 The screenshot of an Excel-formatted blob container file from the portal or ASX (Azure Storage Explorer) is shown below.
-<img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Test%20results%20stored%20on%20result%20container%20in%20excel.png">
+<img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Output.png">
 
 Explaination of the columns that are displayed in the Excel sheet:
+
 1. **Test Name**: Represents the test or experiment name or identification that produced the data in the output table. It assists in determining which scenario or test case yielded the particular outcomes.
 2. **Input Perm Value**: Represent a synapse's initial persistence value or another test-related input parameter. It might represent the initial persistence value of a synapse prior to the application of the AdaptSegment technique.
 3. **Updated Perm Value**: After the AdaptSegment technique has been used, indicate the synapse's final persistence value. It stands for the revised or altered permanence value.
@@ -189,24 +190,102 @@ Unless the maximum limit is reached, in which case the least recently used segme
 ## Workflow
 
 - The distal dendrite segment, which is the first segment we examine, is made up of a series of synapses that link to different presynaptic cells.
-![Workflow-1] ()
+![Workflow-1](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-1.png)
 - It's possible that certain presynaptic cells were active while others were quiescent during the preceding cycle. A list of the active cells is passed before us.AdaptSegment approach to ActiveCells technique.
-![Workflow-2]()
+![Workflow-2](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-2.png)
 - We determine whether the presynaptic cell of each synapse in the segment was activated during the preceding cycle. If so, we add the permanenceIncrement value to the synapse's permanence value. We decrement the persistence value by the permanenceDecrement value if it was not active. We maintain the persistence value between 0 and 1, respectively, as the lowest and maximum boundaries. 
-![Workflow-3]()
+![Workflow-3](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-3.png)
 - We eliminate a synapse and delete it from the segment if its permanence value is less than the EPSILON value. Since synapse S1's permanence value in this case is less than EPSILON, we add it to the list of synapses that should be destroyed. 
-![Workflow-4]()
+![Workflow-4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-4.png)
 - Lastly, we also destroy the section if there are no synapses remaining in it.
--![Workflow-5]()
+-![Workflow-5](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Workflow-5.png)
 - Through the strengthening of connections between active cells and the pruning of weak connections, this process aids in the HTM network's ability to learn and adapt over time.
 
 
 ## Implementation Method
 1. Execute within [Experiment.cs](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/master/Source/MyCloudProjectSample/MyExperiment/Experiment.cs)
+~~~csharp
+ public Task<IExperimentResult> Run(string inputFile)
+        {
+            // TODO read file
+
+            // STARTING HERE WITH OUR SE EXPERIMENT i.e, UnitTest for AdaptSegments Method!!!!
+
+            ExperimentResult res = new ExperimentResult(this.config.GroupId, null);
+
+            res.StartTimeUtc = DateTime.UtcNow;
+
+            // Run your experiment code here.
+            Tuple<List<double>, List<double>, string, string> PermDataList = null;
+            List<Tuple<string, string, List<double>, List<double>, string, string>> AdaptSegmentsList = new List<Tuple<string, string, List<double>, List<double>, string, string>>();
+            Tuple<int, int, string, string> SynapseCount = null;
+            List<Tuple<string, string, int, int, string, string>> SegmentCount = new List<Tuple<string, string, int, int, string, string>>();
+            int index = 0;// Index to keep track of the position in the datastore array
+                          // Set the LicenseContext before using the EPPlus library
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExperimentResult result = new ExperimentResult("damir", "0")
+            {
+                Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+            };
+            ExcelWriter excelreport = new ExcelWriter();
+
+            if (inputFile == "startadaptsegmentstests")
+            {
+                /// <summary>
+                /// The below codes captures various data related to the test case, such as input and updated permanence values, test case results, and comments.
+                /// It stores this test case data in a tuple named res and then adds this tuple to a list named AdaptSegmentsList.
+                /// The code generates a string representation of the test case data and stores it in the res.Perm_Array variable.
+                /// Finally, it appears to write the test output data (stored in AdaptSegmentsList) to an Excel file using the excelreport.WriteTestOutputDataToExcel method.
+                /// </summary>
+
+
+                ///******************************************************** TestCase ***************************************************************//
+                for (int runIndex = 1; runIndex < 11; runIndex++)
+                {
+                    PermDataList = TestAdaptSegment_IfPresynapticCellWasNotActive();
+                    res.ExperimentName = "TestAdaptSegment_IfPresynapticCellWasNotActive";
+                    res.InputPermList = PermDataList.Item1;
+                    res.UpdatedPermList = PermDataList.Item2;
+                    res.TestCaseResults = PermDataList.Item3;
+                    res.Comments = PermDataList.Item4;
+                    AdaptSegmentsList.Add(Tuple.Create(""+runIndex.ToString(), res.ExperimentName, res.InputPermList, res.UpdatedPermList, res.TestCaseResults, res.Comments));
+                    res.Perm_Array = string.Join(", ", AdaptSegmentsList.Select(tuple => $"TestCase No: {tuple.Item1}, TestCase Name: {tuple.Item2} ,InputPermanence: {tuple.Item3}, " +
+                    $"UpdatedPermanence: {tuple.Item4}, TestCaseResults: {tuple.Item5}, Comments: {tuple.Item6}"));
+                    Console.WriteLine(res.Perm_Array);
+
+                    // Now you have PermValueList
+                    res.excelData = excelreport.WriteTestOutputDataToExcel(AdaptSegmentsList);
+                  
+                }
+            }
+        }
+~~~
 
 Here, a variety of variables and objects are declared and initialized for usage in the experiment later on, including lists and objects connected to Excel. It then runs a particular set of unit tests associated with the "AdaptSegments" method if the inputFile parameter equals "startadaptsegmentstests." The results are stored in PermDataList and a unit test method named TestAdaptSegment_PermanenceStrengthened_IfPresynapticCellWasActive is called. Additionally, it adds the test results to a number of properties on the ExperimentResult object. Lastly, it writes the test output data to an Excel file using an ExcelWriter object.
 
-2. The uploading of experiment results, including Excel data, to a Blob Storage container is done by the Upload [ExperimentResult](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/master/Source/MyCloudProjectSample/MyExperiment/ExperimentResult.cs) function.
+2. The uploading of experiment results, including Excel data, to a Blob Storage container is done by the Upload [ExperimentResult](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Source/MyCloudProjectSample/MyExperiment/AzureStorageProvider.cs) function.
+~~~csharp
+public async Task UploadExperimentResult(IExperimentResult result)
+        {
+            var experimentLabel = result.ExperimentName;
+
+            BlobServiceClient blobServiceClient = new BlobServiceClient(this.config.StorageConnectionString);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(this.config.ResultContainer);
+
+            // Write encoded data to Excel file
+            byte[] excelData = result.excelData;
+
+            // Generate a unique blob name (you can customize this logic)
+            string blobName = $"Test_data_{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            // Upload the Excel data to the blob container
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+            using (MemoryStream memoryStream = new MemoryStream(excelData))
+            {
+                await blobClient.UploadAsync(memoryStream);
+            }
+        }
+~~~
 
 ## Azure
 1. The resource group is called CCProjectR.
@@ -236,4 +315,5 @@ Once the queue is given to the experiment, the queue message is displayed in the
 ## Step 2: Experiment Result Output Container
 After the experiments are completed, the result file is stored in Azure storage blob containers
 ![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/storage-output.png)
-The expected result is uploaded in the Excel format to the Blob container 'project-x-result-files'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. For example:'TTest_data_20240109224957260.xlsx'. which is uploaded into the blob container 'project-x-result-files'.
+The expected result is uploaded in the Excel format to the Blob container 'project-x-result-files'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. For example:'Test_data_20240109224957260.xlsx'. which is uploaded into the blob container 'project-x-result-files'.
+(https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Output.png)
