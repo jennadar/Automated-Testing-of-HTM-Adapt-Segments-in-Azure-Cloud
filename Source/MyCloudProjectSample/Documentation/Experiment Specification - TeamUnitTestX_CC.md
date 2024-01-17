@@ -43,6 +43,7 @@ Our research focuses on assessing the efficacy of the SpatialPooler class, speci
 
 ## Implementation on Cloud:
 In order to configure the entire project in the Azure cloud, we take the following steps:
+![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Arch.jpg)
 
 a)   **Containerization with Docker**: 
 
