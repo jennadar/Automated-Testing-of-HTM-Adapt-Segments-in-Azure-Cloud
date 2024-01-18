@@ -154,7 +154,7 @@ public class ExperimentResult : ITableEntity, IExperimentResult
 Following that, this data is sent and kept in the Azure table storage.
 The test name, starting and updated synapse permanence values, and counts of processed synapses and segments are all included in the experiment's output.
 The screenshot of an Excel-formatted blob container file from the portal or ASX (Azure Storage Explorer) is shown below.
-<img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Output.png">
+<img width="930" alt="image" src="https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/output%20image.png">
 
 Explaination of the columns that are displayed in the Excel sheet:
 
@@ -318,4 +318,4 @@ Once the queue is given to the experiment, the queue message is displayed in the
 After the experiments are completed, the result file is stored in Azure storage blob containers
 ![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/storage-output.png)
 The expected result is uploaded in the Excel format to the Blob container 'project-x-result-files'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. For example:'Test_data_20240109224957260.xlsx'. which is uploaded into the blob container 'project-x-result-files'.
-![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Output.png)
+![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/output%20image.png)
