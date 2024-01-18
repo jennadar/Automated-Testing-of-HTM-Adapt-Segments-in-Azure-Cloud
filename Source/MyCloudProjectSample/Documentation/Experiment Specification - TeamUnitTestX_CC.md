@@ -90,9 +90,9 @@ The experiment will be started by an Azure queue message in the 'unittestxcc-tri
 
 ## Blob container registry
 
-- 'adaptsegmentunittest-teamunittesrxcc': saving output written into the file in Excel format.
+- 'project-x-result-files': saving output written into the file in Excel format.
      - The file inside are result from the experiment, for example:
-          - *Test_data_20240109224957260.xlsx* Excel file.
+          - *Test_data_20240117195255036.xlsx* Excel file.
 
 ## Output of the Experiment
 
@@ -317,5 +317,5 @@ Once the queue is given to the experiment, the queue message is displayed in the
 ## Step 2: Experiment Result Output Container
 After the experiments are completed, the result file is stored in Azure storage blob containers
 ![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/storage-output.png)
-The expected result is uploaded in the Excel format to the Blob container 'project-x-result-files'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. For example:'Test_data_20240109224957260.xlsx'. which is uploaded into the blob container 'project-x-result-files'.
+The expected result is uploaded in the Excel format to the Blob container 'project-x-result-files'. Here we have consolidated the results of all the testcases executed and stored it in is a single Excel file. For example:'Test_data_20240117195255036.xlsx'. which is uploaded into the blob container 'project-x-result-files'.
 ![image4](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/output%20image.png)
