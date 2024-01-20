@@ -36,7 +36,6 @@ Our research focuses on assessing the efficacy of the SpatialPooler class, speci
 
 ## Implementation on Cloud:
 In order to configure the entire project in the Azure cloud, we take the following steps:
-![image](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Flowchart.png)
 
 a)   **Containerization with Docker**: 
  Docker containerization is essential to the deployment in this case. It streamlines the installation of software and does away with the requirement for physical infrastructure. Deployment is streamlined via containerization, which reduces costs and time. It enables the operation of several applications in separate containers on a single hardware platform without interfering with the memory, processes, or resources of the other apps. Docker is a great tool to help accomplish this goal. It makes it possible to quickly launch apps in the settings for which they are designed, whether that is locally (with Docker for Windows) or remotely (with Microsoft Azure Container Registry and Instance service). An program is packed using Docker into a Docker image, which contains the code, runtime, system tools, and libraries required to run the application.
