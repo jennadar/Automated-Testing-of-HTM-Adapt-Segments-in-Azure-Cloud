@@ -298,6 +298,25 @@ public async Task UploadExperimentResult(IExperimentResult result)
 5. Docker Image ccprojectc.azurecr.io/projectxmycloudproject:latest
 ![Azure-p3](https://github.com/UniversityOfAppliedSciencesFrankfurt/se-cloud-2022-2023/blob/Team_UnitTestX_CC/Images/Azure-p3.png)
 
+Summary of the resource group. 
+The following details of the resources are as follows:
+- Container registry Server : `ccprojectcr.azurecr.io`
+- Resource Group Name : `CCProjectR`
+- Blob Storage name : `project-x-result-files`
+- Trigger Queue : `project-x-trigger-queue`
+- Trigger Message : 
+```
+{
+    "ExperimentId": "2023",
+    "InputFile":"startadaptsegmentstests",
+    "Name": "Unit Tests for Adapt Segments",
+    "Description": "Test the functionality of the AdaptSegments method and achieve code coverage"
+}
+```
+
+- Container instance : `projectx`
+
+
 ## Steps to run the experiment
 
 ## Step 1: Message input from the queue portal
