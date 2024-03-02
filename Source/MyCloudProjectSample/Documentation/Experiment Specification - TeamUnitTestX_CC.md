@@ -1,4 +1,4 @@
-## Implementation of UnitTest for AdaptSegments | Team_UnitTestX_CC - Azure Cloud Implementation
+##  Automated Testing of HTM Adapt Segments in Azure Cloud
 
 ## Description:
 The main objectives of the project are to guarantee that the Adapt Segment method funciton correctly in the HTM algorithm by creating thorough unit test cases for it. The project for Implementation of UnitTest for Adapt Segments focuses on creating a robust testing framework to ensure the correct and relaible functionality of the Adapt Segment method within the Hierarchical Temporal Memory (HTM) algorithm. Unit Testing is a crucial aspect of software development, aiming to verify that individual componenets or units of code work as intended in isolution. The Hierarchical Temporal Memory (HTM) algorithm, a computer model based on the structure and function of the neocortex in the brain, incorporates Adaptive Segments as a major component. Using adaptive segments, recurrent pattern in the input data can be reprensented in HTM and modified when fresh input is received. 
