@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "helloworldapp": {
+      "commandName": "Project",
+      "commandLineArgs": "arg1 arg2 arg3, arg4.",
+      "environmentVariables": {
+        "AAAA": "1234"
+      }
+    }
+  }
+}

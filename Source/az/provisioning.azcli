@@ -1,0 +1,22 @@
+$idx = "001"
+$grp = "se-01-grp"
+
+$user = "se-cloud-2020-2021-" + $idx + "@damirdobricdaenet.onmicrosoft.com"
+$tag = "se-cloud-2020-2021"
+$rg = "RG-SE-CLOUD-2020-2021-" + $idx
+$loc = "north europe"
+
+$pwd = "oasdniSZIWN01"+$idx
+
+az ad user create --display-name $user --password $pwd --user-principal-name $user --force-change-password-next-login false
+
+$userId =az ad user show --upn $user --query objectId
+
+az ad group create --display-name $grp --mail-nickname $grp 
+
+az ad group member add --group $grp --member-id $userId
+
+az group create -l westus -n $rg --tag semester=$tag
+
+$rgScope = "/subscriptions/2d335f20-77b0-4a56-ac60-dc7018c9e5ee/resourceGroups/" + $rg
+az role assignment create --role "Owner" --assignee $user --description "Role assignment for resource group" --scope $rgScope

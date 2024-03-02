@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    //"MyCloudProject": {
+    "UnitTests_AdaptSegments": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
